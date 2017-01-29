@@ -1,0 +1,20 @@
+{
+  "name": "mk-service-designer",
+  "description": "Marketto's Service Designer -> Design quickly quality service specs with (json, jsonschema and xlsx)",
+  "main": "index.js",
+  "authors": [
+    "Marco Ricupero"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/Marketto/mkServiceDesigner",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
