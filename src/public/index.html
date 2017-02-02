@@ -26,15 +26,56 @@
 		     the above list template to render each container column -->
 		<script type="text/ng-template" id="./container.html">
 		    <div class="container-element box box-blue">
-		        <md-input-container>
-					<label>Property name</label>
-					<input ng-model="item.name" required>
-				</md-input-container>
-				<md-input-container>
-					<md-switch class="md-primary" name="required" ng-model="item.required">
-			       		Reuired
-			        </md-switch>
-				</md-input-container>
+		    	<md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+				    <md-grid-tile md-colspan-xs="3">
+				        <md-input-container class="md-block">
+							<label>Property name</label>
+							<input ng-model="item.name" required>
+						</md-input-container>
+					</md-grid-tile>
+					<md-grid-tile md-colspan-xs="1">
+						<md-input-container class="md-block">
+							<md-switch class="md-primary" name="required" ng-model="item.required">
+								<label>Required</label>
+					        </md-switch>
+						</md-input-container>
+					</md-grid-tile>
+					<md-grid-tile md-colspan-xs="1">
+						<md-input-container>
+							<md-switch class="md-primary" name="listOf" ng-model="item.listOf">
+								<label>List/Array</label>
+					        </md-switch>
+						</md-input-container>
+					</md-grid-tile>
+					<md-grid-tile md-colspan-xs="3" ng-show="item.listOf">
+						<md-input-container class="md-block" ng-init="item.minOccurrence=0">
+					        <label>Min Occurrence</label>
+					        <input required type="number" step="1" name="minOccurrence" ng-model="item.minOccurrence" min="0" ng-max="item.maxOccurrence||999"/>
+							<div ng-messages="item.minOccurrence.$error" multiple md-auto-hide="false">
+								<div ng-message="min">
+									The minimum possible should be zero
+								</div>
+								<div ng-message="max">
+									{{item.minOccurrence.$viewValue}} is greater than {{item.maxOccurrence}} (max occurence).
+								</div>
+							</div>
+					    </md-input-container>
+					</md-grid-tile>
+					<md-grid-tile md-colspan-xs="3" ng-show="item.listOf">
+					    <md-input-container class="md-block">
+					        <label>Max Occurrence</label>
+					        <input placeholder="&infin;" type="number" step="1" name="maxOccurrence" ng-model="item.maxOccurrence" max="999" ng-min="item.minOccurrence||999"/>
+							<div ng-messages="item.minOccurrence.$error" multiple md-auto-hide="false">
+								<div ng-message="max">
+									The maximum possible should be less than 999
+								</div>
+								<div ng-message="min">
+									{{item.maxOccurrence}} is lower than {{item.minOccurrence}} (min occurence).
+								</div>
+							</div>
+					    </md-input-container>
+					</md-grid-tile>
+				</md-grid-list>
 		        <div class="dropzone" ng-repeat="list in [item.children]" ng-include="'./list.html'"></div>
 		        <div class="clearfix"></div>
 		    </div>
