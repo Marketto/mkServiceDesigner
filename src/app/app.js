@@ -31,6 +31,7 @@ angular.module(MODULE_NAME, ['ngMaterial', 'dndLists'])
   .controller('AppCtrl', AppCtrl);
 
 function requireAll(r) { r.keys().forEach(r); }
-requireAll(require.context('./sd/', true, /\.(?:js|html)$/));
+requireAll(require.context('./sd/', true, /\.js$/));
+requireAll(require.context('./filter/', true, /\.js$/));
 
 export default MODULE_NAME;

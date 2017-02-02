@@ -31,6 +31,6 @@ angular.module('app').controller('sdCtrl',function($scope){
 	// };
 
 	this.addItem = function(ref){
-		ref.push({"name" : 'property'+ref.length, type: "container"})
+		ref.push({"name" : 'property'+ref.length, type: "container", children : []})
 	}
 });

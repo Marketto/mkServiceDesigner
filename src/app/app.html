@@ -3,12 +3,12 @@
 	    <div>
 			<md-input-container>
 				<label>End Point</label>
-				<input ng-model="service.endPoint">
+				<input ng-model="service.endPoint" required>
 			</md-input-container>
 	    </div>
 	</md-content>
 	<md-content class="md-padding">
-		<md-tabs md-border-bottom md-autoselect>
+		<md-tabs md-border-bottom md-autoselect md-dynamic-height>
 			<md-tab ng-repeat="(verb,schemas) in sdCtrl.verbs" ng-attr-label="{{verb}}">
 				<div>
 					<md-switch ng-model="service.verbs[verb].enabled" aria-label="Switch {{verb}}">
@@ -32,12 +32,18 @@
 						        </md-button>
 						    </div>
 						</md-toolbar>
-						<md-content ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]">
-							<div class="container-element box box-blue">
-						        <div class="column" ng-repeat="list in service.verbs[verb][schemaName]" ng-include="'./container.html'"></div>
-						        <div class="clearfix"></div>
-						    </div>
-						</md-content>
+						<div ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]" class="dropzone">
+							<ul dnd-list="service.verbs[verb][schemaName]">
+						        <li ng-repeat="item in service.verbs[verb][schemaName]"
+						            dnd-draggable="item"
+						            dnd-effect-allowed="move"
+						            dnd-moved="service.verbs[verb][schemaName].splice($index, 1)"
+						            dnd-selected="models.selected = item"
+						            ng-class="{selected: models.selected === item}"
+						            ng-include="'./'+item.type + '.html'">
+						        </li>
+						    </ul>
+						</div>
 					</div>
 				</div>
 			</md-tab>
