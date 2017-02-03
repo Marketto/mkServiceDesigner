@@ -24,8 +24,12 @@
 .container-element md-input-container{
 	margin-bottom: 0.2em;
 }
-md-input-container md-switch label:not(.md-no-float):not(.md-container-ignore){
+md-input-container label:not(.md-no-float):not(.md-container-ignore){
 	overflow : initial;
+}
+
+.md-valign {
+	margin-top: -0.4em;
 }
 
 /***************************** Dropzone Styling *****************************/

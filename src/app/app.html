@@ -7,7 +7,7 @@
 			</md-input-container>
 	    </div>
 	</md-content>
-	<md-content class="md-padding">
+	<md-content class="md-padding ng-cloak">
 		<md-tabs md-border-bottom md-autoselect md-dynamic-height>
 			<md-tab ng-repeat="(verb,schemas) in sdCtrl.verbs" ng-attr-label="{{verb}}">
 				<div>
@@ -32,25 +32,14 @@
 						        </md-button>
 						    </div>
 						</md-toolbar>
-						<div ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]" class="dropzone">
-							<ul dnd-list="service.verbs[verb][schemaName]">
-						        <li ng-repeat="item in service.verbs[verb][schemaName]"
-						            dnd-draggable="item"
-						            dnd-effect-allowed="move"
-						            dnd-moved="service.verbs[verb][schemaName].splice($index, 1)"
-						            dnd-selected="models.selected = item"
-						            ng-class="{selected: models.selected === item}"
-						            ng-include="'./'+item.type + '.html'">
-						        </li>
-						    </ul>
+						<div ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]" class="dropzone" ng-repeat="list in [service.verbs[verb][schemaName]]" ng-include="'./list.html'">
 						</div>
+						<pre>{{service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:type|json:4}}</pre>
 					</div>
 				</div>
 			</md-tab>
 		</md-tabs>
     </md-content>
-
-	<pre>{{service|json:4}}</pre>
 </main>
 <footer>
 </footer>
