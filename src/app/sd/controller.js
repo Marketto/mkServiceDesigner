@@ -31,8 +31,11 @@ angular.module('app').controller('sdCtrl',function($scope){
 	// };
 
 	var itemCounter=0;
+	this.removeItem = function(item, ref){
+		ref.splice(ref.indexOf(item),1);
+	}
 	this.addItem = function(ref){
 		itemCounter++;
-		ref.push({"$name" : 'property'+itemCounter, "type": "object", "$object":{"$children" : []}})
+		ref.push({"$name" : 'property'+itemCounter, "type" : "object", "$object" : {"$children" : []}})
 	}
 });

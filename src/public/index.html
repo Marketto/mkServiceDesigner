@@ -26,7 +26,7 @@
 		<!--Generic Item-->
 		<script type="text/ng-template" id="./item.html">
 		    <div class="container-element box box-blue">
-		    	<md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+		    	<md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="5" md-cols-gt-md="7" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
 				    <md-grid-tile md-colspan-xs="3">
 				        <md-input-container class="md-block">
 							<label>Property name</label>
@@ -47,7 +47,7 @@
 					        </md-switch>
 						</md-input-container>
 					</md-grid-tile>
-					<md-grid-tile md-colspan-xs="3" ng-show="item.$listOf">
+					<md-grid-tile md-colspan-xs="2" ng-show="item.$listOf">
 						<md-input-container class="md-block" ng-init="item.$minOccurrences=0">
 					        <label>Min Occurrence</label>
 					        <input required type="number" step="1" name="$minOccurrencess" ng-model="item.$minOccurrences" min="0" ng-max="item.$maxOccurrences||999"/>
@@ -61,7 +61,7 @@
 							</div>
 					    </md-input-container>
 					</md-grid-tile>
-					<md-grid-tile md-colspan-xs="3" ng-show="item.$listOf">
+					<md-grid-tile md-colspan-xs="2" ng-show="item.$listOf">
 					    <md-input-container class="md-block">
 					        <label>Max Occurrence</label>
 					        <input placeholder="&infin;" type="number" step="1" name="$maxOccurrencess" ng-model="item.$maxOccurrences" max="999" ng-min="item.$minOccurrences||1"/>
@@ -75,7 +75,7 @@
 							</div>
 					    </md-input-container>
 					</md-grid-tile>
-					<md-grid-tile md-colspan-xs="3">
+					<md-grid-tile md-colspan-xs="2">
 						<md-input-container>
 	          				<label>Type</label>
 							<md-select ng-model="item.type">
@@ -100,6 +100,9 @@
 							</md-select>
 						</md-input-container>
 					</md-grid-tile>
+					<md-grid-tile md-colspan-xs="1">
+						<md-button class="md-raised md-warn" ng-click="sdCtrl.removeItem(item, list)">X</md-button>
+					</md-grid-tile>
 				</md-grid-list>
 		        <div ng-include="'./'+item.type+'.html'"></div>
 		        <div class="clearfix"></div>
@@ -108,7 +111,7 @@
 
 		<!-- Object -->
 		<script type="text/ng-template" id="./object.html">
-			<md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+			<md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="5" md-cols-gt-md="7" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
 				<md-grid-tile md-colspan-xs="1">
 					<md-input-container class="md-block md-valign">
 				        <label>Additional properties</label>
@@ -134,13 +137,16 @@
 						</md-select>
 					</md-input-container>
 				</md-grid-tile>
+				<md-grid-tile md-colspan-xs="1">
+					<md-button class="md-raised md-primary" ng-click="sdCtrl.addItem(item.$object.$children)">+</md-button>
+				</md-grid-tile>
 			</md-grid-list>
 		    <div class="dropzone" ng-repeat="list in [item.$object.$children]" ng-include="'./list.html'"></div>
 		</script>
 
 		<!-- Integer -->
 		<script type="text/ng-template" id="./integer.html">
-		    <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+		    <md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="5" md-cols-gt-md="7" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
 			    <md-grid-tile md-colspan-xs="3">
 			    	<md-input-container class="md-block">
 				        <label>Multiple of</label>
@@ -200,7 +206,7 @@
 
 		<!-- Numeric -->
 		<script type="text/ng-template" id="./number.html">
-		    <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+		    <md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="5" md-cols-gt-md="7" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
 			    <md-grid-tile md-colspan-xs="3">
 			    	<md-input-container class="md-block">
 				        <label>Multiple of</label>
@@ -260,7 +266,7 @@
 
 		<!-- String -->
 		<script type="text/ng-template" id="./string.html">
-		    <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+		    <md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="5" md-cols-gt-md="7" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
 			    <md-grid-tile md-colspan-xs="2">
 					<md-input-container class="md-block">
 				        <label>Min length</label>
