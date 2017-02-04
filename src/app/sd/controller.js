@@ -30,7 +30,9 @@ angular.module('app').controller('sdCtrl',function($scope){
 	// 	};
 	// };
 
+	var itemCounter=0;
 	this.addItem = function(ref){
-		ref.push({"$name" : 'property'+ref.length, "type": "object", "$children" : []})
+		itemCounter++;
+		ref.push({"$name" : 'property'+itemCounter, "type": "object", "$object":{"$children" : []}})
 	}
 });

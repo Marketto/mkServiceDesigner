@@ -3,22 +3,50 @@ angular.module('app').filter('mkss2jsonschema',function(){
 		if(!angular.isArray(node)){
 			return node;
 		}
-		var jssNode = {'properties':{}},
+
+		var jssNode = {type:'object'},
 			reqFields = node.filter(function(e){
 					return e.$required===true;
 				}).map(function(e){
 					return e.$name;
 				})||[],
 			nl = node.length;
+
+		if(nl){
+			jssNode.properties = {};
+		}
+
 		for(var p=0; p<nl; p++){
-			jssNode.properties[node[p].$name] = {};
+			var currentProp = {};
 			for (var k in node[p]){
 				if(!(/^\$/).test(k)){
-					jssNode.properties[node[p].$name][k] = node[p][k];
+					currentProp[k] = node[p][k];
 				}
 			}
-			if(angular.isArray(node[p].$children)){
-				jssNode.properties[node[p].$name] = angular.extend(jssNode.properties[node[p].$name],mkss2jsonschemaProperties(node[p].$children));
+			if(angular.isObject(node[p]['$'+node[p].type])){
+				for (var k in node[p]['$'+node[p].type]){
+					if(!(/^\$/).test(k)){
+						currentProp[k] = node[p]['$'+node[p].type][k];
+					}
+				}
+				if(node[p].type==='object' && angular.isArray((node[p].$object||{}).$children)){
+					currentProp = angular.extend(currentProp,mkss2jsonschemaProperties(node[p].$object.$children));
+				}
+			}
+
+			if(node[p].$listOf){
+				jssNode.properties[node[p].$name] = {
+					"type" : "array",
+					"items": currentProp
+				};
+				if(node[p].$minOccurrences){
+					jssNode.properties[node[p].$name].minItems = node[p].$minOccurrences;
+				}
+				if(node[p].$maxOccurrences){
+					jssNode.properties[node[p].$name].minItems = node[p].$maxOccurrences;
+				}
+			}else{
+				jssNode.properties[node[p].$name] = currentProp;
 			}
 		}
 		if(reqFields.length>0){
