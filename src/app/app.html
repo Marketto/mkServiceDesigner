@@ -24,17 +24,17 @@
 								<md-button class="md-icon-button" aria-label="">
 						        	<md-icon>json</md-icon>
 						        </md-button>
-								<md-button class="md-icon-button" aria-label="">
+								<md-button class="md-icon-button" aria-label="" ng-click="sdCtrl.exportJson(service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName, service.endPoint+'.'+verb+'.'+schemaName+'.schema.json')">
 						        	<md-icon>jss</md-icon>
 						        </md-button>
-								<md-button class="md-icon-button" aria-label="" ng-click="sdCtrl.addItem(service.verbs[verb][schemaName])">
-						        	<md-icon>+</md-icon>
-						        </md-button>
+						        <md-button class="md-fab md-mini md-primary" aria-label="Add Item" ng-click="sdCtrl.addItem(service.verbs[verb][schemaName])">
+									<i class="glyphicon glyphicon-log-in"></i>
+								</md-button>
 						    </div>
 						</md-toolbar>
 						<div ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]" class="dropzone" ng-repeat="list in [service.verbs[verb][schemaName]]" ng-include="'./list.html'">
 						</div>
-						<pre>{{service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:type|json:4}}</pre>
+						<pre>{{service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName|json:4}}</pre>
 					</div>
 				</div>
 			</md-tab>

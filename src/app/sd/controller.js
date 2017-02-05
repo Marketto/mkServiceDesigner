@@ -1,4 +1,4 @@
-angular.module('app').controller('sdCtrl',function($scope){
+angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob){
 	$scope.service = {
 		verbs : {
 		}
@@ -38,4 +38,8 @@ angular.module('app').controller('sdCtrl',function($scope){
 		itemCounter++;
 		ref.push({"$name" : 'property'+itemCounter, "type" : "object", "$object" : {"$children" : []}})
 	}
+	this.exportJson = function(ref, filename){
+	    var data = new Blob([JSON.stringify(ref,null,4)], { type: 'application/json;charset=utf-8' });
+	    FileSaver.saveAs(data, filename);
+	};
 });

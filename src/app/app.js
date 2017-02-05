@@ -1,12 +1,15 @@
 import angular from 'angular';
 // Material design css
 import 'angular-material/angular-material.css';
+import 'bootstrap/dist/css/bootstrap.css';
 // Animation
-import angularAnimate from 'angular-animate';
+import 'angular-animate';
 // Materail Design lib
-import angularMaterial from 'angular-material';
+import 'angular-material';
 // DnD List
-import dndLists from 'angular-drag-and-drop-lists';
+import 'angular-drag-and-drop-lists';
+// File saver
+import 'angular-file-saver';
 
 import '../style/app.css';
 
@@ -26,7 +29,7 @@ class AppCtrl {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, ['ngMaterial', 'dndLists'])
+angular.module(MODULE_NAME, ['ngMaterial', 'dndLists', 'ngFileSaver'])
   .directive('app', app)
   .controller('AppCtrl', AppCtrl);
 

@@ -55,7 +55,7 @@ angular.module('app').filter('mkss2jsonschema',function(){
 
 		return jssNode;
 	}
-	return function(key,endPoint, verb, type){
+	return function(key, endPoint, verb, type){
 		var jss = {
 			'$schema' 	: "http://json-schema.org/schema#",
 			'$id'		: endPoint + '.' + verb + '.' + type + '.json',
