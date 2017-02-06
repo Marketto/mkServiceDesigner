@@ -29,8 +29,17 @@ angular.module('app').filter('mkss2jsonschema',function(){
 						currentProp[k] = node[p]['$'+node[p].type][k];
 					}
 				}
-				if(node[p].type==='object' && angular.isArray((node[p].$object||{}).$children)){
-					currentProp = angular.extend(currentProp,mkss2jsonschemaProperties(node[p].$object.$children));
+				switch(node[p].type){
+					case 'object':
+						if(((node[p].$object||{}).$children||[]).length){
+							currentProp = angular.extend(currentProp,mkss2jsonschemaProperties(node[p].$object.$children));
+						}
+						break;
+					case 'string':
+						if(((node[p].$string||{}).$domain||[]).length){
+							currentProp.enum = node[p].$string.$domain;
+						}
+						break;
 				}
 			}
 

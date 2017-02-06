@@ -270,8 +270,8 @@
 
 		<!-- String -->
 		<script type="text/ng-template" id="./string.html">
-		    <md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="5" md-cols-gt-md="7" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
-			    <md-grid-tile md-colspan-xs="2">
+			<div class="row">
+				<div class="col-xs-1">
 					<md-input-container class="md-block">
 				        <label>Min length</label>
 				        <input placeholder="0" type="number" step="1" name="minLength" ng-model="item.$string.minLength" ng-min="0" ng-max="item.$string.maxLength"/>
@@ -284,8 +284,8 @@
 							</div>
 						</div>
 				    </md-input-container>
-				</md-grid-tile>
-				<md-grid-tile md-colspan-xs="2">
+				</div>
+				<div class="col-xs-1">
 				    <md-input-container class="md-block">
 				        <label>Max length</label>
 				        <input placeholder="&infin;" type="number" step="1" name="maxLength" ng-model="item.$string.maxLength" ng-min="item.$string.minLength"/>
@@ -295,15 +295,15 @@
 							</div>
 						</div>
 				    </md-input-container>
-				</md-grid-tile>
-				<md-grid-tile md-colspan-xs="4">
+				</div>
+				<div class="col-xs-3">
 			        <md-input-container class="md-block">
 						<label>Regular expression pattern</label>
 						<input ng-model="item.$string.pattern">
 					</md-input-container>
-				</md-grid-tile>
-			    <md-grid-tile md-colspan-xs="2">
-			    	<md-input-container class="md-block md-valign">
+				</div>
+				<div class="col-xs-2">
+			    	<md-input-container class="md-block">
 				        <label>Format</label>
 			    		<md-select ng-model="item.$string.format" placeholder="Generic">
 			    			<md-option ng-value="" selected>
@@ -329,8 +329,11 @@
 							</md-option>
 						</md-select>
 					</md-input-container>
-				</md-grid-tile>
-			</md-grid-list>	
+				</div>
+				<div class="col-xs-5">
+					<md-chips ng-model="item.$string.$domain" md-enable-chip-edit="true" secondary-placeholder="+ Allowed value" placeholder="Type a domain value"></md-chips>
+				</div>
+			</div>	
 		</script>
 
 		<!-- Boolean -->
