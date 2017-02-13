@@ -10,6 +10,8 @@ import 'angular-material';
 import 'angular-drag-and-drop-lists';
 // File saver
 import 'angular-file-saver';
+// File uploader
+import 'ng-file-upload';
 
 import '../style/app.css';
 
@@ -29,12 +31,13 @@ class AppCtrl {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, ['ngMaterial', 'dndLists', 'ngFileSaver'])
+angular.module(MODULE_NAME, ['ngMaterial', 'dndLists', 'ngFileSaver', 'ngFileUpload'])
   .directive('app', app)
   .controller('AppCtrl', AppCtrl);
 
 function requireAll(r) { r.keys().forEach(r); }
 requireAll(require.context('./sd/', true, /\.js$/));
 requireAll(require.context('./filter/', true, /\.js$/));
+requireAll(require.context('./factory/', true, /\.js$/));
 
 export default MODULE_NAME;

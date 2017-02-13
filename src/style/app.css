@@ -27,7 +27,11 @@
 md-input-container label:not(.md-no-float):not(.md-container-ignore){
 	overflow : initial;
 }
-
+md-fab-trigger .md-fab>.glyphicon{
+    font-size : 1.7em;
+    top : 6px;
+    left : 2px;
+}
 .md-valign {
 	margin-top: -0.4em;
 }

@@ -10,17 +10,27 @@
 			<md-fab-trigger>
 				<md-button aria-label="menu" class="md-fab md-warn">
 					<md-tooltip md-direction="top" md-visible="tooltipVisible">Menu</md-tooltip>
-					<md-icon md-svg-src="img/icons/menu.svg" aria-label="menu"></md-icon>
+					<i class="glyphicon glyphicon-file"></i>
 				</md-button>
 			</md-fab-trigger>
 
 			<md-fab-actions>
-				<div ng-repeat="item in demo.items">
-					<md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini" ng-click="demo.openDialog($event, item)">
-						<md-tooltip md-direction="{{item.direction}}" md-visible="tooltipVisible" md-autohide="false">
-							{{item.name}}
+				<div>
+					<md-button aria-label="download" class="md-fab md-raised md-mini" ng-click="sdCtrl.exportJson(service, service.endPoint+'.mksd.json')">
+						<md-tooltip md-direction="down" md-visible="tooltipVisible" md-autohide="false">
+							Download
 						</md-tooltip>
-						<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>
+						<i class="glyphicon glyphicon-cloud-download"></i>
+					</md-button>
+				</div>
+			</md-fab-actions>
+			<md-fab-actions>
+				<div>
+					<md-button aria-label="upload" class="md-fab md-raised md-mini" ngf-select="sdCtrl.importJson($file, service)" ngf-pattern="'application/json'">
+						<md-tooltip md-direction="up" md-visible="tooltipVisible" md-autohide="false">
+							Upload
+						</md-tooltip>
+						<i class="glyphicon glyphicon-cloud-upload"></i>
 					</md-button>
 				</div>
 			</md-fab-actions>
