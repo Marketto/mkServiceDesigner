@@ -49,7 +49,7 @@
 							<div class="md-toolbar-tools capitalize">
 								{{schemaName}}
 								<span flex></span>
-								<md-button class="md-icon-button" aria-label="">
+								<md-button class="md-icon-button" aria-label="" ng-click="sdCtrl.exportJson(service.verbs[verb][schemaName]|mkss2json:service.endPoint:verb:schemaName, service.endPoint+'.'+verb+'.'+schemaName+'.schema.json')">
 						        	<md-icon>json</md-icon>
 						        </md-button>
 								<md-button class="md-icon-button" aria-label="" ng-click="sdCtrl.exportJson(service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName, service.endPoint+'.'+verb+'.'+schemaName+'.schema.json')">

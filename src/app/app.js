@@ -12,6 +12,9 @@ import 'angular-drag-and-drop-lists';
 import 'angular-file-saver';
 // File uploader
 import 'ng-file-upload';
+//json schema faker
+import jsf from 'json-schema-faker';
+
 
 import '../style/app.css';
 
@@ -33,7 +36,10 @@ const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, ['ngMaterial', 'dndLists', 'ngFileSaver', 'ngFileUpload'])
   .directive('app', app)
-  .controller('AppCtrl', AppCtrl);
+  .controller('AppCtrl', AppCtrl)
+  .service('$jsf',function(){
+    return jsf;
+  });
 
 function requireAll(r) { r.keys().forEach(r); }
 requireAll(require.context('./sd/', true, /\.js$/));
