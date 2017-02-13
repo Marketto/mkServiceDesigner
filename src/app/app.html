@@ -9,28 +9,27 @@
 	    <md-fab-speed-dial ng-hide="demo.hidden" md-direction="left" md-open="demo.isOpen" class="md-scale md-fab-top-right" ng-class="{ 'md-hover-full': demo.hover }" ng-mouseenter="demo.isOpen=true" ng-mouseleave="demo.isOpen=false">
 			<md-fab-trigger>
 				<md-button aria-label="menu" class="md-fab md-warn">
-					<md-tooltip md-direction="top" md-visible="tooltipVisible">Menu</md-tooltip>
+					<md-tooltip md-direction="top" md-visible="tooltipVisible">File</md-tooltip>
 					<i class="glyphicon glyphicon-file"></i>
 				</md-button>
 			</md-fab-trigger>
-
 			<md-fab-actions>
 				<div>
-					<md-button aria-label="download" class="md-fab md-raised md-mini" ng-click="sdCtrl.exportJson(service, service.endPoint+'.mksd.json')">
-						<md-tooltip md-direction="down" md-visible="tooltipVisible" md-autohide="false">
-							Download
+					<md-button aria-label="upload" class="md-fab md-raised md-mini" ngf-select="sdCtrl.importJson($file, service)" ngf-pattern="'application/json'">
+						<md-tooltip md-direction="up" md-visible="tooltipVisible" md-autohide="false">
+							Open
 						</md-tooltip>
-						<i class="glyphicon glyphicon-cloud-download"></i>
+						<i class="glyphicon glyphicon-cloud-upload"></i>
 					</md-button>
 				</div>
 			</md-fab-actions>
 			<md-fab-actions>
 				<div>
-					<md-button aria-label="upload" class="md-fab md-raised md-mini" ngf-select="sdCtrl.importJson($file, service)" ngf-pattern="'application/json'">
-						<md-tooltip md-direction="up" md-visible="tooltipVisible" md-autohide="false">
-							Upload
+					<md-button aria-label="download" class="md-fab md-raised md-mini" ng-click="sdCtrl.exportJson(service, service.endPoint+'.mksd.json')">
+						<md-tooltip md-direction="down" md-visible="tooltipVisible" md-autohide="false">
+							Save
 						</md-tooltip>
-						<i class="glyphicon glyphicon-cloud-upload"></i>
+						<i class="glyphicon glyphicon-cloud-download"></i>
 					</md-button>
 				</div>
 			</md-fab-actions>
