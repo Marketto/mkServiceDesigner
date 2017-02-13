@@ -22,7 +22,6 @@ angular.module('app').filter('mkss2jsonschema',function(){
 					if(angular.isArray(e.$dependencies) && e.$dependencies.length>0){
 						var _depz = e.$dependencies.filter(function(d){
 								return !!a.find(function(s){
-									console.log('$siblings',d);
 									return s.$name === d && s.$name !== e.$name
 								});
 							});
