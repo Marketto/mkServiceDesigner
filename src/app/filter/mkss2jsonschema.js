@@ -12,8 +12,36 @@ angular.module('app').filter('mkss2jsonschema',function(){
 				})||[],
 			nl = node.length;
 
+	//Children
 		if(nl){
+		//Properties
 			jssNode.properties = {};
+
+		//Dependencies
+			var nodeDependencies = node.map(function(e,i,a){
+					if(angular.isArray(e.$dependencies) && e.$dependencies.length>0){
+						var _depz = e.$dependencies.filter(function(d){
+								return !!a.find(function(s){
+									console.log('$siblings',d);
+									return s.$name === d && s.$name !== e.$name
+								});
+							});
+						if(_depz.length){
+							var _depzObj = {};
+							_depzObj[e.$name] = _depz
+							return _depzObj;
+						}
+					}
+					return;
+				}).filter(function(e){
+					return !!e;
+				});
+			if(nodeDependencies.length){
+				jssNode.dependencies = nodeDependencies.reduce(function(p,c){
+						return angular.merge(p,c);
+					});
+			}
+		//End Dependencies
 		}
 
 		for(var p=0; p<nl; p++){
@@ -53,6 +81,9 @@ angular.module('app').filter('mkss2jsonschema',function(){
 				}
 				if(node[p].$maxOccurrences){
 					jssNode.properties[node[p].$name].minItems = node[p].$maxOccurrences;
+				}
+				if(node[p].$uniqueItems){
+					jssNode.properties[node[p].$name].uniqueItems = node[p].$uniqueItems;
 				}
 			}else{
 				jssNode.properties[node[p].$name] = currentProp;

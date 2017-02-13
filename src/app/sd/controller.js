@@ -36,7 +36,14 @@ angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob, $fil
 	}
 	this.addItem = function(ref){
 		itemCounter++;
-		ref.push({"$name" : 'property'+itemCounter, "type" : "object", "$object" : {"$children" : []}, "$string":{"$domain":[]}})
+		ref.push({
+			"$name" 		: 'property'+itemCounter, 
+			"type" 			: "object", 
+			"$object" 		: {"$children" : []}, 
+			"$string"		: {
+				"$domain" 		: []
+			}
+		});
 	}
 	this.exportJson = function(ref, filename){
 	    var data = new Blob([JSON.stringify(ref,null,4)], { type: 'application/json;charset=utf-8' });

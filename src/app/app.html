@@ -37,14 +37,14 @@
 	    </md-fab-speed-dial>
 	</md-content>
 	<md-content class="md-padding ng-cloak">
-		<md-tabs md-border-bottom md-autoselect md-dynamic-height>
+		<md-tabs md-border-bottom md-autoselect md-dynamic-height md-selected="sdCtrl.selectedVerb">
 			<md-tab ng-repeat="(verb,schemas) in sdCtrl.verbs" ng-attr-label="{{verb}}">
 				<div>
 					<md-switch ng-model="service.verbs[verb].enabled" aria-label="Switch {{verb}}">
 						Enable <b>{{verb|uppercase}}</b> for <i>{{service.endPoint}}</i>
 					</md-switch>
 				</div>
-				<div layout="row" ng-if="service.verbs[verb].enabled">
+				<div layout="row" ng-if="service.verbs[verb].enabled && sdCtrl.selectedVerb===$index">
 					<div flex ng-repeat="schemaName in schemas">
 						<md-toolbar md-scroll-shrink>
 							<div class="md-toolbar-tools capitalize">
@@ -57,7 +57,7 @@
 						        	<md-icon>jss</md-icon>
 						        </md-button>
 						        <md-button class="md-fab md-mini md-primary" aria-label="Add Item" ng-click="sdCtrl.addItem(service.verbs[verb][schemaName])">
-									<i class="glyphicon glyphicon-log-in"></i>
+									<i class="glyphicon glyphicon-plus"></i>
 								</md-button>
 						    </div>
 						</md-toolbar>
