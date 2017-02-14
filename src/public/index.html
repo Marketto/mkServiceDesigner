@@ -90,7 +90,7 @@
 						</md-input-container>
 					</div>
 					<div class="col-xs-1" ng-show="item.$listOf">
-						<md-input-container class="md-block" ng-init="item.$minOccurrences=0">
+						<md-input-container class="md-block" ng-init="(item.$minOccurrences>=0)?null:(item.$minOccurrences=0)">
 					        <label>Min Occurrence</label>
 					        <input required type="number" step="1" name="$minOccurrencess" ng-model="item.$minOccurrences" min="0" ng-max="item.$maxOccurrences||999"/>
 							<div ng-messages="item.$minOccurrences.$error" multiple role="alert">
@@ -325,7 +325,7 @@
 			    	<md-input-container class="md-block">
 				        <label>Format</label>
 			    		<md-select ng-model="item.$string.format" placeholder="Generic">
-			    			<md-option ng-value="" selected>
+			    			<md-option ng-value="">
 								Generic
 							</md-option>
 							<md-option ng-value="'date-time'">

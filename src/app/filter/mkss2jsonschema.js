@@ -1,4 +1,5 @@
-angular.module('app').filter('mkss2jsonschema',function(){
+angular.module('app').filter('mkss2jsonschema',function($cacheFactory){
+	var filterCache = $cacheFactory('mkss2jsonschema');
 	function mkss2jsonschemaProperties(node){
 		if(!angular.isArray(node)){
 			return node;
@@ -95,13 +96,23 @@ angular.module('app').filter('mkss2jsonschema',function(){
 		return jssNode;
 	}
 	return function(key, endPoint, verb, type){
-		var jss = {
-			'$schema' 	: "http://json-schema.org/schema#",
-			'$id'		: endPoint + '.' + verb + '.' + type + '.json',
-			// 'properties': mkss2jsonschemaProperties(key),
-			'type'		: 'object',
-			// 'required'  : []
-		};
-		return angular.extend(jss, mkss2jsonschemaProperties(key));
+		var cacheKey = JSON.stringify({
+				"key" 		: key, 
+				"endPoint" 	: endPoint, 
+				"verb" 		: verb, 
+				"type" 		: type
+			}),
+			cachedData = filterCache.get(cacheKey);
+		
+		if(cachedData){
+			return cachedData;
+		}
+		var jss = angular.extend({
+				'$schema' 	: "http://json-schema.org/schema#",
+				'$id'		: endPoint + '.' + verb + '.' + type + '.json',
+				'type'		: 'object',
+			}, mkss2jsonschemaProperties(key));
+		filterCache.put(cacheKey, jss);
+		return jss;
 	};
 });

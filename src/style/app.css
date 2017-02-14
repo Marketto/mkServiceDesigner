@@ -36,6 +36,27 @@ md-fab-trigger .md-fab>.glyphicon{
 	margin-top: -0.4em;
 }
 
+.md-fab .btn-text {
+    line-height: 1.8em;
+    margin-left: 0.1em;
+}
+.md-fab .json-button {
+    font-size: 0.8em;
+    margin-left: -0.07em;
+    font-weight: bolder;
+    line-height: 2.4em;
+}
+.md-fab .mksd-button {
+    font-size: 0.7em;
+    margin-left: -0.08em;
+    font-weight: bolder;
+    line-height: 2.6em;
+}
+
+.tab-content {
+    border-radius: 0 0 4px 4px;
+}
+
 /***************************** Dropzone Styling *****************************/
 
 /**

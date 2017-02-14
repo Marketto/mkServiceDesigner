@@ -1,19 +1,19 @@
 <main ng-controller="sdCtrl as sdCtrl" ng-cloak>
-	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-	    <div>
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding ng-cloak>
+	    <div ng-cloak>
 			<md-input-container>
 				<label>End Point</label>
 				<input ng-model="service.endPoint" required>
 			</md-input-container>
 	    </div>
-	    <md-fab-speed-dial ng-hide="demo.hidden" md-direction="left" md-open="demo.isOpen" class="md-scale md-fab-top-right" ng-class="{ 'md-hover-full': demo.hover }" ng-mouseenter="demo.isOpen=true" ng-mouseleave="demo.isOpen=false">
-			<md-fab-trigger>
+	    <md-fab-speed-dial ng-hide="demo.hidden" md-direction="left" md-open="demo.isOpen" class="md-scale md-fab-top-right" ng-class="{ 'md-hover-full': demo.hover }" ng-mouseenter="demo.isOpen=true" ng-mouseleave="demo.isOpen=false" ng-cloak>
+			<md-fab-trigger ng-cloak>
 				<md-button aria-label="menu" class="md-fab md-warn">
 					<md-tooltip md-direction="top" md-visible="tooltipVisible">File</md-tooltip>
 					<i class="glyphicon glyphicon-file"></i>
 				</md-button>
 			</md-fab-trigger>
-			<md-fab-actions>
+			<md-fab-actions ng-cloak>
 				<div>
 					<md-button aria-label="upload" class="md-fab md-raised md-mini" ngf-select="sdCtrl.importJson($file, service)" ngf-pattern="'application/json'">
 						<md-tooltip md-direction="up" md-visible="tooltipVisible" md-autohide="false">
@@ -23,7 +23,7 @@
 					</md-button>
 				</div>
 			</md-fab-actions>
-			<md-fab-actions>
+			<md-fab-actions ng-cloak>
 				<div>
 					<md-button aria-label="download" class="md-fab md-raised md-mini" ng-click="sdCtrl.exportJson(service, service.endPoint+'.mksd.json')">
 						<md-tooltip md-direction="down" md-visible="tooltipVisible" md-autohide="false">
@@ -36,33 +36,40 @@
 	    </md-fab-speed-dial>
 	</md-content>
 	<md-content class="md-padding ng-cloak">
-		<md-tabs md-border-bottom md-autoselect md-dynamic-height md-selected="sdCtrl.selectedVerb">
+		<md-tabs md-border-bottom md-autoselect md-dynamic-height md-selected="sdCtrl.selectedVerb" ng-cloak>
 			<md-tab ng-repeat="(verb,schemas) in sdCtrl.verbs" ng-attr-label="{{verb}}">
 				<div>
 					<md-switch ng-model="service.verbs[verb].enabled" aria-label="Switch {{verb}}">
 						Enable <b>{{verb|uppercase}}</b> for <i>{{service.endPoint}}</i>
 					</md-switch>
 				</div>
-				<div layout="row" ng-if="service.verbs[verb].enabled && sdCtrl.selectedVerb===$index">
+				<div layout="row" ng-if="service.verbs[verb].enabled && sdCtrl.selectedVerb===$index" ng-init="sdCtrl.view=sdCtrl.view||'mksd'">
 					<div flex ng-repeat="schemaName in schemas">
 						<md-toolbar md-scroll-shrink>
 							<div class="md-toolbar-tools capitalize">
 								{{schemaName}}
 								<span flex></span>
-								<md-button class="md-icon-button" aria-label="" ng-click="sdCtrl.exportJson(service.verbs[verb][schemaName]|mkss2json:service.endPoint:verb:schemaName, service.endPoint+'.'+verb+'.'+schemaName+'.schema.json')">
-						        	<md-icon>json</md-icon>
+								<md-button class="md-fab md-mini md-primary" ng-class="{'md-hue-1':sdCtrl.view!=='json','md-hue-3':sdCtrl.view==='json'}" aria-label="json" ng-click="sdCtrl.exportJson(service.verbs[verb][schemaName]|mkss2json:service.endPoint:verb:schemaName, service.endPoint+'.'+verb+'.'+schemaName+'.json')" ng-mouseover="(sdCtrl.view!='json')?(sdCtrl.view='json'):null">
+						        	<md-icon class="json-button">json</md-icon>
 						        </md-button>
-								<md-button class="md-icon-button" aria-label="" ng-click="sdCtrl.exportJson(service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName, service.endPoint+'.'+verb+'.'+schemaName+'.schema.json')">
-						        	<md-icon>jss</md-icon>
+								<md-button class="md-fab md-mini md-primary" ng-class="{'md-hue-1':sdCtrl.view!=='jsonschema','md-hue-3':sdCtrl.view==='jsonschema'}" aria-label="jsonschema" ng-click="sdCtrl.exportJson(service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName, service.endPoint+'.'+verb+'.'+schemaName+'.schema.json')" ng-mouseover="(sdCtrl.view!='jsonschema')?(sdCtrl.view='jsonschema'):null">
+						        	<md-icon class="btn-text">jss</md-icon>
 						        </md-button>
-						        <md-button class="md-fab md-mini md-primary" aria-label="Add Item" ng-click="sdCtrl.addItem(service.verbs[verb][schemaName])">
+								<md-button class="md-fab md-mini md-primary" ng-class="{'md-hue-1':sdCtrl.view!=='mksd','md-hue-3':sdCtrl.view==='mksd'}" aria-label="mksd" ng-mouseover="(sdCtrl.view!='mksd')?(sdCtrl.view='mksd'):null">
+						        	<md-icon class="mksd-button">mksd</md-icon>
+						        </md-button>
+						        <md-button class="md-fab md-mini md-primary md-hue-2" aria-label="Add Item" ng-click="sdCtrl.addItem(service.verbs[verb][schemaName])"">
 									<i class="glyphicon glyphicon-plus"></i>
 								</md-button>
 						    </div>
 						</md-toolbar>
-						<div ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]" class="dropzone" ng-repeat="list in [service.verbs[verb][schemaName]]" ng-include="'./list.html'">
+						<div ng-switch="sdCtrl.view" ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]">
+							<pre class="tab-content" ng-switch-when="jsonschema">{{service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName|json:4}}</pre>
+							<pre class="tab-content" ng-switch-when="json">{{service.verbs[verb][schemaName]|mkss2json:service.endPoint:verb:schemaName|json:4}}</pre>
+							<div ng-switch-default class="dropzone tab-content" ng-repeat="list in [service.verbs[verb][schemaName]]">
+								<ng-include src="'./list.html'"></ng-include>
+							</div>
 						</div>
-						<pre>{{service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName|json:4}}</pre>
 					</div>
 				</div>
 			</md-tab>
