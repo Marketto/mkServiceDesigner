@@ -1,14 +1,14 @@
 <main ng-controller="sdCtrl as sdCtrl" ng-cloak>
-	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding ng-cloak>
-	    <div ng-cloak>
-			<md-input-container>
+	<md-content md-theme="docs-dark" layout="row" layout-padding ng-cloak>
+	    <div class="ng-cloak col-xs-6">
+			<md-input-container class="md-block">
 				<label>End Point</label>
 				<input ng-model="service.endPoint" required>
 			</md-input-container>
 	    </div>
 	    <md-fab-speed-dial ng-hide="demo.hidden" md-direction="left" md-open="demo.isOpen" class="md-scale md-fab-top-right" ng-class="{ 'md-hover-full': demo.hover }" ng-mouseenter="demo.isOpen=true" ng-mouseleave="demo.isOpen=false" ng-cloak>
 			<md-fab-trigger ng-cloak>
-				<md-button aria-label="menu" class="md-fab md-warn">
+				<md-button aria-label="menu" class="md-fab md-primary md-hue-2">
 					<md-tooltip md-direction="top" md-visible="tooltipVisible">File</md-tooltip>
 					<i class="glyphicon glyphicon-file"></i>
 				</md-button>
@@ -25,7 +25,7 @@
 			</md-fab-actions>
 			<md-fab-actions ng-cloak>
 				<div>
-					<md-button aria-label="download" class="md-fab md-raised md-mini" ng-click="sdCtrl.exportJson(service, service.endPoint+'.mksd.json')">
+					<md-button aria-label="download" class="md-fab md-raised md-mini" ng-disabled="!service.endPoint" ng-click="sdCtrl.exportJson(service, service.endPoint+'.mksd.json')">
 						<md-tooltip md-direction="down" md-visible="tooltipVisible" md-autohide="false">
 							Save
 						</md-tooltip>

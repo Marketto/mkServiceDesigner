@@ -45,5 +45,6 @@ function requireAll(r) { r.keys().forEach(r); }
 requireAll(require.context('./sd/', true, /\.js$/));
 requireAll(require.context('./filter/', true, /\.js$/));
 requireAll(require.context('./factory/', true, /\.js$/));
+requireAll(require.context('./directive/', true, /\.js$/));
 
 export default MODULE_NAME;
