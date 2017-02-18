@@ -1,0 +1,56 @@
+<md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="5" md-cols-gt-md="7" md-row-height="3:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-tile md-colspan-xs="3">
+    	<md-input-container class="md-block">
+	        <label>Multiple of</label>
+	        <input placeholder="none" type="number" step="1" name="multipleOf" ng-model="item.$integer.multipleOf"/>
+	    </md-input-container>
+    </md-grid-tile>
+    <md-grid-tile md-colspan-xs="2">
+    	<md-input-container class="md-block md-valign">
+	        <label>Value must be</label>
+    		<md-select ng-model="item.$integer.exclusiveMinimum">
+				<md-option ng-value="true">
+					&gt;
+				</md-option>
+				<md-option ng-value="false" selected>
+					&ge;
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</md-grid-tile>
+    <md-grid-tile md-colspan-xs="3">
+		<md-input-container class="md-block">
+	        <label>Min value</label>
+	        <input placeholder="- &infin;" type="number" step="1" name="minValue" ng-model="item.$integer.minimum" ng-max="item.$integer.maximum"/>
+			<div ng-messages="item.minimum.$error" role="alert">
+				<div ng-message="max">
+					{{item.$integer.minimum.$viewValue}} is greater than {{item.$integer.maximum}} (max value).
+				</div>
+			</div>
+	    </md-input-container>
+	</md-grid-tile>
+    <md-grid-tile md-colspan-xs="2">
+    	<md-input-container class="md-block md-valign">
+	        <label>Value must be</label>
+    		<md-select ng-model="item.$integer.exclusiveMaximum">
+				<md-option ng-value="true">
+					&lt;
+				</md-option>
+				<md-option ng-value="false" selected>
+					&le;
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</md-grid-tile>
+	<md-grid-tile md-colspan-xs="3">
+	    <md-input-container class="md-block">
+	        <label>Max value</label>
+	        <input placeholder="&infin;" type="number" step="1" name="maxValue" ng-model="item.$integer.maximum" ng-min="item.$integer.minimum"/>
+			<div ng-messages="item.maximum.$error" role="alert">
+				<div ng-message="min">
+					{{item.$integer.maximum.$viewValue}} is lower than {{item.$integer.minimum}} (min value).
+				</div>
+			</div>
+	    </md-input-container>
+	</md-grid-tile>
+</md-grid-list>	

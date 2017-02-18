@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-xs-2">
+		<md-input-container class="md-block md-valign">
+	        <label>Additional properties</label>
+    		<md-select ng-model="item.$object.additionalProperties">
+				<md-option ng-value="">
+					Allowed
+				</md-option>
+				<md-option ng-value="false">
+					Not allowed
+				</md-option>
+				<md-option ng-value="{type:'string'}">
+					String
+				</md-option>
+				<md-option ng-value="{type:'integer'}">
+					Integer
+				</md-option>
+				<md-option ng-value="{type:'number'}">
+					Number
+				</md-option>
+				<md-option ng-value="{type:'boolean'}">
+					Boolean
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+	<div class="col-xs-1 col-xs-offset-9">
+		<md-button class="md-fab md-mini md-primary pull-right" aria-label="Add Item" ng-click="sdCtrl.addItem(item.$object.$children)">
+			<i class="glyphicon glyphicon-plus"></i>
+		</md-button>
+	</div>
+</div>
+<div class="dropzone" ng-repeat="list in [item.$object.$children]" ng-include="'sd/list.html'"></div>

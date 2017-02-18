@@ -67,7 +67,7 @@
 							<pre class="tab-content" ng-switch-when="jsonschema">{{service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName|json:4}}</pre>
 							<pre class="tab-content" ng-switch-when="json">{{service.verbs[verb][schemaName]|mkss2json:service.endPoint:verb:schemaName|json:4}}</pre>
 							<div ng-switch-default class="dropzone tab-content" ng-repeat="list in [service.verbs[verb][schemaName]]">
-								<ng-include src="'./list.html'"></ng-include>
+								<ng-include src="'sd/list.html'"></ng-include>
 							</div>
 						</div>
 					</div>
