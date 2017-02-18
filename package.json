@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Marketto's Service Designer -> Design quickly quality service specs with (json, jsonschema and xlsx)",
   "scripts": {
-    "build": "rimraf dist && webpack --bail --progress --profile",
+    "build": "rimraf dist && rimraf dist_temp && webpack --bail --progress --profile && mkdir dist && inliner -mn dist_temp/index.html > dist/mkServiceDesigner.html; rimraf dist_temp",
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
     "test": "karma start",
     "test-watch": "karma start --auto-watch --no-single-run",

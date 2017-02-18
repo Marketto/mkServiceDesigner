@@ -43,11 +43,11 @@ module.exports = function makeWebpackConfig() {
    */
   config.output = isTest ? {} : {
     // Absolute output directory
-    path: __dirname + '/dist',
+    path: __dirname + '/dist_temp',
 
     // Output path from the view of the page
     // Uses webpack-dev-server in development
-    publicPath: isProd ? '/' : 'http://localhost:8080/',
+    publicPath: isProd ? '' : 'http://localhost:8080/',
 
     // Filename for entry points
     // Only adds hash in build mode
@@ -90,8 +90,7 @@ module.exports = function makeWebpackConfig() {
       test: /\.js$/,
       loader: ['ng-annotate-loader','babel-loader'],
       exclude: [
-        path.resolve(__dirname, 'node_modules'),
-        path.resolve(__dirname, 'dist'),
+        path.resolve(__dirname, 'node_modules')
       ]
     }, {
       // CSS LOADER
@@ -113,10 +112,7 @@ module.exports = function makeWebpackConfig() {
           {loader: 'css-loader', query: {sourceMap: true}},
           {loader: 'postcss-loader'}
         ],
-      }),
-      exclude: [
-        path.resolve(__dirname, 'dist'),
-      ]
+      })
     }, {
       // ASSET LOADER
       // Reference: https://github.com/webpack/file-loader
@@ -134,8 +130,7 @@ module.exports = function makeWebpackConfig() {
       exclude: [
         path.resolve(__dirname, 'src/public/index.html'),
         path.resolve(__dirname, 'src/app/app.html'),
-        path.resolve(__dirname, 'node_modules'),
-        path.resolve(__dirname, 'dist'),
+        path.resolve(__dirname, 'node_modules')
       ],
       //loader: "ng-cache-loader"
       loaders: 'ngtemplate-loader?module=app&relativeTo=' + (path.resolve(__dirname, './src/app')) + '/'
@@ -146,8 +141,7 @@ module.exports = function makeWebpackConfig() {
       test: /\.html$/,
       loaders: "html-loader!html-minifier-loader",
       exclude: [
-        path.resolve(__dirname, 'node_modules'),
-        path.resolve(__dirname, 'dist'),
+        path.resolve(__dirname, 'node_modules')
       ]
     }]
   };
