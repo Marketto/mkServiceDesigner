@@ -42,8 +42,7 @@ angular.module(MODULE_NAME, ['ngMaterial', 'dndLists', 'ngFileSaver', 'ngFileUpl
   });
 
 function requireAll(r) { r.keys().forEach(r); }
-requireAll(require.context('./sd/', true, /\.js$/));
-//@require "./**/list.html"
+requireAll(require.context('./sd/', true, /\.(?:js|html)$/));
 requireAll(require.context('./filter/', true, /\.js$/));
 requireAll(require.context('./factory/', true, /\.js$/));
 requireAll(require.context('./directive/', true, /\.js$/));
