@@ -120,8 +120,12 @@ module.exports = function makeWebpackConfig() {
       // Rename the file using the asset hash
       // Pass along the updated reference to your code
       // You can add here any file extension you want to get copied to your output
-      test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+      // test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+      test: /\.(png|jpg|jpeg|gif)$/,
       loader: 'file-loader'
+    }, {
+        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'base64-font-loader'
     }, {
       // HTML LOADER
       // Reference: https://github.com/webpack/raw-loader

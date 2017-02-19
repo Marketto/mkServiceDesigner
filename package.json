@@ -1,6 +1,6 @@
 {
   "name": "mk-service-designer",
-  "version": "0.0.1",
+  "version": "0.6.0",
   "description": "Marketto's Service Designer -> Design quickly quality service specs with (json, jsonschema and xlsx)",
   "scripts": {
     "build": "rimraf dist && rimraf dist_temp && webpack --bail --progress --profile && mkdir dist && inliner -mn dist_temp/index.html > dist/mkServiceDesigner.html; rimraf dist_temp",
