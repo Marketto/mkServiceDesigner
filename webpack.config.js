@@ -5,7 +5,7 @@ var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+//var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -88,7 +88,7 @@ module.exports = function makeWebpackConfig() {
       // Transpile .js files using babel-loader
       // Compiles ES6 and ES7 into ES5 code
       test: /\.js$/,
-      loader: ['ng-annotate-loader','babel-loader'],
+      loader: ['ng-annotate-loader', 'babel-loader', 'required-loader'],
       exclude: [
         path.resolve(__dirname, 'node_modules')
       ]
@@ -133,11 +133,11 @@ module.exports = function makeWebpackConfig() {
       test: /\.html$/,
       exclude: [
         path.resolve(__dirname, 'src/public/index.html'),
-        path.resolve(__dirname, 'src/app/app.html'),
+      //  path.resolve(__dirname, 'src/app/app.html'),
         path.resolve(__dirname, 'node_modules')
       ],
       //loader: "ng-cache-loader"
-      loaders: 'ngtemplate-loader?module=app&relativeTo=' + (path.resolve(__dirname, './src/app')) + '/'
+      loaders:  ['ngtemplate-loader?module=app&relativeTo=' + (path.resolve(__dirname, './src/app')) + '/', 'required-loader'],
     }, {
       // HTML LOADER
       // Reference: https://github.com/webpack/raw-loader

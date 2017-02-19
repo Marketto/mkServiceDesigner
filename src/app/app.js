@@ -20,7 +20,7 @@ import '../style/app.css';
 
 let app = () => {
   return {
-    template: require('./app.html'),
+    templateUrl: 'app.html',
     controller: 'AppCtrl',
     controllerAs: 'app'
   }
@@ -41,10 +41,7 @@ angular.module(MODULE_NAME, ['ngMaterial', 'dndLists', 'ngFileSaver', 'ngFileUpl
     return jsf;
   });
 
-function requireAll(r) { r.keys().forEach(r); }
-requireAll(require.context('./sd/', true, /\.(?:js|html)$/));
-requireAll(require.context('./filter/', true, /\.js$/));
-requireAll(require.context('./factory/', true, /\.js$/));
-requireAll(require.context('./directive/', true, /\.js$/));
+//@require "./**/*.html"
+//@require "./*/**/*.js"
 
 export default MODULE_NAME;
