@@ -1,18 +1,13 @@
-angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob, $fileReader){ //, $mdDialog
+angular.module('app').controller('sdCtrl',function($scope, $fileReader, fileExport, mkTools){ //, $mdDialog
 //PRIVATE
 	var itemCounter=0;
-	
-	function exportBlob(ref, filename, mimeType){
-		var data = new Blob([ref], { type: (mimeType||'text/plain')+';charset=utf-8' });
-	    FileSaver.saveAs(data, filename);
-	};
 
 //PUBLIC / SCOPE
 	$scope.service = {
 		verbs : {
 		}
 	};
-	
+
 //PUBLIC / CONTROLLER
 	this.verbs = {
 		'get' : [
@@ -45,10 +40,8 @@ angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob, $fil
 			}
 		});
 	}
-	this.export = exportBlob;
-	this.exportJson = function(ref, filename){
-		return exportBlob(JSON.stringify(ref,null,4), filename, 'application/json');
-	};
+	this.export = fileExport.blob;
+	this.exportJson = fileExport.json;
 	this.importJson = function(file, dest){
 		// $mdDialog.show(
 		// 	$mdDialog.alert()
@@ -62,14 +55,8 @@ angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob, $fil
 	 //    );
 		 if(file && dest){
 			$fileReader.readAsJson(file).then(function(data) {
-				if(angular.isObject(dest)){
-					for(var p in dest){
-						delete dest[p];
-					}
-					for(var p in data){
-						dest[p] = data[p];
-					}
-				}
+			//Overwrite destination properties with source object ones
+				mkTools.overwrite(dest, data);
 			});
 		}
 	}
