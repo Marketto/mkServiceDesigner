@@ -1,8 +1,19 @@
 angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob, $fileReader){ //, $mdDialog
+//PRIVATE
+	var itemCounter=0;
+	
+	function exportBlob(ref, filename, mimeType){
+		var data = new Blob([ref], { type: (mimeType||'text/plain')+';charset=utf-8' });
+	    FileSaver.saveAs(data, filename);
+	};
+
+//PUBLIC / SCOPE
 	$scope.service = {
 		verbs : {
 		}
 	};
+	
+//PUBLIC / CONTROLLER
 	this.verbs = {
 		'get' : [
 			'response'
@@ -20,17 +31,6 @@ angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob, $fil
 		],
 	};
 
-	// this.getNewSchema = function(endPoint, verb, type){
-	// 	return {
-	// 		'$schema' 	: "http://json-schema.org/schema#",
-	// 		'$id'		: endPoint + '.' + verb + '.' + type + '.json',
-	// 		'properties': {},
-	// 		'type'		: 'object',
-	// 		'required'  : []
-	// 	};
-	// };
-
-	var itemCounter=0;
 	this.removeItem = function(item, ref){
 		ref.splice(ref.indexOf(item),1);
 	}
@@ -45,9 +45,9 @@ angular.module('app').controller('sdCtrl',function($scope, FileSaver, Blob, $fil
 			}
 		});
 	}
+	this.export = exportBlob;
 	this.exportJson = function(ref, filename){
-	    var data = new Blob([JSON.stringify(ref,null,4)], { type: 'application/json;charset=utf-8' });
-	    FileSaver.saveAs(data, filename);
+		return exportBlob(JSON.stringify(ref,null,4), filename, 'application/json');
 	};
 	this.importJson = function(file, dest){
 		// $mdDialog.show(

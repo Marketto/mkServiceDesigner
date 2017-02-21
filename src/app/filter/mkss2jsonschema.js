@@ -70,7 +70,7 @@ angular.module('app').filter('mkss2jsonschema',function($cacheFactory){
 						break;
 				}
 			}
-
+		//Array of
 			if(node[p].$listOf){
 				jssNode.properties[node[p].$name] = {
 					"type" : "array",
@@ -96,6 +96,7 @@ angular.module('app').filter('mkss2jsonschema',function($cacheFactory){
 		return jssNode;
 	}
 	return function(key, endPoint, verb, type){
+	//Checking cache
 		var cacheKey = JSON.stringify({
 				"key" 		: key, 
 				"endPoint" 	: endPoint, 
@@ -107,11 +108,15 @@ angular.module('app').filter('mkss2jsonschema',function($cacheFactory){
 		if(cachedData){
 			return cachedData;
 		}
+
+	//Logic
 		var jss = angular.extend({
 				'$schema' 	: "http://json-schema.org/schema#",
 				'$id'		: endPoint + '.' + verb + '.' + type + '.json',
 				'type'		: 'object',
 			}, mkss2jsonschemaProperties(key));
+			
+	//Storing in cache
 		filterCache.put(cacheKey, jss);
 		return jss;
 	};
