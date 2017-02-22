@@ -10,7 +10,8 @@ angular.module('app').filter('capitalize', function($cacheFactory){
 		if(cachedData){
 			return cachedData;
 		}
-		var out = input.charAt(0).toUpperCase() + input.substr(1).toLowerCase();
+		
+		var out = input.replace(/(?:^| )([a-z])/g, function(c){return c.toUpperCase()});
 		filterCache.put(cacheKey, out);
       	return out;
     }

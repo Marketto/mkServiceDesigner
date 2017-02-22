@@ -8,17 +8,17 @@ angular.module('app').filter('mkss2pojo',function($cacheFactory, $filter){
 					pojoType = $filter('capitalize')(node.$name);
 					break;
 				case 'string':
-					((node.$string||{}).maxLength === 1)?'char':'String';
+					pojoType = ((node.$string||{}).maxLength === 1)?'Char':'String';
 					break;
 				case 'integer':
 					var typeProperties = node.$integer||{};
-					pojoType = (typeProperties.minimum >= -32768 && typeProperties.maximum <= 32767)?((typeProperties.minimum >= -128 && typeProperties.maximum <= 127)?'byte':'short'):'int';
+					pojoType = (typeProperties.minimum >= -32768 && typeProperties.maximum <= 32767)?((typeProperties.minimum >= -128 && typeProperties.maximum <= 127)?'Byte':'Short'):'Integer';
 					break;
 				case 'number':
-					pojoType = 'float';
+					pojoType = 'Float';
 					break;
 				case 'boolean':
-					pojoType = 'boolean';
+					pojoType = 'Boolean';
 					break;
 			}
 			if(node.$listOf){

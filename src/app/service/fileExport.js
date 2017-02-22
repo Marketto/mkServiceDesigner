@@ -15,8 +15,8 @@ angular.module('app').service('fileExport',function(Blob, FileSaver){
     }
 
     angular.extend(this, {
-        'blob'      : exportPlainText,
-        'plainText' : exportBlob,
+        'blob'      : exportBlob,
+        'plainText' : exportPlainText,
         'json'      : exportJson
     });
 });

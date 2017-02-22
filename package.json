@@ -1,6 +1,6 @@
 {
   "name": "mk-service-designer",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "Marketto's Service Designer -> Design quickly quality service specs with (json, jsonschema and xlsx)",
   "scripts": {
     "build": "rimraf dist && rimraf dist_temp && webpack --bail --progress --profile && mkdir dist && inliner -mn dist_temp/index.html > dist/mkServiceDesigner.html; rimraf dist_temp && npm version minor",
@@ -37,6 +37,7 @@
     "babel-core": "5.8.38",
     "babel-loader": "5.4.2",
     "babel-preset-es2015": "6.0.2",
+    "base64-font-loader": "0.0.4",
     "copy-webpack-plugin": "4.0.1",
     "css-loader": "0.26.1",
     "extract-text-webpack-plugin": "2.0.0-beta.5",

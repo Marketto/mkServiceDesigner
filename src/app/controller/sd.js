@@ -42,24 +42,24 @@ angular.module('app').controller('sdCtrl',function($scope, $fileReader, fileExpo
 	}
 	this.export = fileExport.plainText;
 
-	this.importJson = function(file, dest){
-		// $mdDialog.show(
-		// 	$mdDialog.alert()
-		// 		.clickOutsideToClose(false)
-		// 		.title('Opening -')
-		// 		.textContent('Loading project')
-		// 		// You can specify either sting with query selector
-		// 		.openFrom(angular.element(document.querySelector('#uploadButton')))
-		// 		// or an element
-		// 		.closeTo(angular.element(document.querySelector('#uploadButton')))
-	 //    );
-		if(file && dest){
-			$fileReader.readAsJson(file).then(function(data) {
-			//Overwrite destination properties with source object ones
-				mkTools.overwrite(dest, data);
-			});
-		}
-	};
+	// this.importJson = function(file, dest){
+	// 	// $mdDialog.show(
+	// 	// 	$mdDialog.alert()
+	// 	// 		.clickOutsideToClose(false)
+	// 	// 		.title('Opening -')
+	// 	// 		.textContent('Loading project')
+	// 	// 		// You can specify either sting with query selector
+	// 	// 		.openFrom(angular.element(document.querySelector('#uploadButton')))
+	// 	// 		// or an element
+	// 	// 		.closeTo(angular.element(document.querySelector('#uploadButton')))
+	//  //    );
+	// 	if(file && dest){
+	// 		$fileReader.readAsJson(file).then(function(data) {
+	// 		//Overwrite destination properties with source object ones
+	// 			mkTools.overwrite(dest, data);
+	// 		});
+	// 	}
+	// };
 	this.exportJson = fileExport.json;
 
 	this.importMksd = function(file, dest){

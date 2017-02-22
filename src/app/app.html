@@ -66,7 +66,7 @@
                                 </md-button>
                             </div>
                         </md-toolbar>
-                        <div ng-switch="sdCtrl.view" ng-init="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[]">
+                        <div ng-switch="sdCtrl.view">
                             <pre class="tab-content" ng-switch-when="jsonschema">{{service.verbs[verb][schemaName]|mkss2jsonschema:service.endPoint:verb:schemaName|json:4}}</pre>
                             <pre class="tab-content" ng-switch-when="json">{{service.verbs[verb][schemaName]|mkss2json:service.endPoint:verb:schemaName|json:4}}</pre>
                             <pre class="tab-content" ng-switch-when="java">{{service.verbs[verb][schemaName]|mkss2pojo:service.endPoint:verb:schemaName}}</pre>

@@ -1,6 +1,6 @@
 <div class="container-element container-fluid">
 	<div class="row">
-			<div class="col-xs-3">
+		<div class="col-xs-3">
 	        <md-input-container class="md-block">
 				<label>Property name</label>
 				<input ng-model="item.$name" required>
@@ -54,7 +54,7 @@
 			</md-button>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" ng-switch="item.$listOf">
 		<div class="col-xs-1">
 			<md-input-container class="md-block md-valign">
 				<md-switch class="md-primary" name="listOf" ng-model="item.$listOf">
@@ -62,7 +62,7 @@
 		        </md-switch>
 			</md-input-container>
 		</div>
-		<div class="col-xs-1" ng-show="item.$listOf">
+		<div class="col-xs-2" ng-switch-when="true">
 			<md-input-container class="md-block" ng-init="(item.$minOccurrences>=0)?null:(item.$minOccurrences=0)">
 		        <label>Min Occurrence</label>
 		        <input required type="number" step="1" name="$minOccurrencess" ng-model="item.$minOccurrences" min="0" ng-max="item.$maxOccurrences||999"/>
@@ -76,7 +76,7 @@
 				</div>
 		    </md-input-container>
 		</div>
-		<div class="col-xs-1" ng-show="item.$listOf">
+		<div class="col-xs-2" ng-switch-when="true">
 		    <md-input-container class="md-block">
 		        <label>Max Occurrence</label>
 		        <input placeholder="&infin;" type="number" step="1" name="$maxOccurrencess" ng-model="item.$maxOccurrences" max="999" ng-min="item.$minOccurrences||1"/>
@@ -90,7 +90,7 @@
 				</div>
 		    </md-input-container>
 		</div>
-		<div class="col-xs-1" ng-show="item.$listOf">
+		<div class="col-xs-1" ng-switch-when="true">
 			<md-input-container class="md-block md-valign">
 				<md-switch class="md-primary" name="uniqueItems" ng-model="item.$uniqueItems">
 					<label>Unique Items</label>
