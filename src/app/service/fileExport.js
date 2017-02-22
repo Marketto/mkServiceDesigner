@@ -1,14 +1,22 @@
 angular.module('app').service('fileExport',function(Blob, FileSaver){
-	function exportBlob(plainData, filename, mimeType){
-        var data = new Blob([plainData], { 
+	function exportBlob(blobData, filename){
+        return FileSaver.saveAs(blobData, filename);
+    }
+
+    function exportPlainText(plainData, filename, mimeType){
+        var blobData = new Blob([plainData], { 
                 type: (mimeType||'text/plain;charset=utf-8') 
             });
-        FileSaver.saveAs(data, filename);
+        return exportBlob(blobData, filename);
     }
+
+    function exportJson(dataObject, filename){
+        return exportPlainText(JSON.stringify(dataObject,null,4), filename, 'application/json;charset=utf-8');
+    }
+
     angular.extend(this, {
-        'blob' : exportBlob,
-        'json' : function(dataObject, filename){
-            return exportBlob(JSON.stringify(dataObject,null,4), filename, 'application/json;charset=utf-8');
-        }
+        'blob'      : exportPlainText,
+        'plainText' : exportBlob,
+        'json'      : exportJson
     });
 });

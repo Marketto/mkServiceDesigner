@@ -43,6 +43,9 @@ angular.module('app').factory('$fileReader',function($q, $rootScope){
     return {
         readAsDataUrl 	: makeReader('readAsDataURL'),
         readAsText		: makeReader('readAsText'),
-        readAsJson		: makeReader('readAsText', function(data){return angular.fromJson(data||"{}")})
+        readAsJson		: makeReader('readAsText', function(data){
+            return angular.fromJson(data||"{}")
+        }),
+        readAsBinary    : makeReader('readAsArrayBuffer')
     };
 });

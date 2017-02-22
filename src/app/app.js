@@ -12,8 +12,10 @@ import 'angular-drag-and-drop-lists';
 import 'angular-file-saver';
 // File uploader
 import 'ng-file-upload';
-//json schema faker
+// json schema faker
 import jsf from 'json-schema-faker';
+// JS ZIP
+import JSZip from 'jszip';
 
 
 import '../style/app.css';
@@ -39,6 +41,8 @@ angular.module(MODULE_NAME, ['ngMaterial', 'dndLists', 'ngFileSaver', 'ngFileUpl
   .controller('AppCtrl', AppCtrl)
   .service('$jsf',function(){
     return jsf;
+  }).service('$JSZip',function(){
+    return JSZip;
   });
 
 //@require "./**/*.html"

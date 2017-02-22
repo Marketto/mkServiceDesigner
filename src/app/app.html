@@ -15,7 +15,7 @@
             </md-fab-trigger>
             <md-fab-actions ng-cloak>
                 <div>
-                    <md-button aria-label="upload" class="md-fab md-raised md-mini" ngf-select="sdCtrl.importJson($file, service)" ngf-pattern="'application/json'">
+                    <md-button aria-label="upload" class="md-fab md-raised md-mini" ngf-select="sdCtrl.importMksd($file, service)" accept="application/x-mk-service-designer,.mksd">
                         <md-tooltip md-direction="up" md-visible="tooltipVisible" md-autohide="false">
                             Open
                         </md-tooltip>
@@ -25,7 +25,7 @@
             </md-fab-actions>
             <md-fab-actions ng-cloak>
                 <div>
-                    <md-button aria-label="download" class="md-fab md-raised md-mini" ng-disabled="!service.endPoint" ng-click="sdCtrl.exportJson(service, service.endPoint+'.mksd.json')">
+                    <md-button aria-label="download" class="md-fab md-raised md-mini" ng-disabled="!service.endPoint" ng-click="sdCtrl.exportMksd(service, service.endPoint)">
                         <md-tooltip md-direction="down" md-visible="tooltipVisible" md-autohide="false">
                             Save
                         </md-tooltip>
