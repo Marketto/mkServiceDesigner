@@ -1,9 +1,9 @@
 {
   "name": "mk-service-designer",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "Marketto's Service Designer -> Design quickly quality service specs with (json, jsonschema and xlsx)",
   "scripts": {
-    "build": "rimraf dist && rimraf dist_temp && webpack --bail --progress --profile && mkdir dist && inliner -mn dist_temp/index.html > dist/mkServiceDesigner.html; rimraf dist_temp && npm version minor",
+    "build": "rimraf dist && rimraf dist_temp && webpack --bail --progress --profile && mkdir dist && inliner -mn dist_temp/index.html > dist/mkServiceDesigner.html; rimraf dist_temp",
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
     "test": "karma start",
     "test-watch": "karma start --auto-watch --no-single-run",
@@ -61,6 +61,7 @@
     "ngtemplate-loader": "^1.3.1",
     "node-libs-browser": "2.0.0",
     "null-loader": "^0.1.1",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
     "phantomjs-prebuilt": "^2.1.4",
     "postcss-loader": "1.2.2",
     "raw-loader": "^0.5.1",

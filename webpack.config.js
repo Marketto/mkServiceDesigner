@@ -8,6 +8,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 //var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 /**
  * Env
@@ -233,7 +234,12 @@ module.exports = function makeWebpackConfig() {
       // Reference: https://github.com/kevlened/copy-webpack-plugin
       new CopyWebpackPlugin([{
         from: __dirname + '/src/public'
-      }])
+      }]),
+
+      new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.css$/,
+        cssProcessorOptions: { discardComments: { removeAll: true } }
+      })
     )
   }
 
