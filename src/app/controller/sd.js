@@ -4,8 +4,8 @@ angular.module('app').controller('sdCtrl',function($scope, $fileReader, fileExpo
 
 //PUBLIC / SCOPE
 	$scope.service = {
-		verbs : {
-		}
+	// 	verbs : {
+	// 	}
 	};
 
 //PUBLIC / CONTROLLER
