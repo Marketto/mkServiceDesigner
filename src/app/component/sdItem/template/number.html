@@ -2,13 +2,13 @@
     <md-grid-tile md-colspan-xs="3">
     	<md-input-container class="md-block">
 	        <label>Multiple of</label>
-	        <input placeholder="none" type="number" step="0.1" name="multipleOf" ng-model="item.$number.multipleOf"/>
+	        <input placeholder="none" type="number" step="{{item.type==='integer'?1:0.1}}" name="multipleOf" ng-model="item['$'+item.type].multipleOf"/>
 	    </md-input-container>
     </md-grid-tile>
     <md-grid-tile md-colspan-xs="2">
     	<md-input-container class="md-block md-valign">
 	        <label>Value must be</label>
-    		<md-select ng-model="item.$number.exclusiveMinimum">
+    		<md-select ng-model="item['$'+item.type].exclusiveMinimum">
 				<md-option ng-value="true">
 					&gt;
 				</md-option>
@@ -21,10 +21,10 @@
     <md-grid-tile md-colspan-xs="3">
 		<md-input-container class="md-block">
 	        <label>Min value</label>
-	        <input placeholder="- &infin;" type="number" step="0.1" name="minValue" ng-model="item.$number.minimum" ng-max="item.$number.maximum"/>
-			<div ng-messages="item.$number.minimum.$error" role="alert">
+	        <input placeholder="- &infin;" type="number" step="{{item.type==='integer'?1:0.1}}" name="minValue" ng-model="item['$'+item.type].minimum" ng-max="item['$'+item.type].maximum"/>
+			<div ng-messages="item['$'+item.type].minimum.$error" role="alert">
 				<div ng-message="max">
-					{{item.$number.minimum.$viewValue}} is greater than {{item.$number.maximum}} (max value).
+					{{item['$'+item.type].minimum.$viewValue}} is greater than {{item['$'+item.type].maximum}} (max value).
 				</div>
 			</div>
 	    </md-input-container>
@@ -32,7 +32,7 @@
     <md-grid-tile md-colspan-xs="2">
     	<md-input-container class="md-block md-valign">
 	        <label>Value must be</label>
-    		<md-select ng-model="item.$number.exclusiveMaximum">
+    		<md-select ng-model="item['$'+item.type].exclusiveMaximum">
 				<md-option ng-value="true">
 					&lt;
 				</md-option>
@@ -45,10 +45,10 @@
 	<md-grid-tile md-colspan-xs="3">
 	    <md-input-container class="md-block">
 	        <label>Max value</label>
-	        <input placeholder="&infin;" type="number" step="0.1" name="maxValue" ng-model="item.$number.maximum" ng-min="item.$number.minimum"/>
-			<div ng-messages="item.$number.maximum.$error" role="alert">
+	        <input placeholder="&infin;" type="number" step="{{item.type==='integer'?1:0.1}}" name="maxValue" ng-model="item['$'+item.type].maximum" ng-min="item['$'+item.type].minimum"/>
+			<div ng-messages="item['$'+item.type].maximum.$error" role="alert">
 				<div ng-message="min">
-					{{item.$number.maximum.$viewValue}} is lower than {{item.$number.minimum}} (min value).
+					{{item['$'+item.type].maximum.$viewValue}} is lower than {{item['$'+item.type].minimum}} (min value).
 				</div>
 			</div>
 	    </md-input-container>

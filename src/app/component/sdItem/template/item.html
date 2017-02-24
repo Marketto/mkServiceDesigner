@@ -97,5 +97,18 @@
 	</div>
 </div>
 <!-- TODO: use ng-switch, merge integer/number delete dummy boolean.html template -->
-<div ng-if="item.type" ng-include="'sdItem/template/'+item.type+'.html'" class="container-element container-fluid"></div>
+<div ng-switch="item.type" class="container-element container-fluid">
+	<div ng-switch-when="string">
+		<ng-include src="'sdItem/template/'+item.type+'.html'"></ng-include>
+	</div>
+	<div ng-switch-when="object">
+		<ng-include src="'sdItem/template/'+item.type+'.html'"></ng-include>
+	</div>
+	<div ng-switch-when="number">
+		<ng-include src="'sdItem/template/number.html'"></ng-include>
+	</div>
+	<div ng-switch-when="integer">
+		<ng-include src="'sdItem/template/number.html'"></ng-include>
+	</div>
+</div>
 <div class="clearfix"></div>
