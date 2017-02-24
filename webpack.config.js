@@ -134,15 +134,24 @@ module.exports = function makeWebpackConfig() {
       test: /\.html$/,
       exclude: [
         path.resolve(__dirname, 'src/public/index.html'),
-      //  path.resolve(__dirname, 'src/app/app.html'),
+        path.resolve(__dirname, 'src/app/component'),
+        path.resolve(__dirname, 'src/app/directive'),
         path.resolve(__dirname, 'node_modules')
       ],
-      //loader: "ng-cache-loader"
       loaders:  ['ngtemplate-loader?module=app&relativeTo=' + (path.resolve(__dirname, './src/app')) + '/', 'required-loader'],
     }, {
-      // HTML LOADER
-      // Reference: https://github.com/webpack/raw-loader
-      // Allow loading html through js
+      test: /src\/app\/component\/.+\.html$/,
+      exclude: [
+        path.resolve(__dirname, 'node_modules')
+      ],
+      loaders:  ['ngtemplate-loader?module=app&relativeTo=' + (path.resolve(__dirname, './src/app/component')) + '/', 'required-loader'],
+    }, {
+      test: /src\/app\/directive\/.+\.html$/,
+      exclude: [
+        path.resolve(__dirname, 'node_modules')
+      ],
+      loaders:  ['ngtemplate-loader?module=app&relativeTo=' + (path.resolve(__dirname, './src/app/directive')) + '/', 'required-loader'],
+    }, {
       test: /\.html$/,
       loaders: "html-loader!html-minifier-loader",
       exclude: [

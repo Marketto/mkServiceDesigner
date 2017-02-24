@@ -1,0 +1,15 @@
+<form ng-switch="$ctrl.getMode($ctrl.list)">
+	<ul ng-switch-when="list" dnd-list="$ctrl.list">
+	    <li ng-repeat="item in $ctrl.list track by $index"
+	        dnd-draggable="item"
+	        dnd-effect-allowed="all"
+	        dnd-moved="$ctrl.list.splice($index, 1)"
+	        dnd-selected="models.selected = item"
+	        ng-class="{'selected': models.selected === item}"
+	        ng-include="'sdItem/template/item.html'">
+	    </li>
+	</ul>
+	<div ng-switch-when="item">
+		<ng-include src="'sdItem/template/item.html'"></ng-include>
+	</div>
+</form>

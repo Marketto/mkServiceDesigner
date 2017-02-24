@@ -59,6 +59,6 @@
 		</md-input-container>
 	</div>
 	<div class="col-xs-5">
-		<md-chips ng-model="item.$string.$domain" md-enable-chip-edit="true" secondary-placeholder="+ Allowed value" placeholder="Type a domain value"></md-chips>
+		<md-chips  ng-init="item.$string.$domain=item.$string.$domain||[]" ng-model="item.$string.$domain" md-enable-chip-edit="true" secondary-placeholder="+ Allowed value" placeholder="Type a domain value"></md-chips>
 	</div>
 </div>	

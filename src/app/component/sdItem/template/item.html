@@ -1,4 +1,4 @@
-<div class="container-element container-fluid">
+<div class="container-element container-fluid" ng-init="item=item||$ctrl.item">
 	<div class="row">
 		<div class="col-xs-3">
 	        <md-input-container class="md-block">
@@ -42,14 +42,11 @@
 					<md-option value="boolean" ng-disabled="item.$object.$children.length>0">
 						Boolean
 					</md-option>
-					<!-- <md-option value="null" ng-disabled="item.$object.$children.length>0">
-						Null
-					</md-option> -->
 				</md-select>
 			</md-input-container>
 		</div>
 		<div class="col-xs-1">
-			<md-button class="md-fab md-mini md-warn pull-right" aria-label="Remove Item" ng-click="sdCtrl.removeItem(item, list)">
+			<md-button ng-if="$ctrl.canRemove()" class="md-fab md-mini md-warn pull-right" aria-label="Remove Item" ng-click="$ctrl.removeItem(item)">
 				<i class="glyphicon glyphicon-trash"></i>
 			</md-button>
 		</div>
@@ -99,5 +96,6 @@
 		</div>
 	</div>
 </div>
-<div ng-include="'view/'+item.type+'.html'" class="container-element container-fluid"></div>
+<!-- TODO: use ng-switch, merge integer/number delete dummy boolean.html template -->
+<div ng-if="item.type" ng-include="'sdItem/template/'+item.type+'.html'" class="container-element container-fluid"></div>
 <div class="clearfix"></div>

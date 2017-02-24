@@ -26,20 +26,30 @@ angular.module('app').controller('sdCtrl',function($scope, $fileReader, fileExpo
 		],
 	};
 
-	this.removeItem = function(item, ref){
-		ref.splice(ref.indexOf(item),1);
+	// this.removeItem = function(item, ref){
+	// 	ref.splice(ref.indexOf(item),1);
+	// }
+	// this.addItem = function(ref){
+	// 	itemCounter++;
+	// 	ref.push({
+	// 		"$name" 		: 'property'+itemCounter, 
+	// 		"type" 			: "object", 
+	// 		"$object" 		: {"$children" : []}, 
+	// 		"$string"		: {
+	// 			"$domain" 		: []
+	// 		}
+	// 	});
+	// }
+	
+	function onNewItem(item){
+		item.type = item.type||'object';
+		item.$name = item.$name||'property'+(++itemCounter);
+		return item;
 	}
 	this.addItem = function(ref){
-		itemCounter++;
-		ref.push({
-			"$name" 		: 'property'+itemCounter, 
-			"type" 			: "object", 
-			"$object" 		: {"$children" : []}, 
-			"$string"		: {
-				"$domain" 		: []
-			}
-		});
-	}
+		ref.push(onNewItem({}));
+	};
+	this.onNewItem = onNewItem;
 	this.export = fileExport.plainText;
 
 	// this.importJson = function(file, dest){

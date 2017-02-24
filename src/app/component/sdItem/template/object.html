@@ -25,9 +25,9 @@
 		</md-input-container>
 	</div>
 	<div class="col-xs-1 col-xs-offset-9">
-		<md-button class="md-fab md-mini md-primary pull-right" aria-label="Add Item" ng-click="sdCtrl.addItem(item.$object.$children)">
+		<md-button class="md-fab md-mini md-primary pull-right" aria-label="Add Item" ng-click="$ctrl.addChildItem(item)">
 			<i class="glyphicon glyphicon-plus"></i>
 		</md-button>
 	</div>
 </div>
-<div class="dropzone" ng-repeat="list in [item.$object.$children]" ng-include="'view/list.html'"></div>
+<sd-item class="dropzone" list="item.$object.$children" on-add="$ctrl.onAddWrapper(item,list)" on-remove="$ctrl.onRemoveWrapper(item,list)"></sd-item>
