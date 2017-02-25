@@ -2,7 +2,7 @@ angular.module('app').component('sdItem',{
     templateUrl: 'sdItem/template/list.html',
     controller: 'sdItemCtrl',
     bindings: {
-    	list 	: "=?",
+    	list 	: "<?",
     	item 	: "=?",
     	onAdd 	: "&?",
     	onRemove: "&?"

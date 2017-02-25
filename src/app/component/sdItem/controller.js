@@ -2,9 +2,9 @@ angular.module('app').controller('sdItemCtrl',function($scope, $element, $attrs)
 	var $ctrl = this;
 	
 	angular.extend(this, {
-		'getMode' 	: function(){
-			return $attrs.list?'list':($attrs.item?'item':false);
-		},
+		// 'getMode' 	: function(){
+		// 	return angular.isArray($ctrl.list)?'list':(angular.isObject($ctrl.item)?'item':false);
+		// },
 		'canRemove' 	: function(){
 			return angular.isArray($ctrl.list);
 		},
@@ -46,9 +46,9 @@ angular.module('app').controller('sdItemCtrl',function($scope, $element, $attrs)
 	});
 	(function init(){
 		if($attrs.list && !$attrs.item){
-			$ctrl.list = $ctrl.list||[];
+			//$ctrl.list = $ctrl.list||[];
 		}else if(!$attrs.list && $attrs.item){
-			$ctrl.item = $ctrl.item||[];
+			$ctrl.item = $ctrl.item||{};
 		}else if(!$attrs.list && !$attrs.item){
 			throw "Component sdItem: Missing required source param: no item or list provided";
 		}

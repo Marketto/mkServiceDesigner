@@ -1,5 +1,5 @@
-<form ng-switch="$ctrl.getMode($ctrl.list)">
-	<ul ng-switch-when="list" dnd-list="$ctrl.list">
+<form>
+	<ul ng-if="$ctrl.list.length" dnd-list="$ctrl.list">
 	    <li ng-repeat="item in $ctrl.list track by $index"
 	        dnd-draggable="item"
 	        dnd-effect-allowed="all"
@@ -9,7 +9,7 @@
 	        ng-include="'sdItem/template/item.html'">
 	    </li>
 	</ul>
-	<div ng-switch-when="item">
+	<div ng-if="$ctrl.item && !$ctrl.list.length">
 		<ng-include src="'sdItem/template/item.html'"></ng-include>
 	</div>
 </form>

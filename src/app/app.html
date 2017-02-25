@@ -61,7 +61,7 @@
                                 <md-button class="md-fab md-mini md-primary" ng-class="{'md-hue-1':sdCtrl.view!=='mksd','md-hue-3':sdCtrl.view==='mksd'}" aria-label="mksd" ng-mouseover="(sdCtrl.view!='mksd')?(sdCtrl.view='mksd'):null">
                                     <md-icon class="mksd-button">mksd</md-icon>
                                 </md-button>
-                                <md-button class="md-fab md-mini md-primary md-hue-2" aria-label="Add Item" ng-click="sdCtrl.addItem(service.verbs[verb][schemaName])"">
+                                <md-button class="md-fab md-mini md-primary md-hue-2" aria-label="Add Item" ng-click="service.verbs[verb][schemaName]=service.verbs[verb][schemaName]||[];sdCtrl.addItem(service.verbs[verb][schemaName])">
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </md-button>
                             </div>
@@ -72,7 +72,7 @@
                             <pre class="tab-content" ng-switch-when="java">{{service.verbs[verb][schemaName]|mkss2pojo:service.endPoint:verb:schemaName}}</pre>
                             <sd-item ng-switch-default class="dropzone tab-content" list="service.verbs[verb][schemaName]" on-add="sdCtrl.onNewItem(item)"></sd-item>
                         
-                            <!--<pre class="tab-content">{{service.verbs[verb][schemaName]|json:4}}</pre>-->
+                            <pre class="tab-content">{{service.verbs[verb][schemaName]|json:4}}</pre>
                         </div>
                     </div>
                 </div>

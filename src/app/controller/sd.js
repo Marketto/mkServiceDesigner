@@ -84,6 +84,7 @@ angular.module('app').controller('sdCtrl',function($scope, $fileReader, fileExpo
 		// 		.closeTo(angular.element(document.querySelector('#uploadButton')))
 	 //    );
 		if(file && dest){
+			mkTools.replace(dest, {});
 			var zip = new $JSZip();
 		 	zip.loadAsync(file).then(function(archive) {
 		 		var sourceFileName = Object.keys(archive.files).find(function(f){
@@ -92,7 +93,7 @@ angular.module('app').controller('sdCtrl',function($scope, $fileReader, fileExpo
 		 		archive.files[sourceFileName].async('blob').then(function(sourceFile) {
         			$fileReader.readAsJson(sourceFile).then(function(data) {
 					//Overwrite destination properties with source object ones
-						mkTools.overwrite(dest, data);
+						angular.extend(dest, data);
 					}, function (e) {
 				    	console.error("Error reading " + sourceFileName + " from "+ file.name +" : " + e.message);
 				    });
