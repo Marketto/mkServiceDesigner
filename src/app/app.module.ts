@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatChipsModule, MatSidenavModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatButtonModule, MatChipsModule, MatSidenavModule, MatTabsModule } from '@angular/material';
 
 import { TreeviewModule } from 'ngx-treeview';
 
@@ -21,7 +21,8 @@ import { TreeviewModule } from 'ngx-treeview';
     MatButtonModule,
     MatChipsModule,
     TreeviewModule.forRoot(),
-    MatSidenavModule
+    MatSidenavModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
