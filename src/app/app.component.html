@@ -2,20 +2,28 @@
   <mat-toolbar-row>
     <span>{{ title }}</span>
     <span class="spacer"></span>
+
+    <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()">
+      <mat-icon class="icon">{{ serviceSideBar.opened?'crop_din':'flip' }}</mat-icon>
+    </button>
+
+    <span class="divider"></span>
+
     <button mat-mini-fab color="primary">
       <mat-icon class="icon">cloud_upload</mat-icon>
     </button>
     <button mat-mini-fab color="primary">
       <mat-icon class="icon">cloud_download</mat-icon>
     </button>
+
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-grid-list cols="2" rowHeight="1">
-  <mat-grid-tile>
+
+<mat-drawer-container class="" autosize>
+  <mat-drawer #serviceSideBar class="" mode="side">
     <ngx-treeview [items]="items">
     </ngx-treeview>
-  </mat-grid-tile>
-  <mat-grid-tile>
+  </mat-drawer>
 
-  </mat-grid-tile>
-</mat-grid-list>
+
+</mat-drawer-container>
