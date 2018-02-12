@@ -8,10 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatButtonModule, MatChipsModule, MatSidenavModule, MatTabsModule } from '@angular/material';
 
 import { TreeviewModule } from 'ngx-treeview';
+import { ServiceTreeComponent } from './service-tree/service-tree.component';
+import { ModelEditorComponent } from './model-editor/model-editor.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ServiceTreeComponent,
+    ModelEditorComponent
   ],
   imports: [
     BrowserModule,

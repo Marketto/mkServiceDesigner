@@ -21,40 +21,11 @@
 
 <mat-drawer-container class="" autosize>
   <mat-drawer #serviceSideBar class="" mode="side">
-    <ngx-treeview [items]="treeItems">
-    </ngx-treeview>
+    <app-service-tree></app-service-tree>
   </mat-drawer>
 
   <mat-drawer-content>
-    <mat-tab-group>
-      <mat-tab label="GET Response">
-        Content GET
-      </mat-tab>
-      <mat-tab label="POST Request">
-        Content POST
-      </mat-tab>
-      <mat-tab label="POST Response">
-        Content POST
-      </mat-tab>
-      <mat-tab label="PUT Request">
-        Content PUT
-      </mat-tab>
-      <mat-tab label="PUT Response">
-        Content PUT
-      </mat-tab>
-      <mat-tab label="DELETE Request">
-        Content DELETE
-      </mat-tab>
-      <mat-tab label="DELETE Response">
-        Content DELETE
-      </mat-tab>
-      <mat-tab label="PATCH Request">
-        Content PATCH
-      </mat-tab>
-      <mat-tab label="PATCH Response">
-        Content PATCH
-      </mat-tab>
-    </mat-tab-group>
+    <app-model-editor></app-model-editor>
   </mat-drawer-content>
 
 </mat-drawer-container>

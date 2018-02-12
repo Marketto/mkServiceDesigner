@@ -9,4 +9,5 @@ import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
 
 export class AppComponent {
   title = 'Marketto Service Designer';
+  treeItems: TreeviewItem;
 }
