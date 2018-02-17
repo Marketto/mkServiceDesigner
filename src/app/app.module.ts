@@ -50,7 +50,8 @@ import { SdItemObjectComponent } from './model-editor/sd-item/sd-item-object/sd-
     MatInputModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

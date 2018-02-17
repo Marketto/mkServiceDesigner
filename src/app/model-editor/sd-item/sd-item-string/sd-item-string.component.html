@@ -1,3 +1,69 @@
-<p>
-  sd-item-string works!
-</p>
+<mat-grid-list cols="14">
+  <mat-grid-tile colspan="3">
+    <mat-form-field>
+      <input matInput placeholder="Min length" type="number" step="1" name="minLength" [(ngModel)]="item.minLength" min="0" max="{{item.maxLength}}"/>
+      <!--div ng-messages="item.minimum.$error" multiple role="alert">
+        <div ng-message="min">
+          Min Length must be greater than or equal to 0.
+        </div>
+        <div ng-message="max">
+          {{item.minLength.$viewValue}} is greater than {{item.maxLength}} (max value).
+        </div>
+      </div-->
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <mat-form-field>
+      <input matInput placeholder="Max length" type="number" step="1" name="maxLength" [(ngModel)]="item.maxLength" min="{{item.minLength}}"
+      />
+      <!--div ng-messages="item.minimum.$error" multiple role="alert">
+        <div ng-message="min">
+          {{item.maxLength.$viewValue}} is lower than {{item.minLength}} (min value).
+        </div>
+      </div-->
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="7">
+    <mat-form-field>
+      <input matInput placeholder="Regular expression pattern" [(ngModel)]="item.pattern">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <mat-form-field>
+      <mat-select placeholder="Format" [(ngModel)]="item.format" placeholder="Generic">
+        <mat-option value="">
+          Generic
+        </mat-option>
+        <mat-option value="'date-time'">
+          Date / Time
+        </mat-option>
+        <mat-option value="'email'">
+          Email
+        </mat-option>
+        <mat-option value="'hostname'">
+          Host name
+        </mat-option>
+        <mat-option value="'ipv4'">
+          IPv4
+        </mat-option>
+        <mat-option value="'ipv6'">
+          IPv6
+        </mat-option>
+        <mat-option value="'uri'">
+          URI
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="10">
+    <mat-form-field>
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let value of item.$domain" [selectable]="selectable" [removable]="removable">
+          {{value}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Type a domain value" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"/>
+      </mat-chip-list>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
