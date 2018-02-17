@@ -1,10 +1,15 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <span>{{ title }}</span>
-    <span class="spacer"></span>
+    <span class="title">{{ title }}</span>
 
     <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()">
       <mat-icon class="icon">{{ serviceSideBar.opened?'crop_din':'flip' }}</mat-icon>
+    </button>
+    
+    <span class="spacer"></span>
+
+    <button mat-mini-fab color="accent">
+      <mat-icon class="icon">add</mat-icon>
     </button>
 
     <span class="divider"></span>

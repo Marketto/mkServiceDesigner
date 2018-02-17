@@ -1,0 +1,54 @@
+<mat-grid-list cols="14">
+  <mat-grid-tile colspan="3">
+    <mat-form-field class="md-block">
+      <input matInput placeholder="Multiple of" type="number" step="{{integer?1:0.1}}" name="multipleOf" [(ngModel)]="item.multipleOf"/>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <mat-form-field class="md-block md-valign">
+      <mat-select placeholder="Lower limit" [(ngModel)]="item.exclusiveMinimum">
+        <mat-option value="true">
+          &gt;
+        </mat-option>
+        <mat-option value="false" selected>
+          &ge;
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <mat-form-field class="md-block">
+      <input matInput placeholder="Min value" type="number" step="{{integer?1:0.1}}" name="minValue" [(ngModel)]="item.minimum"
+        ng-max="item.maximum" />
+      <!--div ng-messages="item.minimum.$error" role="alert">
+        <div ng-message="max">
+          {{item.minimum}} is greater than {{item.maximum}} (max value).
+        </div>
+      </div-->
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <mat-form-field class="md-block md-valign">
+      <mat-select placeholder="Upper limit" [(ngModel)]="item.exclusiveMaximum">
+        <mat-option value="true">
+          &lt;
+        </mat-option>
+        <mat-option value="false" selected>
+          &le;
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <mat-form-field class="md-block">
+      <label></label>
+      <input placeholder="Max value" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maximum"
+        ng-min="item.minimum" />
+      <!--div ng-messages="item.maximum.$error" role="alert">
+        <div ng-message="min">
+          {{item.maximum}} is lower than {{item.minimum}} (min value).
+        </div>
+      </div-->
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
