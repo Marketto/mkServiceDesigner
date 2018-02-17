@@ -1,3 +1,34 @@
-<p>
-  sd-item-object works!
-</p>
+<mat-grid-list cols="14">
+  <mat-grid-tile colspan="4">
+    <mat-form-field class="md-block md-valign">
+      <mat-select placeholder="Additional properties" [(ngModel)]="item.additionalProperties">
+        <mat-option value="">
+          Allowed
+        </mat-option>
+        <mat-option value="false">
+          Not allowed
+        </mat-option>
+        <mat-option value="{type:'string'}">
+          String
+        </mat-option>
+        <mat-option value="{type:'integer'}">
+          Integer
+        </mat-option>
+        <mat-option value="{type:'number'}">
+          Number
+        </mat-option>
+        <mat-option value="{type:'boolean'}">
+          Boolean
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="9">
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <button mat-mini-fab color="primary" ng-click="$ctrl.addChildItem(item)">
+      <mat-icon class="icon">add</mat-icon>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-sd-item class="dropzone" [(list)]="item.$children"></app-sd-item>

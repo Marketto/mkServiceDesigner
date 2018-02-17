@@ -45,46 +45,42 @@
     </mat-slide-toggle>
   </mat-grid-tile>
   <mat-grid-tile colspan="1">
-    <button mat-mini-fab color="accent" ng-if="$ctrl.canRemove()" ng-click="$ctrl.removeItem(item)">
-      <mat-icon class="icon">add</mat-icon>
+    <button mat-mini-fab color="warn" ng-if="$ctrl.canRemove()" ng-click="$ctrl.removeItem(item)">
+      <mat-icon class="icon">delete</mat-icon>
     </button>
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="2" *ngSwitchCase="true">
+  <mat-grid-tile colspan="3" *ngSwitchCase="true">
     <mat-form-field class="md-block" ng-init="(item.$minOccurrences>=0)?null:(item.$minOccurrences=0)">
-      <label>Min Occurrence</label>
-      <input required type="number" step="1" name="$minOccurrencess" ngModel="item.$minOccurrences" min="0" ng-max="item.$maxOccurrences||999"
+      <input matInput placeholder="Min Occurrence" required type="number" step="1" name="$minOccurrencess" [(ngModel)]="item.$minOccurrences" min="0" ng-max="item.$maxOccurrences||999"
       />
-      <div ng-messages="item.$minOccurrences.$error" multiple role="alert">
+      <!--div ng-messages="item.$minOccurrences.$error" multiple role="alert">
         <div ng-message="min">
           The minimum possible should be zero
         </div>
         <div ng-message="max">
-          {{item.$minOccurrences.$viewValue}} is greater than {{item.$maxOccurrences}} (max occurence).
+          {{item.$minOccurrences}} is greater than {{item.$maxOccurrences}} (max occurence).
         </div>
-      </div>
+      </div-->
     </mat-form-field>
   </mat-grid-tile>
-  <mat-grid-tile colspan="2" *ngSwitchCase="true">
+  <mat-grid-tile colspan="3" *ngSwitchCase="true">
     <mat-form-field class="md-block">
-      <label>Max Occurrence</label>
-      <input placeholder="&infin;" type="number" step="1" name="$maxOccurrencess" [(ngModel)]="item.$maxOccurrences" max="999" ng-min="item.$minOccurrences||1"/>
-      <div ng-messages="item.$maxOccurrences.$error" multiple role="alert">
+      <input matInput placeholder="Max Occurrence" type="number" step="1" name="$maxOccurrencess" [(ngModel)]="item.$maxOccurrences" max="999" ng-min="item.$minOccurrences||1"/>
+      <!--div ng-messages="item.$maxOccurrences.$error" multiple role="alert">
         <div ng-message="max">
           The maximum possible should be less than 999
         </div>
         <div ng-message="min">
-          {{item.$maxOccurrences.$viewValue}} is lower than {{item.$minOccurrences}} (min occurence).
+          {{item.$maxOccurrences}} is lower than {{item.$minOccurrences}} (min occurence).
         </div>
-      </div>
+      </div-->
     </mat-form-field>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1" *ngSwitchCase="true">
-    <mat-form-field class="md-block md-valign">
-      <mat-slide-toggle class="md-primary" name="uniqueItems" [(ngModel)]="item.$uniqueItems">
-        <label>Unique Items</label>
-      </mat-slide-toggle>
-    </mat-form-field>
+  <mat-grid-tile colspan="2" *ngSwitchCase="true">
+    <mat-slide-toggle class="md-primary" name="uniqueItems" [(ngModel)]="item.$uniqueItems">
+      Unique Items
+    </mat-slide-toggle>
   </mat-grid-tile>
 </mat-grid-list>
 <div [ngSwitch]="item.type" class="container-element container-fluid">
