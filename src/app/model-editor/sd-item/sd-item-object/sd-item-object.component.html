@@ -2,10 +2,10 @@
   <mat-grid-tile colspan="4">
     <mat-form-field class="md-block md-valign">
       <mat-select placeholder="Additional properties" [(ngModel)]="item.additionalProperties">
-        <mat-option value="">
+        <mat-option ngValue="">
           Allowed
         </mat-option>
-        <mat-option value="false">
+        <mat-option value="boolean:false">
           Not allowed
         </mat-option>
         <mat-option value="{type:'string'}">
@@ -22,13 +22,15 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+  
   </mat-grid-tile>
   <mat-grid-tile colspan="9">
   </mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <button mat-mini-fab color="primary" ng-click="$ctrl.addChildItem(item)">
+
+  <mat-grid-tile colspan="1"> 
+    <button mat-mini-fab color="primary" (click)="newItem()">
       <mat-icon class="icon">add</mat-icon>
     </button>
   </mat-grid-tile>
 </mat-grid-list>
-<app-sd-item class="dropzone" [(list)]="item.$children"></app-sd-item>
+<app-sd-item class="dropzone children" [(node)]="item.$children"></app-sd-item>

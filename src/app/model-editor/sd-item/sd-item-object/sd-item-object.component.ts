@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SdItemObject } from '../../../classes/SdItem';
 
 @Component({
   selector: 'app-sd-item-object',
@@ -6,7 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./sd-item-object.component.less']
 })
 export class SdItemObjectComponent implements OnInit {
-  @Input() item: Object = {};
+  @Input() item: SdItemObject;
+
+  newItem() {
+    this.item.$children.push(new SdItemObject());
+    // this.service.verbs[this.verb][this.io].newObject();
+  }
+
   constructor() { }
 
   ngOnInit() {

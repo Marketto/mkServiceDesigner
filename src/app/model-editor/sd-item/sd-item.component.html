@@ -1,93 +1,95 @@
-<mat-grid-list cols="14" [ngSwitch]="item.$listOf">
-  <mat-grid-tile colspan="4">
-    <mat-form-field>
-      <input matInput [(ngModel)]="item.$name" required placeholder="Property name">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <mat-slide-toggle class="md-primary" name="required" [(ngModel)]="item.$required">
-      Required
-    </mat-slide-toggle>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="3">
-    <mat-form-field>
-      <mat-select [(ngModel)]="item.$dependencies" multiple ng-disabled="list.length<2" placeholder="Dependencies">
-        <!--mat-option ng-value="sibling.$name" ng-repeat="sibling in list|exclude:item">
-          {{sibling.$name}}
-        </mat-option-->
-      </mat-select>
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <mat-form-field>
-      <mat-select [(ngModel)]="item.type" placeholder="Type">
-        <mat-option value="object">
-          Object
-        </mat-option>
-        <mat-option value="string" ng-disabled="item.$object.$children.length>0">
-          String
-        </mat-option>
-        <mat-option value="integer" ng-disabled="item.$object.$children.length>0">
-          Integer
-        </mat-option>
-        <mat-option value="number" ng-disabled="item.$object.$children.length>0">
-          Number
-        </mat-option>
-        <mat-option value="boolean" ng-disabled="item.$object.$children.length>0">
-          Boolean
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <mat-slide-toggle class="md-primary" name="listOf" [(ngModel)]="item.$listOf">
-      List/Array
-    </mat-slide-toggle>
-  </mat-grid-tile>
-  
-  <mat-grid-tile colspan="1">
-    <button mat-mini-fab color="warn" ng-if="$ctrl.canRemove()" ng-click="$ctrl.removeItem(item)">
-      <mat-icon class="icon">delete</mat-icon>
-    </button>
-  </mat-grid-tile>
+<div  *ngFor="let item of node">
+  <mat-grid-list cols="14" [ngSwitch]="item.$listOf">
+    <mat-grid-tile colspan="4">
+      <mat-form-field>
+        <input matInput [(ngModel)]="item.$name" required placeholder="Property name">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-slide-toggle class="md-primary" name="required" [(ngModel)]="item.$required">
+        Required
+      </mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <mat-form-field>
+        <mat-select [(ngModel)]="item.$dependencies" multiple ng-disabled="list.length<2" placeholder="Dependencies">
+          <!--mat-option ng-value="sibling.$name" ng-repeat="sibling in list|exclude:item">
+            {{sibling.$name}}
+          </mat-option-->
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-form-field>
+        <mat-select [(ngModel)]="item.type" placeholder="Type">
+          <mat-option value="object">
+            Object
+          </mat-option>
+          <mat-option value="string" ng-disabled="item.$object.$children.length>0">
+            String
+          </mat-option>
+          <mat-option value="integer" ng-disabled="item.$object.$children.length>0">
+            Integer
+          </mat-option>
+          <mat-option value="number" ng-disabled="item.$object.$children.length>0">
+            Number
+          </mat-option>
+          <mat-option value="boolean" ng-disabled="item.$object.$children.length>0">
+            Boolean
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-slide-toggle class="md-primary" name="listOf" [(ngModel)]="item.$listOf">
+        List/Array
+      </mat-slide-toggle>
+    </mat-grid-tile>
+    
+    <mat-grid-tile colspan="1">
+      <button mat-mini-fab color="warn" ng-if="$ctrl.canRemove()" (click)="removeItem(item)">
+        <mat-icon class="icon">delete</mat-icon>
+      </button>
+    </mat-grid-tile>
 
-  <mat-grid-tile colspan="3" *ngSwitchCase="true">
-    <mat-form-field ng-init="(item.$minOccurrences>=0)?null:(item.$minOccurrences=0)">
-      <input matInput placeholder="Min Occurrence" required type="number" step="1" name="$minOccurrencess" [(ngModel)]="item.$minOccurrences" min="0" ng-max="item.$maxOccurrences||999"
-      />
-      <!--div ng-messages="item.$minOccurrences.$error" multiple role="alert">
-        <div ng-message="min">
-          The minimum possible should be zero
-        </div>
-        <div ng-message="max">
-          {{item.$minOccurrences}} is greater than {{item.$maxOccurrences}} (max occurence).
-        </div>
-      </div-->
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="3" *ngSwitchCase="true">
-    <mat-form-field>
-      <input matInput placeholder="Max Occurrence" type="number" step="1" name="$maxOccurrencess" [(ngModel)]="item.$maxOccurrences" max="999" ng-min="item.$minOccurrences||1"/>
-      <!--div ng-messages="item.$maxOccurrences.$error" multiple role="alert">
-        <div ng-message="max">
-          The maximum possible should be less than 999
-        </div>
-        <div ng-message="min">
-          {{item.$maxOccurrences}} is lower than {{item.$minOccurrences}} (min occurence).
-        </div>
-      </div-->
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2" *ngSwitchCase="true">
-    <mat-slide-toggle class="md-primary" name="uniqueItems" [(ngModel)]="item.$uniqueItems">
-      Unique Items
-    </mat-slide-toggle>
-  </mat-grid-tile>
-</mat-grid-list>
-<div [ngSwitch]="item.type" class="container-element container-fluid">
-  <app-sd-item-string *ngSwitchCase="'string'" (item)="item.$string"></app-sd-item-string>
-  <app-sd-item-object *ngSwitchCase="'object'" (item)="item.$object"></app-sd-item-object>
-  <app-sd-item-number *ngSwitchCase="'integer'" (item)="item.$integer" integer></app-sd-item-number>
-  <app-sd-item-number *ngSwitchCase="'number'" (item)="item.$number"></app-sd-item-number>
+    <mat-grid-tile colspan="3" *ngSwitchCase="true">
+      <mat-form-field ng-init="(item.$minOccurrences>=0)?null:(item.$minOccurrences=0)">
+        <input matInput placeholder="Min Occurrence" required type="number" step="1" name="$minOccurrencess" [(ngModel)]="item.$minOccurrences" min="0" ng-max="item.$maxOccurrences||999"
+        />
+        <!--div ng-messages="item.$minOccurrences.$error" multiple role="alert">
+          <div ng-message="min">
+            The minimum possible should be zero
+          </div>
+          <div ng-message="max">
+            {{item.$minOccurrences}} is greater than {{item.$maxOccurrences}} (max occurence).
+          </div>
+        </div-->
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" *ngSwitchCase="true">
+      <mat-form-field>
+        <input matInput placeholder="Max Occurrence" type="number" step="1" name="$maxOccurrencess" [(ngModel)]="item.$maxOccurrences" max="999" ng-min="item.$minOccurrences||1"/>
+        <!--div ng-messages="item.$maxOccurrences.$error" multiple role="alert">
+          <div ng-message="max">
+            The maximum possible should be less than 999
+          </div>
+          <div ng-message="min">
+            {{item.$maxOccurrences}} is lower than {{item.$minOccurrences}} (min occurence).
+          </div>
+        </div-->
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" *ngSwitchCase="true">
+      <mat-slide-toggle class="md-primary" name="uniqueItems" [(ngModel)]="item.$uniqueItems">
+        Unique Items
+      </mat-slide-toggle>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div [ngSwitch]="item.type" class="container-element container-fluid">
+    <app-sd-item-string *ngSwitchCase="'string'" item="item"></app-sd-item-string>
+    <app-sd-item-object *ngSwitchCase="'object'" item="item"></app-sd-item-object>
+    <app-sd-item-number *ngSwitchCase="'integer'" item="item" integer></app-sd-item-number>
+    <app-sd-item-number *ngSwitchCase="'number'" item="item"></app-sd-item-number>
+  </div>
+  <div class="clearfix"></div>
 </div>
-<div class="clearfix"></div>

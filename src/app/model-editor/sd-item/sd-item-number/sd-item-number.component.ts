@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SdItemNumber } from '../../../classes/SdItem';
 
 @Component({
   selector: 'app-sd-item-number',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SdItemNumberComponent implements OnInit {
   private isInteger: Boolean = false;
-  @Input() item: Object = {};
+  @Input() item: SdItemNumber;
   @Input('integer')
   set integer(val: Boolean) {
     this.isInteger = val !== false;

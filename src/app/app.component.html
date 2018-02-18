@@ -8,17 +8,48 @@
     
     <span class="spacer"></span>
 
+    <mat-button-toggle-group [(ngModel)]="verb">
+      <mat-button-toggle value="GET">
+        <mat-icon>description</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="POST">
+        <mat-icon>note_add</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="PUT">
+        <mat-icon>mode_edit</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="DELETE">
+        <mat-icon>format_align_justify</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="PATCH">
+        <mat-icon>receipt</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <span class="divider"></span>
+
+    <mat-button-toggle-group [(ngModel)]="io">
+      <mat-button-toggle value="request" [disabled]="verb==='GET'">
+        <mat-icon>cloud_upload</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="response">
+        <mat-icon>cloud_download</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <span class="divider"></span>
+
     <button mat-mini-fab color="accent">
-      <mat-icon class="icon">add</mat-icon>
+      <mat-icon class="icon" (click)="newItem()">add</mat-icon>
     </button>
 
     <span class="divider"></span>
 
     <button mat-mini-fab color="primary">
-      <mat-icon class="icon">cloud_upload</mat-icon>
+      <mat-icon class="icon">folder_open</mat-icon>
     </button>
     <button mat-mini-fab color="primary">
-      <mat-icon class="icon">cloud_download</mat-icon>
+      <mat-icon class="icon">file_download</mat-icon>
     </button>
 
   </mat-toolbar-row>
@@ -30,7 +61,6 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <app-model-editor></app-model-editor>
+    <app-model-editor [(service)]="service.verbs[verb][io]"></app-model-editor>
   </mat-drawer-content>
-
 </mat-drawer-container>

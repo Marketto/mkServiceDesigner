@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SdItemComponent } from './sd-item/sd-item.component';
+import { SdNode } from '../classes/SdItem';
 
 @Component({
   selector: 'app-model-editor',
@@ -7,13 +8,7 @@ import { SdItemComponent } from './sd-item/sd-item.component';
   styleUrls: ['./model-editor.component.less']
 })
 export class ModelEditorComponent implements OnInit {
-  service: Object = {
-    verbs : {
-        GET : {
-          response : []
-        }
-      }
-    };
+  @Input() service: SdNode;
   constructor() { }
 
   ngOnInit() {

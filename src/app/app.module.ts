@@ -8,11 +8,11 @@ import {
   MatButtonModule,
   MatChipsModule,
   MatSidenavModule,
-  MatTabsModule,
   MatInputModule,
   MatSlideToggleModule,
   MatSelectModule,
-  MatGridListModule
+  MatGridListModule,
+  MatButtonToggleModule
 } from '@angular/material';
 import { TreeviewModule } from 'ngx-treeview';
 import { TranslateModule } from '@ngx-translate/core';
@@ -46,12 +46,12 @@ import { SdItemObjectComponent } from './model-editor/sd-item/sd-item-object/sd-
     MatButtonModule,
     MatChipsModule,
     MatSidenavModule,
-    MatTabsModule,
     MatInputModule,
     MatSlideToggleModule,
     MatSelectModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

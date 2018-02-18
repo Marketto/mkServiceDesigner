@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SdList } from '../../classes/sdList';
+import { SdNode, SdItem } from '../../classes/SdItem';
 
 @Component({
   selector: 'app-sd-item',
@@ -7,8 +7,15 @@ import { SdList } from '../../classes/sdList';
   styleUrls: ['./sd-item.component.less']
 })
 export class SdItemComponent implements OnInit {
-  @Input() list: SdList[];
-  @Input() item: Object = {};
+  @Input() node: SdNode;
+
+  removeItem(item: SdItem) {
+    const itemToRemoveIndex = this.node.findIndex(sdi => {
+      return sdi === item;
+    });
+    this.node.splice(itemToRemoveIndex, 1);
+  }
+
   constructor() { }
 
   ngOnInit() {
