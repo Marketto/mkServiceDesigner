@@ -10,3 +10,10 @@
         padding: 0.2em;
     }
 }
+app-sd-item::ng-deep {
+    >.ng-star-inserted:not(:last-of-type)>*,
+    >.ng-star-inserted:last-of-type>.mat-grid-list,
+    >.ng-star-inserted:last-of-type>:not(.mat-grid-list)>.ng-star-inserted>.mat-grid-list {
+        border-left: 1px black solid;
+    }
+}

@@ -1,12 +1,17 @@
 
-@children-side-padding: 0.5em;
 .mat-grid-list{
     .mat-form-field, .mat-slide-toggle{
         width: 100%;
         padding: 1em;
     }
+    border-bottom: 1px black dashed;
 }
-.children {
-    padding-left: @children-side-padding;
-    padding-right: @children-side-padding;
+.children::ng-deep{
+    padding: 0.2em 0.8em;
+    display: block;
+    >.ng-star-inserted:not(:last-of-type)>*,
+    >.ng-star-inserted:last-of-type>.mat-grid-list,
+    >.ng-star-inserted:last-of-type>:not(.mat-grid-list)>.ng-star-inserted>.mat-grid-list {
+        border-left: 1px black solid;
+    }
 }
