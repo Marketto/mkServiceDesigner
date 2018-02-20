@@ -85,11 +85,12 @@
       </mat-slide-toggle>
     </mat-grid-tile>
   </mat-grid-list>
-  <div [ngSwitch]="item.type" class="container-element container-fluid">
+  <div [ngSwitch]="item.type" class="sd-item-details">
     <app-sd-item-string *ngSwitchCase="'string'" [item]="item"></app-sd-item-string>
     <app-sd-item-object *ngSwitchCase="'object'" [item]="item"></app-sd-item-object>
     <app-sd-item-number *ngSwitchCase="'integer'" [item]="item" integer></app-sd-item-number>
     <app-sd-item-number *ngSwitchCase="'number'" [item]="item"></app-sd-item-number>
+    <div *ngSwitchDefault class="none"></div>
   </div>
   <div class="clearfix"></div>
 </div>
