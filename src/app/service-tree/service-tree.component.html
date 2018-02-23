@@ -1,2 +1,21 @@
-<ngx-treeview [items]="treeItems">
+<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
+    <div class="tree-item" (dblclick)="editItem(itemInput, item)" (click)="selectItem(item)">
+        <button mat-icon-button *ngIf="(item.children||[]).length" (click)="onCollapseExpand()">
+            <mat-icon aria-hidden="true">
+                keyboard_arrow_{{item.collapsed?'right':'down'}}
+            </mat-icon>
+        </button>
+        <input #itemInput [(ngModel)]="item.text" [disabled]="!(editMode && selectedItem === item)" (blur)="blurItem()" (keyup)="keyUpItem($event, item)" [class.selected]="!editMode && selectedItem === item" [class.no-children]="!(item.children||[]).length">
+    </div>
+</ng-template>
+
+<ngx-treeview [items]="services | ngxTreeview:'text'" [itemTemplate]="itemTemplate" config="treeviewCfg">
 </ngx-treeview>
+
+<mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="addItem()" (disabled)="!selectedItem">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>

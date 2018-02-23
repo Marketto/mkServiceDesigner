@@ -1,0 +1,74 @@
+.mat-toolbar {
+    position: fixed;
+    bottom: 0;
+    width: auto;
+    left: 0;
+    right: 0;
+    top: auto;
+    height: 2rem;
+    min-height: unset;
+    display: block;
+    .mat-toolbar-row{
+        height: 100%;
+        padding: 0;
+        flex-direction: row-reverse;
+        button {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            &:hover{
+                background-color: rgba(0,0,0,0.12);
+            }
+            &, &::ng-deep .mat-button-ripple-round {
+                border-radius: 8%;
+            }
+        }
+    }
+}
+
+.tree-item::ng-deep {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+
+    .mat-icon-button{
+        @size: 1.6em;
+        width: @size;
+        height: @size;
+        line-height: @size;
+
+        .mat-icon{
+            color: #3f51b5;
+            cursor: pointer;
+            &:hover{
+                background-color: ;
+            }
+        }
+    }
+    
+    input {
+        border: 2px solid transparent;
+        box-shadow: 0 0 1px 0px white inset, 0 0 1px 0px white;
+        border-radius: 0.3rem;
+        padding: 0.15rem 0.6rem 0.25rem 0.6rem;
+        margin: 0.2rem 0 0.2rem 0.2em;
+        background-color: #e0e0e0;
+        color: rgba(0,0,0,.54);
+        &.selected {
+            border-color: #3f51b5;
+            color: #3f51b5;
+        }
+        &.no-children {
+            margin-left: 2.2em;
+        }
+        &:not([disabled]):not(.disabled):not(:disabled){
+            border-color: white;
+            background-color: #3f51b5;
+            color: white;
+            &:active, &:focus {
+                outline: none;
+            }
+        }
+    }
+}
