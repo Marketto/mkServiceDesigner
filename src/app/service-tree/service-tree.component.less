@@ -39,13 +39,13 @@
         width: @size;
         height: @size;
         line-height: @size;
-
         .mat-icon{
             color: @mat-primary-color;
             cursor: pointer;
             &:hover{
                 color: @mat-secondary-color;
             }
+            font-size: 1.2em;
         }
     }
     
@@ -54,23 +54,26 @@
         box-shadow: 0 0 1px 0px white inset, 0 0 1px 0px white;
         border-radius: 0.3em;
         padding: 0.15rem 0.6rem 0.25rem 0.6rem;
-        margin: 0.2rem 0 0.2rem 0.2em;
+        margin: 0.2rem 0.1rem 0.2rem 0.2em;
         background-color: #e0e0e0;
         color: rgba(0,0,0,.54);
         &.selected {
             border-color: @mat-primary-color;
             color: @mat-primary-color;
         }
+        &:not(.selected){
+            cursor: pointer;
+        }
         &.no-children {
             margin-left: 2.2em;
         }
-        &[disabled], &.disabled, &:disabled{
-            color: black;
+        &:not(:focus){
             &:hover {
                 border-color: @mat-secondary-color;
+                color: @mat-secondary-color;
             }
         }
-        &:not([disabled]):not(.disabled):not(:disabled){
+        &:focus{
             border-color: white;
             border-radius: 0.4em;
             background-color: @mat-primary-color;

@@ -56,7 +56,6 @@
   <mat-drawer #serviceSideBar class="" mode="side">
     <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event.value">></app-service-tree>
   </mat-drawer>
-<pre>{{currentService|json}}</pre>
   <mat-drawer-content>
     <mat-toolbar class="tiny-toolbar">
       <span class="title">Resource:</span>

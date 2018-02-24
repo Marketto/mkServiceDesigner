@@ -43,9 +43,9 @@ export class ServiceTreeComponent implements OnInit {
 
   editMode: Boolean = false;
 
-  addItem() {
-    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem(this.selected);
-    this.selected.children = (this.selected.children || []).concat(serviceItem);
+  addItem(item: SdServiceTreeItem) {
+    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem(item);
+    item.children = (item.children || []).concat(serviceItem);
   }
   removeItem(item: SdServiceTreeItem) {
     this.selected = item.parent;
@@ -55,21 +55,7 @@ export class ServiceTreeComponent implements OnInit {
     item.parent.children.splice(itemIndex, 1);
   }
   selectItem(item: SdServiceTreeItem) {
-    this.editMode = this.editMode && this.selected === item;
     this.selected = item;
-  }
-  editItem(itemElement, item: SdServiceTreeItem) {
-    this.editMode = true;
-    this.selected = item;
-    itemElement.focus();
-  }
-  blurItem() {
-    this.editMode = false;
-  }
-  keyUpItem(event) {
-    if (event.keyCode === 13) {
-      this.editMode = false;
-    }
   }
 
   constructor() {}
