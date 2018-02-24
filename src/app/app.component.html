@@ -39,8 +39,8 @@
 
     <span class="divider"></span>
 
-    <button mat-mini-fab color="accent">
-      <mat-icon class="icon" (click)="newItem()">add</mat-icon>
+    <button mat-mini-fab color="accent" (click)="newItem()">
+      <mat-icon class="icon">add</mat-icon>
     </button>
 
     <span class="divider"></span>
@@ -57,10 +57,10 @@
 
 <mat-drawer-container class="" autosize>
   <mat-drawer #serviceSideBar class="" mode="side">
-    <app-service-tree></app-service-tree>
+    <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event.value">></app-service-tree>
   </mat-drawer>
-
+<pre>{{currentService|json}}</pre>
   <mat-drawer-content>
-    <app-model-editor [service]="service.verbs[verb][io]"></app-model-editor>
+    <app-model-editor [service]="currentService.verbs[verb][io]"></app-model-editor>
   </mat-drawer-content>
 </mat-drawer-container>

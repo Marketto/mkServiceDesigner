@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
-import { SdServiceVerb, SdServiceIOType, SdService } from './classes/SdService';
+import { TreeviewConfig } from 'ngx-treeview';
+import { SdServiceVerb, SdServiceIOType, SdService, SdServiceTreeItem } from './classes/SdService';
 import { SdItemObject } from './classes/SdItem';
 
 @Component({
@@ -11,7 +11,7 @@ import { SdItemObject } from './classes/SdItem';
 
 export class AppComponent {
   title = 'Marketto Service Designer';
-  treeItems: TreeviewItem;
+  treeItems: SdServiceTreeItem;
 
   private _verb: SdServiceVerb = 'GET';
   private io: SdServiceIOType = 'response';
@@ -26,10 +26,9 @@ export class AppComponent {
     }
   }
 
-  service: SdService = new SdService;
-
+  serviceRoot: SdServiceTreeItem = new SdServiceTreeItem;
+  currentService: SdService;
   newItem() {
-    this.service.verbs[this.verb][this.io].push(new SdItemObject());
-    // this.service.verbs[this.verb][this.io].newObject();
+    this.currentService.verbs[this.verb][this.io].push(new SdItemObject());
   }
 }

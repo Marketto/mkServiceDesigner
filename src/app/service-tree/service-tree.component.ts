@@ -1,5 +1,6 @@
-import { Component, OnInit, Injectable, ViewChild } from '@angular/core';
-import { TreeviewItem, TreeviewComponent, TreeviewConfig } from 'ngx-treeview';
+import { Component, OnInit, Injectable, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { TreeviewComponent, TreeviewConfig } from 'ngx-treeview';
+import { SdServiceTreeItem } from './../classes/SdService';
 
 @Component({
   selector: 'app-service-tree',
@@ -10,11 +11,29 @@ import { TreeviewItem, TreeviewComponent, TreeviewConfig } from 'ngx-treeview';
 })
 export class ServiceTreeComponent implements OnInit {
   @ViewChild(TreeviewComponent) treeviewComponent: TreeviewComponent;
-  services = [new TreeviewItem({
-    text: '/',
-    value: 0,
-    children : []
-  })];
+  _selected: SdServiceTreeItem;
+  _rootService: SdServiceTreeItem;
+  @Input()
+  get rootService(): SdServiceTreeItem {
+    return this._rootService;
+  }
+  set rootService(serviceItem: SdServiceTreeItem) {
+    this._rootService = serviceItem;
+    if (!this._selected) {
+      this.selected = serviceItem;
+    }
+  }
+
+  @Output() select = new EventEmitter();
+  @Input()
+  get selected(): SdServiceTreeItem {
+    return this._selected;
+  }
+  set selected(item: SdServiceTreeItem) {
+      this._selected = item || this._selected;
+      this.select.emit(this._selected);
+  }
+
 
   treeviewCfg = TreeviewConfig.create({
     hasAllCheckBox: false,
@@ -23,35 +42,31 @@ export class ServiceTreeComponent implements OnInit {
   });
 
   editMode: Boolean = false;
-  selectedItem: TreeviewItem = null;
 
   addItem() {
-    const newEndPoint: TreeviewItem = new TreeviewItem({ text: 'new', value: 1});
-    this.selectedItem.children = (this.selectedItem.children || []).concat(newEndPoint);
+    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem();
+    this.selected.children = (this.selected.children || []).concat(serviceItem);
   }
-  selectItem(item: TreeviewItem) {
-    this.editMode = this.editMode && this.selectedItem === item;
-    this.selectedItem = item;
+  selectItem(item: SdServiceTreeItem) {
+    this.editMode = this.editMode && this.selected === item;
+    this.selected = item;
   }
-  editItem(itemElement, item: TreeviewItem) {
+  editItem(itemElement, item: SdServiceTreeItem) {
     this.editMode = true;
-    this.selectedItem = item;
+    this.selected = item;
     itemElement.focus();
   }
   blurItem() {
     this.editMode = false;
-    this.selectedItem = null;
   }
-  keyUpItem(event, item: TreeviewItem) {
+  keyUpItem(event) {
     if (event.keyCode === 13) {
       this.editMode = false;
-      this.selectedItem = item;
     }
   }
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

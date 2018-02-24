@@ -5,16 +5,15 @@
                 keyboard_arrow_{{item.collapsed?'right':'down'}}
             </mat-icon>
         </button>
-        <input #itemInput [(ngModel)]="item.text" [disabled]="!(editMode && selectedItem === item)" (blur)="blurItem()" (keyup)="keyUpItem($event, item)" [class.selected]="!editMode && selectedItem === item" [class.no-children]="!(item.children||[]).length">
+        <input #itemInput [(ngModel)]="item.text" [disabled]="!(editMode && selected === item)" (blur)="blurItem()" (keyup)="keyUpItem($event, item)" [class.selected]="!editMode && selected === item" [class.no-children]="!(item.children||[]).length">
     </div>
 </ng-template>
 
-<ngx-treeview [items]="services | ngxTreeview:'text'" [itemTemplate]="itemTemplate" config="treeviewCfg">
+<ngx-treeview [items]="[rootService]" [itemTemplate]="itemTemplate" config="treeviewCfg">
 </ngx-treeview>
-
 <mat-toolbar>
     <mat-toolbar-row>
-        <button mat-icon-button (click)="addItem()" (disabled)="!selectedItem">
+        <button mat-icon-button (click)="addItem()" (disabled)="!selected">
             <mat-icon>add</mat-icon>
         </button>
     </mat-toolbar-row>
