@@ -6,6 +6,9 @@
             </mat-icon>
         </button>
         <input #itemInput [(ngModel)]="item.text" [disabled]="!(editMode && selected === item)" (blur)="blurItem()" (keyup)="keyUpItem($event, item)" [class.selected]="!editMode && selected === item" [class.no-children]="!(item.children||[]).length">
+        <button mat-icon-button *ngIf="item.parent" (click)="removeItem(item)">
+            <mat-icon aria-hidden="true">delete</mat-icon>
+        </button>
     </div>
 </ng-template>
 

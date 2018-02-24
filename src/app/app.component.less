@@ -35,6 +35,30 @@
     top: 0;
     left: 0;
     z-index: 10;
+
+    &.tiny-toolbar {
+        @tiny-toolbar-height: 1.6rem;
+        min-height: @tiny-toolbar-height;
+        height: @tiny-toolbar-height;
+        padding: 0 2rem;
+        background-color: #e2e2e2;
+        .title, .uri, .verb, .io {
+            font-size: 1rem;
+            padding: 0.1rem 0.2rem;
+        }
+        .verb {
+            text-transform: uppercase;
+            color: #3f51b5;
+        }
+        .io{
+            text-transform: capitalize;
+            color: #3f51b5;
+        }
+        .uri {
+            color: #ff4081;
+            font-weight: bold;
+        }
+    }
 }
 .mat-drawer-container{
     height: 100%;

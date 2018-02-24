@@ -1,3 +1,5 @@
+@mat-primary-color: #3f51b5;
+@mat-secondary-color: #ff4081;
 .mat-toolbar {
     position: fixed;
     bottom: 0;
@@ -39,10 +41,10 @@
         line-height: @size;
 
         .mat-icon{
-            color: #3f51b5;
+            color: @mat-primary-color;
             cursor: pointer;
             &:hover{
-                background-color: ;
+                color: @mat-secondary-color;
             }
         }
     }
@@ -50,24 +52,28 @@
     input {
         border: 2px solid transparent;
         box-shadow: 0 0 1px 0px white inset, 0 0 1px 0px white;
-        border-radius: 0.3rem;
+        border-radius: 0.3em;
         padding: 0.15rem 0.6rem 0.25rem 0.6rem;
         margin: 0.2rem 0 0.2rem 0.2em;
         background-color: #e0e0e0;
         color: rgba(0,0,0,.54);
         &.selected {
-            border-color: #3f51b5;
-            color: #3f51b5;
+            border-color: @mat-primary-color;
+            color: @mat-primary-color;
         }
         &.no-children {
             margin-left: 2.2em;
         }
         &[disabled], &.disabled, &:disabled{
             color: black;
+            &:hover {
+                border-color: @mat-secondary-color;
+            }
         }
         &:not([disabled]):not(.disabled):not(:disabled){
             border-color: white;
-            background-color: #3f51b5;
+            border-radius: 0.4em;
+            background-color: @mat-primary-color;
             color: white;
             &:active, &:focus {
                 outline: none;

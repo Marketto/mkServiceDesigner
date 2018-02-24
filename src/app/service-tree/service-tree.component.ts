@@ -44,8 +44,15 @@ export class ServiceTreeComponent implements OnInit {
   editMode: Boolean = false;
 
   addItem() {
-    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem();
+    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem(this.selected);
     this.selected.children = (this.selected.children || []).concat(serviceItem);
+  }
+  removeItem(item: SdServiceTreeItem) {
+    this.selected = item.parent;
+    const itemIndex = item.parent.children.findIndex(child => {
+        return child === item;
+      });
+    item.parent.children.splice(itemIndex, 1);
   }
   selectItem(item: SdServiceTreeItem) {
     this.editMode = this.editMode && this.selected === item;

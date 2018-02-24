@@ -1,58 +1,55 @@
 <mat-toolbar>
-  <mat-toolbar-row>
-    <span class="title">{{ title }}</span>
+  <span class="title">{{ title }}</span>
 
-    <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()">
-      <mat-icon class="icon">{{ serviceSideBar.opened?'crop_din':'flip' }}</mat-icon>
-    </button>
-    
-    <span class="spacer"></span>
+  <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()">
+    <mat-icon class="icon">{{ serviceSideBar.opened?'crop_din':'flip' }}</mat-icon>
+  </button>
+  
+  <span class="spacer"></span>
 
-    <mat-button-toggle-group [(ngModel)]="verb">
-      <mat-button-toggle value="GET">
-        <mat-icon>description</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle value="POST">
-        <mat-icon>note_add</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle value="PUT">
-        <mat-icon>mode_edit</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle value="DELETE">
-        <mat-icon>format_align_justify</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle value="PATCH">
-        <mat-icon>receipt</mat-icon>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+  <mat-button-toggle-group [(ngModel)]="verb">
+    <mat-button-toggle value="GET" aria-label="Read (GET)">
+      <mat-icon>description</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="POST">
+      <mat-icon>note_add</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="PUT">
+      <mat-icon>mode_edit</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="DELETE">
+      <mat-icon>format_align_justify</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="PATCH">
+      <mat-icon>receipt</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 
-    <span class="divider"></span>
+  <span class="divider"></span>
 
-    <mat-button-toggle-group [(ngModel)]="io">
-      <mat-button-toggle value="request" [disabled]="verb==='GET'">
-        <mat-icon>cloud_upload</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle value="response">
-        <mat-icon>cloud_download</mat-icon>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+  <mat-button-toggle-group [(ngModel)]="io">
+    <mat-button-toggle value="request" [disabled]="verb==='GET'">
+      <mat-icon>cloud_upload</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="response">
+      <mat-icon>cloud_download</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 
-    <span class="divider"></span>
+  <span class="divider"></span>
 
-    <button mat-mini-fab color="accent" (click)="newItem()">
-      <mat-icon class="icon">add</mat-icon>
-    </button>
+  <button mat-mini-fab color="accent" (click)="newItem()">
+    <mat-icon class="icon">add</mat-icon>
+  </button>
 
-    <span class="divider"></span>
+  <span class="divider"></span>
 
-    <button mat-mini-fab color="primary">
-      <mat-icon class="icon">folder_open</mat-icon>
-    </button>
-    <button mat-mini-fab color="primary">
-      <mat-icon class="icon">file_download</mat-icon>
-    </button>
-
-  </mat-toolbar-row>
+  <button mat-mini-fab color="primary">
+    <mat-icon class="icon">folder_open</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary">
+    <mat-icon class="icon">file_download</mat-icon>
+  </button>
 </mat-toolbar>
 
 <mat-drawer-container class="" autosize>
@@ -61,6 +58,13 @@
   </mat-drawer>
 <pre>{{currentService|json}}</pre>
   <mat-drawer-content>
+    <mat-toolbar class="tiny-toolbar">
+      <span class="title">Resource:</span>
+      <span class="uri">{{ currentService.uri }}</span>
+      <span class="spacer"></span>
+      <span class="verb">{{verb}}</span>
+      <span class="io">{{io}}</span>
+    </mat-toolbar>
     <app-model-editor [service]="currentService.verbs[verb][io]"></app-model-editor>
   </mat-drawer-content>
 </mat-drawer-container>
