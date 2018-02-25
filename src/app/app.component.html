@@ -54,7 +54,7 @@
 
 <mat-drawer-container autosize>
   <mat-drawer #serviceSideBar class="" mode="side">
-    <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event.value">></app-service-tree>
+    <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event.value"></app-service-tree>
   </mat-drawer>
   <mat-drawer-content>
     <mat-toolbar class="tiny-toolbar">
