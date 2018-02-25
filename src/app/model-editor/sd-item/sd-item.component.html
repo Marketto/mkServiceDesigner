@@ -47,7 +47,7 @@
     </mat-grid-tile>
     
     <mat-grid-tile colspan="1">
-      <button mat-mini-fab color="warn" ng-if="$ctrl.canRemove()" (click)="removeItem(item)">
+      <button mat-mini-fab color="warn" ng-if="$ctrl.canRemove()" (click)="removeItem(item)" matTooltip="Delete property">
         <mat-icon class="icon">delete</mat-icon>
       </button>
     </mat-grid-tile>

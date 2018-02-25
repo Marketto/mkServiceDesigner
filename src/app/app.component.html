@@ -1,26 +1,26 @@
 <mat-toolbar>
   <span class="title">{{ title }}</span>
 
-  <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()">
+  <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()" matTooltip="{{serviceSideBar.opened?'Hide':'Show'}} service sidebar">
     <mat-icon class="icon">{{ serviceSideBar.opened?'crop_din':'flip' }}</mat-icon>
   </button>
   
   <span class="spacer"></span>
 
   <mat-button-toggle-group [(ngModel)]="verb">
-    <mat-button-toggle value="GET" aria-label="Read (GET)">
+    <mat-button-toggle value="GET" matTooltip="Read (GET)">
       <mat-icon>description</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value="POST">
+    <mat-button-toggle value="POST" matTooltip="Create (POST)">
       <mat-icon>note_add</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value="PUT">
+    <mat-button-toggle value="PUT" matTooltip="Update (PUT)">
       <mat-icon>mode_edit</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value="DELETE">
+    <mat-button-toggle value="DELETE" matTooltip="Delete (DELETE)">
       <mat-icon>format_align_justify</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value="PATCH">
+    <mat-button-toggle value="PATCH" matTooltip="PATCH">
       <mat-icon>receipt</mat-icon>
     </mat-button-toggle>
   </mat-button-toggle-group>
@@ -28,31 +28,31 @@
   <span class="divider"></span>
 
   <mat-button-toggle-group [(ngModel)]="io">
-    <mat-button-toggle value="request" [disabled]="verb==='GET'">
+    <mat-button-toggle value="request" [disabled]="verb==='GET'" matTooltip="Request">
       <mat-icon>cloud_upload</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value="response">
+    <mat-button-toggle value="response" matTooltip="Response">
       <mat-icon>cloud_download</mat-icon>
     </mat-button-toggle>
   </mat-button-toggle-group>
 
   <span class="divider"></span>
 
-  <button mat-mini-fab color="accent" (click)="newItem()">
+  <button mat-mini-fab color="accent" (click)="newItem()" matTooltip="Add property">
     <mat-icon class="icon">add</mat-icon>
   </button>
 
   <span class="divider"></span>
 
-  <button mat-mini-fab color="primary">
+  <button mat-mini-fab color="primary" matTooltip="Open">
     <mat-icon class="icon">folder_open</mat-icon>
   </button>
-  <button mat-mini-fab color="primary">
+  <button mat-mini-fab color="primary" matTooltip="Export">
     <mat-icon class="icon">file_download</mat-icon>
   </button>
 </mat-toolbar>
 
-<mat-drawer-container class="" autosize>
+<mat-drawer-container autosize>
   <mat-drawer #serviceSideBar class="" mode="side">
     <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event.value">></app-service-tree>
   </mat-drawer>
