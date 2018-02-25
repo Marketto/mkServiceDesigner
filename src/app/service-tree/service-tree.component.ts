@@ -48,7 +48,9 @@ export class ServiceTreeComponent implements OnInit {
     item.children = (item.children || []).concat(serviceItem);
   }
   removeItem(item: SdServiceTreeItem) {
-    this.selected = item.parent;
+    if (this.selected === item){
+      this.selected = item.parent;
+    }
     const itemIndex = item.parent.children.findIndex(child => {
         return child === item;
       });
