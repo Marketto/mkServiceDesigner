@@ -67,13 +67,23 @@
     height: 100%;
     width: 100vw;
     padding: 0;
-    .mat-drawer, .mat-drawer-content {
+    .mat-drawer {
         margin: 4em 0 0 0;
     }
     .mat-drawer{
         padding: 0.6em 0.8em;
     }
     .mat-drawer-content{
-        padding: 0 1em 1em 1em;
+        position: absolute;
+        top: 4em;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: auto;
+        .mat-drawer-content-container {
+            padding: 0 0.6em 0.4em 0.6em;
+            overflow: hidden;
+            width: auto;
+        }
     }
 }

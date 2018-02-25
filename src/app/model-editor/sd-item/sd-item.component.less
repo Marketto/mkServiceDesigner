@@ -1,13 +1,24 @@
-.mat-grid-list{
-    .mat-form-field, .mat-slide-toggle{
-        width: 100%;
-        padding: 1em;
+::ng-deep {
+    .mat-grid-list {
+        /*border-left: 1px black solid;*/
+        .mat-form-field, .mat-slide-toggle {
+            width: 100%;
+            padding: 0 1em;
+            margin-top: 1em;
+        }
     }
-    border-left: 1px black solid;
-}
+    .mat-grid-tile .mat-figure {
+        justify-content: space-between;
+    }
 
-.sd-item-details .none {
-    border-bottom: 1px black dashed;
-    width: 100%;
-    display: block;
+    .sd-item-details{
+        >.ng-star-inserted>.mat-grid-list {
+            border-bottom: 1px dashed black;
+        }
+        .none {
+            border-bottom: 1px dashed black;
+            width: 100%;
+            display: block;
+        }
+    }
 }

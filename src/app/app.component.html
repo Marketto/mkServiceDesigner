@@ -57,13 +57,15 @@
     <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event.value"></app-service-tree>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar class="tiny-toolbar">
-      <span class="title">Resource:</span>
-      <span class="uri">{{ currentService.uri }}</span>
-      <span class="spacer"></span>
-      <span class="verb">{{verb}}</span>
-      <span class="io">{{io}}</span>
-    </mat-toolbar>
-    <app-model-editor [service]="currentService.verbs[verb][io]"></app-model-editor>
+    <div class="mat-drawer-content-container">
+      <mat-toolbar class="tiny-toolbar">
+        <span class="title">Resource:</span>
+        <span class="uri">{{ currentService.uri }}</span>
+        <span class="spacer"></span>
+        <span class="verb">{{verb}}</span>
+        <span class="io">{{io}}</span>
+      </mat-toolbar>
+      <app-model-editor [service]="currentService.verbs[verb][io]"></app-model-editor>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
