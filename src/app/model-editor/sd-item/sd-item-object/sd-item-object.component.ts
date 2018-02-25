@@ -10,7 +10,7 @@ export class SdItemObjectComponent implements OnInit {
   @Input() item: SdItemObject;
 
   newItem() {
-    this.item.$children.push(new SdItemObject());
+    this.item.children.push(new SdItemObject());
     // this.service.verbs[this.verb][this.io].newObject();
   }
 

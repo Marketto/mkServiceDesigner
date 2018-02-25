@@ -57,12 +57,12 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="10">
     <mat-form-field>
-      <mat-chip-list #chipList>
-        <mat-chip *ngFor="let value of item.$domain" [selectable]="selectable" [removable]="removable">
+      <mat-chip-list #chipDomain>
+        <mat-chip *ngFor="let value of item.domain" (remove)="removeDomain(value)">
           {{value}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
-        <input placeholder="Type a domain value" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"/>
+        <input placeholder="Type a domain value" [matChipInputFor]="chipDomain" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addDomain($event)"/>
       </mat-chip-list>
     </mat-form-field>
   </mat-grid-tile>

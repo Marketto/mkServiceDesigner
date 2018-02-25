@@ -1,41 +1,28 @@
-import { SdItem } from './sdItem';
 type SdItemType = 'object' | 'string' | 'number' | 'integer' | 'boolean';
 type SdItemObjectAdditionalPropertiesType = 'string' | 'number' | 'integer' | 'boolean';
 type SdItemStringFormatJson = 'hostname' | 'ipv4' | 'ipv6' | 'date-time' | 'email' | 'uri';
-
-interface SdItemStringDomainType {
-    [index: number]: String;
-}
 
 class SdItemObjectAdditionalProperties {
     type: SdItemObjectAdditionalPropertiesType;
 }
 
-export interface SdItem {
+abstract class SdItemGeneric {
     id: number;
-    $name: String;
-    type: SdItemType;
-    $listOf: Boolean;
-    $required: Boolean;
-}
-
-abstract class SdItemGeneric implements SdItem {
-    id: number;
-    $name: String = '';
+    name: String = '';
     type: SdItemType = null;
-    $listOf: Boolean = false;
-    $required: Boolean = false;
+    listOf: Boolean = false;
+    required: Boolean = false;
 }
 
 export class SdItemObject extends SdItemGeneric {
     type: 'object' = 'object';
     additionalProperties: Boolean | SdItemObjectAdditionalProperties = false;
-    $children: SdNode = new SdNode;
+    children: SdNode = new SdNode;
 }
 
 export class SdItemString extends SdItemGeneric {
     type: 'string' = 'string';
-    $domain: SdItemStringDomainType = [];
+    domain: Array<String> = [];
     minLength: Number;
     maxLength: Number;
     pattern: RegExp;
