@@ -20,7 +20,7 @@
     <mat-form-field>
       <input matInput placeholder="Min value" type="number" step="{{integer?1:0.1}}" name="minValue" [(ngModel)]="item.minimum"
         ng-max="item.maximum" />
-      <!--div ng-messages="item.minimum.$error" role="alert">
+      <!--div ng-messages="item.minimum.error" role="alert">
         <div ng-message="max">
           {{item.minimum}} is greater than {{item.maximum}} (max value).
         </div>
@@ -44,7 +44,7 @@
       <label></label>
       <input placeholder="Max value" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maximum"
         ng-min="item.minimum" />
-      <!--div ng-messages="item.maximum.$error" role="alert">
+      <!--div ng-messages="item.maximum.error" role="alert">
         <div ng-message="min">
           {{item.maximum}} is lower than {{item.minimum}} (min value).
         </div>

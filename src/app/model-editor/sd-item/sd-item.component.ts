@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SdNode, SdItem } from '../../classes/SdItem';
+import { SdNode, SdItem, SdItemType, SdItemObject, SdItemString, SdItemInteger, SdItemNumber, SdItemBoolean } from '../../classes/SdItem';
 
 @Component({
   selector: 'app-sd-item',
@@ -9,10 +9,37 @@ import { SdNode, SdItem } from '../../classes/SdItem';
 export class SdItemComponent implements OnInit {
   @Input() node: SdNode;
 
+  changeType(item: SdItem, type: SdItemType) {
+    if (item.type !== type) {
+      const itemToConvert = this.node.findIndex(sdi => {
+          return sdi === item;
+        });
+      let convertedItem: SdItem;
+      switch (type) {
+        case 'object':
+          convertedItem = new SdItemObject(item);
+          break;
+        case 'string':
+          convertedItem = new SdItemString(item);
+          break;
+        case 'integer':
+          convertedItem = new SdItemInteger(item);
+          break;
+        case 'number':
+          convertedItem = new SdItemNumber(item);
+          break;
+        case 'boolean':
+          convertedItem = new SdItemBoolean(item);
+          break;
+      }
+      this.node[itemToConvert] = convertedItem;
+    }
+  }
+
   removeItem(item: SdItem) {
     const itemToRemoveIndex = this.node.findIndex(sdi => {
-      return sdi === item;
-    });
+        return sdi === item;
+      });
     this.node.splice(itemToRemoveIndex, 1);
   }
 
