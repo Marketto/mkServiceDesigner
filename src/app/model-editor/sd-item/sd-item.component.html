@@ -21,7 +21,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <mat-form-field>
-        <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="Type">
+        <mat-select [ngModel]="item.type" (change)="changeType(item, event.value)" placeholder="Type">
           <mat-option value="object">
             Object
           </mat-option>
@@ -47,14 +47,14 @@
     </mat-grid-tile>
     
     <mat-grid-tile colspan="1">
-      <button mat-mini-fab color="warn" ng-if="$ctrl.canRemove()" (click)="removeItem(item)" matTooltip="Delete property">
+      <button mat-mini-fab color="warn" (click)="removeItem(item)" matTooltip="Delete property">
         <mat-icon class="icon">delete</mat-icon>
       </button>
     </mat-grid-tile>
 
     <mat-grid-tile colspan="3" *ngSwitchCase="true">
       <mat-form-field ng-init="(item.minOccurrences>=0)?null:(item.minOccurrences=0)">
-        <input matInput placeholder="Min Occurrence" required type="number" step="1" name="$minOccurrencess" [(ngModel)]="item.minOccurrences" min="0" ng-max="item.maxOccurrences||999"
+        <input matInput placeholder="Min Occurrence" required type="number" step="1" name="minOccurrencess" [(ngModel)]="item.minOccurrences" min="0" [max]="item.maxOccurrences||999"
         />
         <!--div ng-messages="item.minOccurrences.error" multiple role="alert">
           <div ng-message="min">
@@ -68,7 +68,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="3" *ngSwitchCase="true">
       <mat-form-field>
-        <input matInput placeholder="Max Occurrence" type="number" step="1" name="$maxOccurrencess" [(ngModel)]="item.maxOccurrences" max="999" ng-min="item.minOccurrences||1"/>
+        <input matInput placeholder="Max Occurrence" type="number" step="1" name="maxOccurrencess" [(ngModel)]="item.maxOccurrences" max="999" [min]="item.minOccurrences||1"/>
         <!--div ng-messages="item.maxOccurrences.error" multiple role="alert">
           <div ng-message="max">
             The maximum possible should be less than 999

@@ -6,7 +6,7 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <mat-form-field>
-      <mat-select placeholder="Lower limit" [(ngModel)]="item.exclusiveMinimum">
+      <mat-select placeholder="Lower limit" [(ngModel)]="item.exclusiveMin">
         <mat-option value="true">
           &gt;
         </mat-option>
@@ -18,18 +18,18 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
     <mat-form-field>
-      <input matInput placeholder="Min value" type="number" step="{{integer?1:0.1}}" name="minValue" [(ngModel)]="item.minimum"
-        ng-max="item.maximum" />
-      <!--div ng-messages="item.minimum.error" role="alert">
+      <input matInput placeholder="Min value" type="number" step="{{integer?1:0.1}}" name="minValue" [(ngModel)]="item.minValue"
+        ng-max="item.maxValue" />
+      <!--div ng-messages="item.minValue.error" role="alert">
         <div ng-message="max">
-          {{item.minimum}} is greater than {{item.maximum}} (max value).
+          {{item.minValue}} is greater than {{item.maxValue}} (max value).
         </div>
       </div-->
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <mat-form-field>
-      <mat-select placeholder="Upper limit" [(ngModel)]="item.exclusiveMaximum">
+      <mat-select placeholder="Upper limit" [(ngModel)]="item.exclusiveMax">
         <mat-option value="true">
           &lt;
         </mat-option>
@@ -42,11 +42,11 @@
   <mat-grid-tile colspan="3">
     <mat-form-field>
       <label></label>
-      <input placeholder="Max value" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maximum"
-        ng-min="item.minimum" />
-      <!--div ng-messages="item.maximum.error" role="alert">
+      <input placeholder="Max value" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maxValue"
+        ng-min="item.minValue" />
+      <!--div ng-messages="item.maxValue.error" role="alert">
         <div ng-message="min">
-          {{item.maximum}} is lower than {{item.minimum}} (min value).
+          {{item.maxValue}} is lower than {{item.minValue}} (min value).
         </div>
       </div-->
     </mat-form-field>

@@ -10,9 +10,12 @@ export abstract class SdItem {
     id: number;
     name: String = '';
     type: SdItemType = null;
-    listOf: Boolean = false;
     required: Boolean = false;
     dependencies: Array<SdItem>;
+    listOf: Boolean = false;
+    minOccurrences: Number = 0;
+    maxOccurrences: Number = null;
+    uniqueItems: Boolean = false;
 
     constructor(item?: SdItem) {
         if (item) {
@@ -21,6 +24,9 @@ export abstract class SdItem {
             this.listOf = item.listOf;
             this.required = item.required;
             this.dependencies = item.dependencies;
+            this.minOccurrences = item.minOccurrences;
+            this.maxOccurrences = item.maxOccurrences;
+            this.uniqueItems = item.uniqueItems;
         }
     }
 }
@@ -60,7 +66,7 @@ export class SdItemString extends SdItem {
 }
 
 export class SdItemNumber extends SdItem {
-    type: 'number' = 'number';
+    type: 'number'|'integer' = 'number';
     protected $multipleOf: Number;
     protected $minValue: Number;
     exclusiveMin: Boolean;
@@ -101,16 +107,25 @@ export class SdItemNumber extends SdItem {
 }
 
 export class SdItemInteger extends SdItemNumber {
-    type: 'number' = 'number';
+    type: 'integer' = 'integer';
 
+    get multipleOf(): Number {
+        return this.$multipleOf;
+    }
     set multipleOf(multipleOf: Number) {
         this.$multipleOf = multipleOf ? Math.round(multipleOf.valueOf()) : multipleOf;
     }
 
+    get minValue(): Number {
+        return this.$minValue;
+    }
     set minValue(minValue: Number) {
         this.$minValue = minValue ? Math.round(minValue.valueOf()) : minValue;
     }
 
+    get maxValue(): Number {
+        return this.$maxValue;
+    }
     set maxValue(maxValue: Number) {
         this.$maxValue = maxValue ? Math.round(maxValue.valueOf()) : maxValue;
     }
@@ -122,16 +137,4 @@ export class SdItemBoolean extends SdItem {
 
 export class SdNode extends Array {
     [index: number]: SdItem;
-    /* constructor() {
-        super();
-    }
-    public push(...items: SdItem[]): number {
-        return super.push(...items);
-    }
-    public newObject(): number {
-        return super.push(new SdItemObject);
-    }
-    public newString(): number {
-        return super.push(new SdItemString);
-    } */
 }
