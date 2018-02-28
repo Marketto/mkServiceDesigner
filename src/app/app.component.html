@@ -42,14 +42,37 @@
     <mat-icon class="icon">add</mat-icon>
   </button>
 
-  <span class="divider"></span>
-
-  <button mat-mini-fab color="primary" matTooltip="Open">
-    <mat-icon class="icon">folder_open</mat-icon>
+  <span class="spacer"></span>
+  
+  <button mat-mini-fab color="primary" matTooltip="Menu" [matMenuTriggerFor]="menu">
+    <mat-icon class="icon">menu</mat-icon>
   </button>
-  <button mat-mini-fab color="primary" matTooltip="Export">
-    <mat-icon class="icon">file_download</mat-icon>
-  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>folder_open</mat-icon>
+      <span>Open</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>save</mat-icon>
+      <span>Save</span>
+    </button>
+    <mat-divider></mat-divider>
+    <span mat-menu-item disabled class="mat-menu-title">
+      <span>Export</span>
+    </span>
+    <button mat-menu-item>
+      <mat-icon>android</mat-icon>
+      <span>Java Package</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>code</mat-icon>
+      <span>WSDL</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>developer_board</mat-icon>
+      <span>JSON Schema</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>
 
 <mat-drawer-container autosize>

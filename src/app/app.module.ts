@@ -13,7 +13,9 @@ import {
   MatSelectModule,
   MatGridListModule,
   MatButtonToggleModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatMenuModule,
+  MatDividerModule
 } from '@angular/material';
 import { TreeviewModule } from 'ngx-treeview';
 import { TranslateModule } from '@ngx-translate/core';
@@ -53,7 +55,9 @@ import { SdItemObjectComponent } from './model-editor/sd-item/sd-item-object/sd-
     MatGridListModule,
     MatChipsModule,
     MatButtonToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
