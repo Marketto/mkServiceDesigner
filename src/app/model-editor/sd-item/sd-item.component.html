@@ -20,21 +20,21 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
-      <mat-form-field matTooltip="{{item.children.length>0 ? 'Remove children to change type' : null}}">
-        <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="Type" [disabled]="item.children.length>0">
+      <mat-form-field matTooltip="{{ ( item.children && item.children.length>0 ) ? 'Remove children to change type' : null}}">
+        <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="Type" [disabled]="item.children && item.children.length>0">
           <mat-option value="object">
             Object
           </mat-option>
-          <mat-option value="string" [disabled]="item.children.length>0">
+          <mat-option value="string">
             String
           </mat-option>
-          <mat-option value="integer" [disabled]="item.children.length>0">
+          <mat-option value="integer">
             Integer
           </mat-option>
-          <mat-option value="number" [disabled]="item.children.length>0">
+          <mat-option value="number">
             Number
           </mat-option>
-          <mat-option value="boolean" [disabled]="item.children.length>0">
+          <mat-option value="boolean">
             Boolean
           </mat-option>
         </mat-select>
