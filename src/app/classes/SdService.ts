@@ -11,76 +11,123 @@ class SdServiceVerbIO extends SdServiceVerbO {
     request: SdNode = new SdNode;
 }
 
+interface SdServiceVerbsJSON {
+    GET?: SdServiceVerbO;
+    POST?: SdServiceVerbIO;
+    PUT?: SdServiceVerbIO;
+    DELETE?: SdServiceVerbIO;
+    PATCH?: SdServiceVerbIO;
+}
+
 class SdServiceVerbs {
     GET: SdServiceVerbO = new SdServiceVerbO;
     POST: SdServiceVerbIO = new SdServiceVerbIO;
     PUT: SdServiceVerbIO = new SdServiceVerbIO;
     DELETE: SdServiceVerbIO = new SdServiceVerbIO;
     PATCH: SdServiceVerbIO = new SdServiceVerbIO;
+
+    public static fromJSON(key: string, value: any): SdServiceVerbs {
+        if (!key) {
+            const sdServiceVerb = Object.create(SdServiceVerbs.prototype);
+            return Object.assign(sdServiceVerb, {
+                GET: value.GET || new SdServiceVerbO,
+                POST: value.POST || new SdServiceVerbIO,
+                PUT: value.PUT || new SdServiceVerbIO,
+                DELETE: value.DELETE || new SdServiceVerbIO,
+                PATCH: value.PATCH || new SdServiceVerbIO
+            });
+        }
+        return value;
+    }
+    public toJSON(): SdServiceVerbsJSON {
+        const json: Object = new Object();
+        return {
+            GET: (this.GET && this.GET.response) ? this.GET : undefined,
+            POST: (this.POST && (this.POST.response || this.POST.request)) ? this.POST : undefined,
+            PUT: (this.PUT && (this.PUT.response || this.PUT.request)) ? this.PUT : undefined,
+            DELETE: (this.DELETE && (this.DELETE.response || this.DELETE.request)) ? this.DELETE : undefined,
+            PATCH: (this.PATCH && (this.PATCH.response || this.PATCH.request)) ? this.PATCH : undefined
+        };
+    }
 }
 
 interface SdServiceJSON {
     endPoint: String;
     verbs: SdServiceVerbs;
-    children?: Array<SdServiceJSON>;
 }
-
 export class SdService {
-    constructor(parent?: SdService) {
-        this.parent = parent;
-    }
-    parent: SdService;
     endPoint: String = '';
-    get uri(): String {
-        return (this.parent ? this.parent.uri : '') + '/' + this.endPoint;
-    }
     verbs: SdServiceVerbs = new SdServiceVerbs;
 
-    public static fromJSON(json: SdServiceJSON) {
-        return Object.assign(this, json);
+    public static fromJSON(key: string, value: any): SdService {
+        if (!key) {
+            const sdService = Object.create(SdService.prototype);
+
+            return Object.assign(sdService, {
+                endPoint: value.endPoint || '',
+                verbs: SdServiceVerbs.fromJSON(null, value.verbs)
+            });
+        }
+        return value;
     }
     public toJSON(): SdServiceJSON {
         return Object.assign({parent: undefined}, this);
     }
 }
 
+/*interface SdServiceTreeItemJSON {
+    endPoint: String;
+    verbs: SdServiceVerbsJSON;
+    children: Array<SdServiceTreeItem>;
+}*/
 export class SdServiceTreeItem extends TreeviewItem {
-    constructor(parent?: SdServiceTreeItem) {
+    constructor() {
         super({
             text : '',
             value: null
         });
-        this.parent = parent;
     }
     private parentTreeItem: SdServiceTreeItem;
     children: Array<SdServiceTreeItem>;
+    value: SdService = new SdService;
+
+    get uri(): String {
+        return (this.parent ? this.parent.uri : '') + '/' + this.value.endPoint;
+    }
 
     get parent(): SdServiceTreeItem {
         return this.parentTreeItem;
     }
     set parent(item: SdServiceTreeItem) {
         this.parentTreeItem = item;
-        this.service.parent = this.parentTreeItem ? this.parentTreeItem.value : null;
-    }
-    private service: SdService = new SdService(this.parent ? this.parent.value : null);
-    get value(): SdService {
-        return this.service;
-    }
-    set value(any) {}
-    get text(): string {
-        return this.service.endPoint.toString();
-    }
-    set text(value: string) {
-        if (this.service) {
-            this.service.endPoint = String(value);
-        }
+        item.children = (item.children || []).concat(this);
     }
 
-    public static fromJSON(json: SdServiceJSON) {
-        return Object.assign(this, {service: json});
+    get text(): string {
+        return this.value.endPoint.toString();
+    }
+    set text(value: string) {
+        if (this.value) {
+            this.value.endPoint = String(value);
+        }
+    }
+    public static fromJSON(key: string, value: any): SdServiceTreeItem {
+        if (!key) {
+            const sdServiceTreeItem = Object.create(SdServiceTreeItem.prototype);
+
+            return Object.assign(sdServiceTreeItem, {
+                value: SdService.fromJSON(null, value),
+                children: Array.isArray(value.children) ? (value.children || []).map(child => {
+                    const sdServiceTreeItemChild = SdServiceTreeItem.fromJSON(null, child);
+                    sdServiceTreeItemChild.parent = sdServiceTreeItem;
+                    return sdServiceTreeItemChild;
+                }) : undefined
+            });
+        }
+        return value;
     }
     public toJSON(): SdServiceJSON {
-        return Object.assign({}, this.service, {
+        return Object.assign({}, this.value, {
             parent: undefined,
             children: this.children
         });

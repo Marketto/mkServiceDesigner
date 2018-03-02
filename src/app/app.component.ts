@@ -14,38 +14,67 @@ import { SdItemObject } from './classes/SdItem';
 })
 
 export class AppComponent {
+  mksdRootJsonFileName = 'serviceRoot.json';
+  mksdMimeType = 'application/x-mk-service-designer';
+  mksdFileType = '.mksd';
+
   title = 'Marketto Service Designer';
   treeItems: SdServiceTreeItem;
 
   private _verb: SdServiceVerb = 'GET';
   private io: SdServiceIOType = 'response';
+  serviceRoot: SdServiceTreeItem = new SdServiceTreeItem;
+  private currentService: SdServiceTreeItem;
 
-  get verb () {
+  get verb (): SdServiceVerb {
     return this._verb;
   }
-  set verb (verb) {
+  set verb (verb: SdServiceVerb) {
     this._verb = verb;
     if (verb === 'GET') {
       this.io = 'response';
+    } else {
+      this.io = 'request';
     }
   }
 
-  serviceRoot: SdServiceTreeItem = new SdServiceTreeItem;
-  currentService: SdService;
   newItem() {
-    this.currentService.verbs[this.verb][this.io].push(new SdItemObject());
+    this.currentService.value.verbs[this.verb][this.io].push(new SdItemObject());
   }
   saveMKSD() {
-    const mksdFileName = 'test.mksd';
+    const mksdFileName = 'test' + this.mksdFileType;
     const mksdFile = new JSZip();
-    mksdFile.file('serviceRoot.json', JSON.stringify(this.serviceRoot));
+    mksdFile.file(this.mksdRootJsonFileName, JSON.stringify(this.serviceRoot));
     mksdFile.generateAsync({
       'type': 'blob',
       'compression': 'DEFLATE',
       'compressionOptions': {
         'level': 9
       },
-      'mimeType': 'application/x-mk-service-designer'
+      'mimeType': this.mksdMimeType
     }).then(blobData => saveAs(blobData, mksdFileName));
+  }
+  openMKSD(file: File) {
+    const mksdFile = new JSZip();
+    mksdFile.loadAsync(file).then(archive => {
+      if (archive.files[this.mksdRootJsonFileName]) {
+        archive.files[this.mksdRootJsonFileName].async('blob').then(sourceFile => {
+          const fileReader = new FileReader();
+          fileReader.readAsBinaryString(sourceFile);
+          fileReader.onload = () => {
+            console.log('SOURCE JSON', JSON.parse(fileReader.result));
+            this.serviceRoot = JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON);
+            console.log('SdServiceTreeItem PARSED', this.serviceRoot);
+          };
+          fileReader.onerror = err => {
+            console.error('file reader', err);
+          };
+        }, err => {
+          console.error('zip fetcher', err);
+        });
+      }
+    }, err => {
+      console.error('zip loading', err);
+    });
   }
 }

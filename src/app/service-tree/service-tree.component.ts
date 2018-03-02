@@ -18,20 +18,19 @@ export class ServiceTreeComponent implements OnInit {
     return this._rootService;
   }
   set rootService(serviceItem: SdServiceTreeItem) {
-    this._rootService = serviceItem;
-    if (!this._selected) {
-      this.selected = serviceItem;
-    }
+    this.selected = this._rootService = serviceItem;
   }
 
-  @Output() select = new EventEmitter();
-  @Input()
+  @Output('select') private select = new EventEmitter();
+  @Input('select')
   get selected(): SdServiceTreeItem {
     return this._selected;
   }
   set selected(item: SdServiceTreeItem) {
+    if (item) {
       this._selected = item || this._selected;
-      this.select.emit(this._selected);
+    }
+    this.select.emit(this._selected);
   }
 
 
@@ -44,11 +43,11 @@ export class ServiceTreeComponent implements OnInit {
   editMode: Boolean = false;
 
   addItem(item: SdServiceTreeItem) {
-    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem(item);
-    item.children = (item.children || []).concat(serviceItem);
+    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem;
+    serviceItem.parent = item;
   }
   removeItem(item: SdServiceTreeItem) {
-    if (this.selected === item){
+    if (this.selected === item) {
       this.selected = item.parent;
     }
     const itemIndex = item.parent.children.findIndex(child => {

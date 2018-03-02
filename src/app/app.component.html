@@ -48,9 +48,10 @@
     <mat-icon class="icon">menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="openInputFile.click()">
       <mat-icon>folder_open</mat-icon>
       <span>Open</span>
+      <input hidden type="file" #openInputFile accept="{{ mksdFileType + ', ' + mksdMimeType }}" (change)="openMKSD($event.srcElement.files[0])">
     </button>
     <button mat-menu-item (click)="saveMKSD()">
       <mat-icon>save</mat-icon>
@@ -77,7 +78,7 @@
 
 <mat-drawer-container autosize>
   <mat-drawer #serviceSideBar class="" mode="side">
-    <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event.value"></app-service-tree>
+    <app-service-tree [rootService]="serviceRoot" (select)="currentService=$event"></app-service-tree>
   </mat-drawer>
   <mat-drawer-content>
     <div class="mat-drawer-content-container">
@@ -88,7 +89,8 @@
         <span class="verb">{{verb}}</span>
         <span class="io">{{io}}</span>
       </mat-toolbar>
-      <app-model-editor [service]="currentService.verbs[verb][io]"></app-model-editor>
+      <app-model-editor [service]="currentService.value.verbs[verb][io]"></app-model-editor>
+      <pre>{{serviceRoot|json}}</pre>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
