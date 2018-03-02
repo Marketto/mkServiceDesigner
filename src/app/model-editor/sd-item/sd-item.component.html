@@ -21,7 +21,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <mat-form-field>
-        <mat-select [ngModel]="item.type" (change)="changeType(item, event.value)" placeholder="Type">
+        <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="Type">
           <mat-option value="object">
             Object
           </mat-option>
