@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { TreeviewConfig } from 'ngx-treeview';
+
+import { saveAs } from 'file-saver/FileSaver';
+import * as JSZip from 'jszip';
+
 import { SdServiceVerb, SdServiceIOType, SdService, SdServiceTreeItem } from './classes/SdService';
 import { SdItemObject } from './classes/SdItem';
 
@@ -30,5 +34,18 @@ export class AppComponent {
   currentService: SdService;
   newItem() {
     this.currentService.verbs[this.verb][this.io].push(new SdItemObject());
+  }
+  saveMKSD() {
+    const mksdFileName = 'test.mksd';
+    const mksdFile = new JSZip();
+    mksdFile.file('serviceRoot.json', JSON.stringify(this.serviceRoot));
+    mksdFile.generateAsync({
+      'type': 'blob',
+      'compression': 'DEFLATE',
+      'compressionOptions': {
+        'level': 9
+      },
+      'mimeType': 'application/x-mk-service-designer'
+    }).then(blobData => saveAs(blobData, mksdFileName));
   }
 }

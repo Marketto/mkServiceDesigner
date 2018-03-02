@@ -19,6 +19,12 @@ class SdServiceVerbs {
     PATCH: SdServiceVerbIO = new SdServiceVerbIO;
 }
 
+interface SdServiceJSON {
+    endPoint: String;
+    verbs: SdServiceVerbs;
+    children?: Array<SdServiceJSON>;
+}
+
 export class SdService {
     constructor(parent?: SdService) {
         this.parent = parent;
@@ -29,6 +35,13 @@ export class SdService {
         return (this.parent ? this.parent.uri : '') + '/' + this.endPoint;
     }
     verbs: SdServiceVerbs = new SdServiceVerbs;
+
+    public static fromJSON(json: SdServiceJSON) {
+        return Object.assign(this, json);
+    }
+    public toJSON(): SdServiceJSON {
+        return Object.assign({parent: undefined}, this);
+    }
 }
 
 export class SdServiceTreeItem extends TreeviewItem {
@@ -40,6 +53,8 @@ export class SdServiceTreeItem extends TreeviewItem {
         this.parent = parent;
     }
     private parentTreeItem: SdServiceTreeItem;
+    children: Array<SdServiceTreeItem>;
+
     get parent(): SdServiceTreeItem {
         return this.parentTreeItem;
     }
@@ -59,5 +74,15 @@ export class SdServiceTreeItem extends TreeviewItem {
         if (this.service) {
             this.service.endPoint = String(value);
         }
+    }
+
+    public static fromJSON(json: SdServiceJSON) {
+        return Object.assign(this, {service: json});
+    }
+    public toJSON(): SdServiceJSON {
+        return Object.assign({}, this.service, {
+            parent: undefined,
+            children: this.children
+        });
     }
 }
