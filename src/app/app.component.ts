@@ -21,6 +21,8 @@ export class AppComponent {
   title = 'Marketto Service Designer';
   treeItems: SdServiceTreeItem;
 
+  projectName: String;
+
   private _verb: SdServiceVerb = 'GET';
   private io: SdServiceIOType = 'response';
   serviceRoot: SdServiceTreeItem = new SdServiceTreeItem;
@@ -42,7 +44,7 @@ export class AppComponent {
     this.currentService.value.verbs[this.verb][this.io].push(new SdItemObject());
   }
   saveMKSD() {
-    const mksdFileName = 'test' + this.mksdFileType;
+    const mksdFileName = this.projectName + this.mksdFileType;
     const mksdFile = new JSZip();
     mksdFile.file(this.mksdRootJsonFileName, JSON.stringify(this.serviceRoot));
     mksdFile.generateAsync({
@@ -63,6 +65,7 @@ export class AppComponent {
           fileReader.readAsBinaryString(sourceFile);
           fileReader.onload = () => {
             console.log('SOURCE JSON', JSON.parse(fileReader.result));
+            this.projectName = file.name.replace(this.mksdFileType, '');
             this.serviceRoot = JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON);
             console.log('SdServiceTreeItem PARSED', this.serviceRoot);
           };

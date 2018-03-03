@@ -1,5 +1,30 @@
 .mat-toolbar{
     @element-spacing: 0 0.4em;
+
+    .title.mat-form-field-should-float.mat-form-field-can-float::ng-deep, .mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper::ng-deep {
+        .mat-form-field-label {
+            transform: translateY(-0.8em) scale(.85) perspective(100px) translateZ(.001px);
+        }
+    }
+
+    .title::ng-deep {
+        width: 14em;
+        
+        .mat-input-wrapper{
+            padding-bottom: 1rem;
+            input {
+                font-size: 1rem;
+                padding-left: 0.5rem;
+                margin-top: 0.6em;
+                margin-bottom: -0.6em;
+                width: auto;
+            }
+        }
+        .mat-input-underline {
+            display: none;
+        }
+    }
+
     span:not(.divider){
         padding: @element-spacing;
 

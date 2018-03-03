@@ -1,5 +1,7 @@
 <mat-toolbar>
-  <span class="title">{{ title }}</span>
+  <mat-form-field class="title">
+    <input matInput [(ngModel)]="projectName" placeholder="{{ title }}">
+  </mat-form-field>
 
   <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()" matTooltip="{{serviceSideBar.opened?'Hide':'Show'}} service sidebar">
     <mat-icon class="icon">{{ serviceSideBar.opened?'crop_din':'flip' }}</mat-icon>
