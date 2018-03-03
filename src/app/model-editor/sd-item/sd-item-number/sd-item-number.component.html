@@ -1,16 +1,16 @@
 <mat-grid-list cols="13">
   <mat-grid-tile colspan="3">
     <mat-form-field>
-      <input matInput placeholder="Multiple of" type="number" step="{{integer?1:0.1}}" name="multipleOf" [(ngModel)]="item.multipleOf"/>
+      <input matInput placeholder="{{'LABEL.ITEM.MULTIPLE'|translate}}" type="number" step="{{integer?1:0.1}}" name="multipleOf" [(ngModel)]="item.multipleOf"/>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <mat-form-field>
-      <mat-select placeholder="Lower limit" [(ngModel)]="item.exclusiveMin">
-        <mat-option value="true">
+      <mat-select placeholder="{{'LABEL.ITEM.GT_MIN'|translate}}" [(ngModel)]="item.exclusiveMin">
+        <mat-option [value]="true">
           &gt;
         </mat-option>
-        <mat-option value="false" selected>
+        <mat-option [value]="false" selected>
           &ge;
         </mat-option>
       </mat-select>
@@ -18,22 +18,17 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
     <mat-form-field>
-      <input matInput placeholder="Min value" type="number" step="{{integer?1:0.1}}" name="minValue" [(ngModel)]="item.minValue"
-        ng-max="item.maxValue" />
-      <!--div ng-messages="item.minValue.error" role="alert">
-        <div ng-message="max">
-          {{item.minValue}} is greater than {{item.maxValue}} (max value).
-        </div>
-      </div-->
+      <input matInput placeholder="{{'LABEL.ITEM.MAX_VAL'|translate}}" type="number" step="{{integer?1:0.1}}" name="minValue" [(ngModel)]="item.minValue"
+        [max]="item.maxValue" />
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <mat-form-field>
-      <mat-select placeholder="Upper limit" [(ngModel)]="item.exclusiveMax">
-        <mat-option value="true">
+      <mat-select placeholder="{{'LABEL.ITEM.LT_MAX'|translate}}" [(ngModel)]="item.exclusiveMax">
+        <mat-option [value]="true">
           &lt;
         </mat-option>
-        <mat-option value="false" selected>
+        <mat-option [value]="false" selected>
           &le;
         </mat-option>
       </mat-select>
@@ -42,8 +37,8 @@
   <mat-grid-tile colspan="3">
     <mat-form-field>
       <label></label>
-      <input placeholder="Max value" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maxValue"
-        ng-min="item.minValue" />
+      <input placeholder="{{'LABEL.ITEM.MAX_VAL'|translate}}" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maxValue"
+         [min]="item.maxValue" />
       <!--div ng-messages="item.maxValue.error" role="alert">
         <div ng-message="min">
           {{item.maxValue}} is lower than {{item.minValue}} (min value).

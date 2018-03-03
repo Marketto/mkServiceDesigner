@@ -91,7 +91,12 @@
                 "IPV6"          : "IP v6",
                 "URI"           : "URI"
             },
-            "DOMAIN"        : "Valori consentiti"
+            "DOMAIN"        : "Valori consentiti",
+            "MULTIPLE"      : "Multiplo di",
+            "MIN_VAL"       : "Minimo",
+            "MAX_VAL"       : "Massimo",
+            "GT_MIN"        : "Limite minimo",
+            "LT_MAX"        : "Limite massimo"
         }
     }
 }

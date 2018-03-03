@@ -4,9 +4,9 @@ export abstract class SdItemNumeric extends SdItem {
     type: 'number' | 'integer';
     multipleOf: Number;
     minValue: Number;
-    exclusiveMin: Boolean;
+    exclusiveMin: Boolean = false;
     maxValue: Number;
-    exclusiveMax: Boolean;
+    exclusiveMax: Boolean = false;
 
     constructor(item?: SdItem) {
         super(item);
