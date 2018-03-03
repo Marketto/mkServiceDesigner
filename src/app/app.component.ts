@@ -30,7 +30,7 @@ export class AppComponent {
   projectName: String;
 
   private _verb: SdServiceVerb = 'GET';
-  private io: SdServiceIOType = 'response';
+  io: SdServiceIOType = 'response';
   serviceRoot: SdServiceTreeItem = new SdServiceTreeItem;
   private currentService: SdServiceTreeItem;
 
