@@ -1,6 +1,6 @@
 <ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
     <div class="tree-item">
-        <button mat-icon-button *ngIf="(item.children||[]).length" (click)="onCollapseExpand()" matTooltip="{{item.collapsed?'Expand':'Collapse'}} service node">
+        <button mat-icon-button *ngIf="(item.children||[]).length" (click)="onCollapseExpand()" matTooltip="{{('TOOLTIP.BUTTON.RESOURCE.'+ (item.collapsed?'EXPAND':'COLLAPSE'))|translate}}">
             <mat-icon aria-hidden="true">
                 keyboard_arrow_{{item.collapsed?'right':'down'}}
             </mat-icon>
@@ -8,10 +8,10 @@
         
         <input #itemInput (focus)="selectItem(item)" [(ngModel)]="item.text" [class.selected]="!editMode && selected === item" [class.no-children]="!(item.children||[]).length">
         
-        <button mat-icon-button (click)="addItem(item)" matTooltip="Add child resource">
+        <button mat-icon-button (click)="addItem(item)" matTooltip="{{'TOOLTIP.BUTTON.ADD_RESOURCE'|translate}}">
             <mat-icon>add</mat-icon>
         </button>
-        <button mat-icon-button *ngIf="item.parent" (click)="removeItem(item)" matTooltip="Delete resource">
+        <button mat-icon-button *ngIf="item.parent" (click)="removeItem(item)" matTooltip="{{'TOOLTIP.BUTTON.DELETE_RESOURCE'|translate}}">
             <mat-icon aria-hidden="true">delete</mat-icon>
         </button>
     </div>

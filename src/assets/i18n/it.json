@@ -17,10 +17,26 @@
             "SIDE_BAR"      : {
                 "SHOW"          : "Mostra albero servizi",
                 "HIDE"          : "Nascondi albero servizi"
+            },
+            "ADD_RESOURCE"      : "Aggiungi sotto risorsa",
+            "DELETE_RESOURCE"   : "Elimina risorsa",
+            "RESOURCE"          : {
+                "COLLAPSE"          : "Riduci risorsa",
+                "EXPAND"            : "Espandi risorsa"
             }
         },
         "INPUT": {
             "PROJECT_NAME"  : "Nome progetto"
+        }
+    },
+    "MENU"      : {
+        "OPEN"      : "Apri",
+        "SAVE"      : "Salva",
+        "EXPORT"    : {
+            "TITLE"         : "Esporta",
+            "JAVA"          : "Pacchetto Java",
+            "WSDL"          : "WSDL",
+            "JSON_SCHEMA"   : "JSON Schema"
         }
     },
     "LABEL"     : {

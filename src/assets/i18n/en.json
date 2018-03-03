@@ -17,10 +17,26 @@
             "SIDE_BAR"      : {
                 "SHOW"          : "Show side bar",
                 "HIDE"          : "Hide side bar"
+            },
+            "ADD_RESOURCE"      : "Add child resource",
+            "DELETE_RESOURCE"   : "Delete resource",
+            "RESOURCE"          : {
+                "COLLAPSE"          : "Collapse resource node",
+                "EXPAND"            : "Expand resource node"
             }
         },
         "INPUT"     : {
             "PROJECT_NAME"  : "Project name"
+        }
+    },
+    "MENU"      : {
+        "OPEN"      : "Open",
+        "SAVE"      : "Save",
+        "EXPORT"    : {
+            "TITLE"         : "Export",
+            "JAVA"          : "Java Package",
+            "WSDL"          : "WSDL",
+            "JSON_SCHEMA"   : "JSON Schema"
         }
     },
     "LABEL"     : {

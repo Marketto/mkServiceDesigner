@@ -52,28 +52,40 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="openInputFile.click()">
       <mat-icon>folder_open</mat-icon>
-      <span>Open</span>
+      <span translate>
+        MENU.OPEN
+      </span>
       <input hidden type="file" #openInputFile accept="{{ mksdFileType + ', ' + mksdMimeType }}" (change)="openMKSD($event.srcElement.files[0])">
     </button>
     <button mat-menu-item (click)="saveMKSD()">
       <mat-icon>save</mat-icon>
-      <span>Save</span>
+      <span translate>
+        MENU.SAVE
+      </span>
     </button>
     <mat-divider></mat-divider>
     <span mat-menu-item disabled class="mat-menu-title">
-      <span>Export</span>
+      <span translate>
+        MENU.EXPORT.TITLE
+      </span>
     </span>
     <button mat-menu-item>
       <mat-icon>android</mat-icon>
-      <span>Java Package</span>
+      <span translate>
+        MENU.EXPORT.JAVA
+      </span>
     </button>
     <button mat-menu-item>
       <mat-icon>code</mat-icon>
-      <span>WSDL</span>
+      <span translate>
+        MENU.EXPORT.WSDL
+      </span>
     </button>
     <button mat-menu-item>
       <mat-icon>developer_board</mat-icon>
-      <span>JSON Schema</span>
+      <span translate>
+        MENU.EXPORT.JSON_SCHEMA
+      </span>
     </button>
   </mat-menu>
 </mat-toolbar>
