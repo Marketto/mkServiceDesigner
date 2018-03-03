@@ -1,7 +1,7 @@
 <mat-grid-list cols="14">
   <mat-grid-tile colspan="3">
     <mat-form-field>
-      <input matInput placeholder="Min length" type="number" step="1" name="minLength" [(ngModel)]="item.minLength" min="0" max="{{item.maxLength}}"/>
+      <input matInput placeholder="{{'LABEL.ITEM.LENGTH.MIN'|translate}}" type="number" step="1" name="minLength" [(ngModel)]="item.minLength" min="0" max="{{item.maxLength}}"/>
       <!--div ng-messages="item.minimum.error" multiple role="alert">
         <div ng-message="min">
           Min Length must be greater than or equal to 0.
@@ -14,7 +14,7 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
     <mat-form-field>
-      <input matInput placeholder="Max length" type="number" step="1" name="maxLength" [(ngModel)]="item.maxLength" min="{{item.minLength}}"
+      <input matInput placeholder="{{'LABEL.ITEM.LENGTH.MAX'|translate}}" type="number" step="1" name="maxLength" [(ngModel)]="item.maxLength" min="{{item.minLength}}"
       />
       <!--div ng-messages="item.minimum.error" multiple role="alert">
         <div ng-message="min">
@@ -25,44 +25,44 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="7">
     <mat-form-field>
-      <input matInput placeholder="Regular expression pattern" [(ngModel)]="item.pattern">
+      <input matInput placeholder="{{'LABEL.ITEM.REGEXP'|translate}}" [(ngModel)]="item.pattern" [disabled]="!!item.format || item.domain.length>0">
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
     <mat-form-field>
-      <mat-select placeholder="Format" [(ngModel)]="item.format" placeholder="Generic">
-        <mat-option value="">
-          Generic
+      <mat-select placeholder="{{'LABEL.ITEM.FORMAT.TITLE'|translate}}" [(ngModel)]="item.format" placeholder="Generic" [disabled]="!!item.pattern || item.domain.length>0">
+        <mat-option [value]="false">
+          {{'LABEL.ITEM.FORMAT.GENERIC'|translate}}
         </mat-option>
-        <mat-option value="'date-time'">
-          Date / Time
+        <mat-option value="date-time">
+          {{'LABEL.ITEM.FORMAT.DATE_TIME'|translate}}
         </mat-option>
-        <mat-option value="'email'">
-          Email
+        <mat-option value="email">
+          {{'LABEL.ITEM.FORMAT.EMAIL'|translate}}
         </mat-option>
-        <mat-option value="'hostname'">
-          Host name
+        <mat-option value="hostname">
+          {{'LABEL.ITEM.FORMAT.HOST_NAME'|translate}}
         </mat-option>
-        <mat-option value="'ipv4'">
-          IPv4
+        <mat-option value="ipv4">
+          {{'LABEL.ITEM.FORMAT.IPV4'|translate}}
         </mat-option>
-        <mat-option value="'ipv6'">
-          IPv6
+        <mat-option value="ipv6">
+          {{'LABEL.ITEM.FORMAT.IPV6'|translate}}
         </mat-option>
-        <mat-option value="'uri'">
-          URI
+        <mat-option value="uri">
+          {{'LABEL.ITEM.FORMAT.URI'|translate}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="10">
     <mat-form-field>
-      <mat-chip-list #chipDomain>
+      <mat-chip-list #chipDomain [disabled]="!!item.format || !!item.pattern">
         <mat-chip *ngFor="let value of item.domain" (remove)="removeDomain(value)">
           {{value}}
-          <mat-icon matChipRemove>cancel</mat-icon>
+          <mat-icon matChipRemove matTooltip="{{'TOOLTIP.BUTTON.DEL_DOMAIN_VAL'|translate}}">cancel</mat-icon>
         </mat-chip>
-        <input placeholder="Type a domain value" [matChipInputFor]="chipDomain" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addDomain($event)"/>
+        <input placeholder="{{'LABEL.ITEM.DOMAIN'|translate}}" [matChipInputFor]="chipDomain" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addDomain($event)" [disabled]="chipDomain.disabled"/>
       </mat-chip-list>
     </mat-form-field>
   </mat-grid-tile>

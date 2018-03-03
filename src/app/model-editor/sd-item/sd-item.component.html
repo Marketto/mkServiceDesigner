@@ -20,7 +20,7 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
-      <mat-form-field matTooltip="{{ ( item.children && item.children.length>0 ) ? 'Remove children to change type' : null}}">
+      <mat-form-field matTooltip="{{ ( item.children && item.children.length>0 ) ? ('TOOLTIP.INPUT.LOCKED_OBJECT_TYPE'|translate) : null}}">
         <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="{{'LABEL.ITEM.TYPE.TITLE'|translate}}" [disabled]="item.children && item.children.length>0">
           <mat-option value="object">
             {{'LABEL.ITEM.TYPE.OBJECT'|translate}}

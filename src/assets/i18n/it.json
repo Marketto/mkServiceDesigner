@@ -24,7 +24,12 @@
             "RESOURCE"          : {
                 "COLLAPSE"          : "Riduci risorsa",
                 "EXPAND"            : "Espandi risorsa"
-            }
+            },
+            "DEL_DOMAIN_VAL"    : "Elimina valore"
+        },
+        "INPUT": {
+            "PROJECT_NAME"          : "Nome progetto",
+            "LOCKED_OBJECT_TYPE"    : "Eliminare le sotto proprietà per cambiare tipo"
         }
     },
     "MENU"      : {
@@ -70,7 +75,23 @@
                 "NUMBER"        : "Solo num. in virgola mob.",
                 "INTEGER"       : "Solo num. interi",
                 "BOOLEAN"       : "Solo booleane"
-            }
+            },
+            "LENGTH"        : {
+                "MIN"           : "Lunghezza minima",
+                "MAX"           : "Lunghezza massima"
+            },
+            "REGEXP"        : "Espressione regolare di validaizone",
+            "FORMAT"        : {
+                "TITLE"         : "Formato",
+                "GENERIC"       : "Non specificato",
+                "DATE_TIME"     : "Data / ora",
+                "EMAIL"         : "Email",
+                "HOST_NAME"     : "Nome host",
+                "IPV4"          : "IP v4",
+                "IPV6"          : "IP v6",
+                "URI"           : "URI"
+            },
+            "DOMAIN"        : "Valori consentiti"
         }
     }
 }

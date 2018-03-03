@@ -1,6 +1,6 @@
 import { SdItem } from './sd-item';
 
-type SdItemStringFormatJson = 'hostname' | 'ipv4' | 'ipv6' | 'date-time' | 'email' | 'uri';
+type SdItemStringFormatJson = 'hostname' | 'ipv4' | 'ipv6' | 'date-time' | 'email' | 'uri' | false;
 
 export class SdItemString extends SdItem {
     type: 'string' = 'string';
@@ -8,7 +8,7 @@ export class SdItemString extends SdItem {
     minLength: Number;
     maxLength: Number;
     pattern: RegExp;
-    format: SdItemStringFormatJson | null | undefined;
+    format: SdItemStringFormatJson = false;
 
     constructor(item?: SdItem) {
         super(item);

@@ -24,7 +24,12 @@
             "RESOURCE"          : {
                 "COLLAPSE"          : "Collapse resource node",
                 "EXPAND"            : "Expand resource node"
-            }
+            },
+            "DEL_DOMAIN_VAL"    : "Delete domain value"
+        },
+        "INPUT": {
+            "PROJECT_NAME"          : "Project name",
+            "LOCKED_OBJECT_TYPE"    : "Remove children to change type"
         }
     },
     "MENU"      : {
@@ -70,7 +75,23 @@
                 "NUMBER"        : "Numbers only",
                 "INTEGER"       : "Integers only",
                 "BOOLEAN"       : "Booleans only"
-            }
+            },
+            "LENGTH"        : {
+                "MIN"           : "Min length",
+                "MAX"           : "Max length"
+            },
+            "REGEXP"        : "Regular expression pattern",
+            "FORMAT"        : {
+                "TITLE"         : "Format",
+                "GENERIC"       : "Generic",
+                "DATE_TIME"     : "Date / Time",
+                "EMAIL"         : "Email",
+                "HOST_NAME"     : "Host name",
+                "IPV4"          : "IP v4",
+                "IPV6"          : "IP v6",
+                "URI"           : "URI"
+            },
+            "DOMAIN"        : "Value domain"
         }
     }
 }
