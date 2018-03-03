@@ -50,7 +50,6 @@ export class AppComponent {
     this.currentService.value.verbs[this.verb][this.io].push(new SdItemObject);
   }
   saveMKSD() {
-    const mksdFileName = this.projectName + this.mksdFileType;
     const mksdFile = new JSZip();
     mksdFile.file(this.mksdRootJsonFileName, JSON.stringify(this.serviceRoot));
     mksdFile.generateAsync({
@@ -60,7 +59,18 @@ export class AppComponent {
         'level': 9
       },
       'mimeType': this.mksdMimeType
-    }).then(blobData => saveAs(blobData, mksdFileName));
+    }).then(blobData => {
+      if (!this.projectName){
+        this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
+          this.projectName = projectName;
+          const mksdFileName = this.projectName + this.mksdFileType;
+          saveAs(blobData, mksdFileName);
+        });
+      } else {
+        const mksdFileName = this.projectName + this.mksdFileType;
+        saveAs(blobData, mksdFileName);
+      }
+    });
   }
   openMKSD(file: File) {
     const mksdFile = new JSZip();

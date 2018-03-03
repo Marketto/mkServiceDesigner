@@ -98,5 +98,8 @@
             "GT_MIN"        : "Lower limit",
             "LT_MAX"        : "Upper limit"
         }
+    },
+    "DEFAULT"   : {
+        "FILE_NAME"     : "New project"
     }
 }
