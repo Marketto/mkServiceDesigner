@@ -4,7 +4,8 @@ import { TreeviewConfig } from 'ngx-treeview';
 import { saveAs } from 'file-saver/FileSaver';
 import * as JSZip from 'jszip';
 
-import { SdServiceVerb, SdServiceIOType, SdService, SdServiceTreeItem } from './classes/sd-service';
+import { SdService, SdServiceVerb, SdServiceIOType } from './classes/sd-service/sd-service';
+import { SdServiceTreeItem } from './classes/sd-service/sd-service-tree-item';
 import { SdItemObject } from './classes/sd-item/sd-item-object';
 
 @Component({
