@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SdItemComponent } from './sd-item/sd-item.component';
-import { SdNode } from '../classes/SdItem';
+import { SdItemList } from '../classes/sd-item/sd-item-list';
 
 @Component({
   selector: 'app-model-editor',
@@ -8,7 +8,7 @@ import { SdNode } from '../classes/SdItem';
   styleUrls: ['./model-editor.component.less']
 })
 export class ModelEditorComponent implements OnInit {
-  @Input() service: SdNode;
+  @Input() service: SdItemList;
   constructor() { }
 
   ngOnInit() {

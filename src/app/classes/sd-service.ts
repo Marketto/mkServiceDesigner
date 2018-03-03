@@ -1,14 +1,14 @@
+import { SdItemList } from './sd-item/sd-item-list';
 import { TreeviewItem } from 'ngx-treeview';
-import { SdNode, SdItemObject } from './SdItem';
 
 export type SdServiceVerb = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 export type SdServiceIOType = 'request' | 'response';
 
 class SdServiceVerbO {
-    response: SdNode = new SdNode;
+    response: SdItemList = new SdItemList;
 }
 class SdServiceVerbIO extends SdServiceVerbO {
-    request: SdNode = new SdNode;
+    request: SdItemList = new SdItemList;
 }
 
 interface SdServiceVerbsJSON {

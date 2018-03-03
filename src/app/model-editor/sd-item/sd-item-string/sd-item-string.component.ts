@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER } from '@angular/cdk/keycodes';
-import { SdItemString } from './../../../classes/SdItem';
+
+import { SdItemString } from '../../../classes/sd-item/sd-item-string';
 
 @Component({
   selector: 'app-sd-item-string',

@@ -4,8 +4,8 @@ import { TreeviewConfig } from 'ngx-treeview';
 import { saveAs } from 'file-saver/FileSaver';
 import * as JSZip from 'jszip';
 
-import { SdServiceVerb, SdServiceIOType, SdService, SdServiceTreeItem } from './classes/SdService';
-import { SdItemObject } from './classes/SdItem';
+import { SdServiceVerb, SdServiceIOType, SdService, SdServiceTreeItem } from './classes/sd-service';
+import { SdItemObject } from './classes/sd-item/sd-item-object';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +41,7 @@ export class AppComponent {
   }
 
   newItem() {
-    this.currentService.value.verbs[this.verb][this.io].push(new SdItemObject());
+    this.currentService.value.verbs[this.verb][this.io].push(new SdItemObject);
   }
   saveMKSD() {
     const mksdFileName = this.projectName + this.mksdFileType;

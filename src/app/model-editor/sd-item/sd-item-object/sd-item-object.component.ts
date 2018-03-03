@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SdItemObject } from '../../../classes/SdItem';
+
+import { SdItemObject } from '../../../classes/sd-item/sd-item-object';
 
 @Component({
   selector: 'app-sd-item-object',

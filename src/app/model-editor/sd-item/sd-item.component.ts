@@ -1,5 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SdNode, SdItem, SdItemType, SdItemObject, SdItemString, SdItemInteger, SdItemNumber, SdItemBoolean } from '../../classes/SdItem';
+
+import { SdItem, SdItemType } from '../../classes/sd-item/sd-item';
+import { SdItemList } from '../../classes/sd-item/sd-item-list';
+import { SdItemBoolean } from './../../classes/sd-item/sd-item-boolean';
+import { SdItemInteger } from './../../classes/sd-item/sd-item-integer';
+import { SdItemString } from './../../classes/sd-item/sd-item-string';
+import { SdItemObject } from '../../classes/sd-item/sd-item-object';
+import { SdItemNumber } from '../../classes/sd-item/sd-item-number';
 
 @Component({
   selector: 'app-sd-item',
@@ -7,7 +14,7 @@ import { SdNode, SdItem, SdItemType, SdItemObject, SdItemString, SdItemInteger, 
   styleUrls: ['./sd-item.component.less']
 })
 export class SdItemComponent implements OnInit {
-  @Input() node: SdNode;
+  @Input() node: SdItemList;
 
   changeType(item: SdItem, type: SdItemType) {
     if (item.type !== type) {

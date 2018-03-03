@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { TreeviewComponent, TreeviewConfig } from 'ngx-treeview';
-import { SdServiceTreeItem } from './../classes/SdService';
+import { SdServiceTreeItem } from './../classes/sd-service';
 
 @Component({
   selector: 'app-service-tree',
