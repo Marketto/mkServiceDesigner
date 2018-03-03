@@ -13,20 +13,18 @@
         },
         "BUTTON"    : {
             "ADD_PROPERTY"  : "Add property",
+            "DEL_PROPERTY"  : "Delete property",
             "MENU"          : "Menu",
             "SIDE_BAR"      : {
                 "SHOW"          : "Show side bar",
                 "HIDE"          : "Hide side bar"
             },
             "ADD_RESOURCE"      : "Add child resource",
-            "DELETE_RESOURCE"   : "Delete resource",
+            "DEL_RESOURCE"      : "Delete resource",
             "RESOURCE"          : {
                 "COLLAPSE"          : "Collapse resource node",
                 "EXPAND"            : "Expand resource node"
             }
-        },
-        "INPUT"     : {
-            "PROJECT_NAME"  : "Project name"
         }
     },
     "MENU"      : {
@@ -45,6 +43,34 @@
             "VERB_IO"       : "{{verb}} {{io}}",
             "REQUEST"       : "Request",
             "RESPONSE"      : "Response"
+        },
+        "ITEM"      : {
+            "PROPERTY_NAME" : "Property name",
+            "DEPENDENCIES"  : "Dependencies",
+            "TYPE"          : {
+                "TITLE"         : "Type",
+                "OBJECT"        : "Object",
+                "STRING"        : "String",
+                "NUMBER"        : "Number",
+                "INTEGER"       : "Integer",
+                "BOOLEAN"       : "Boolean"
+            },
+            "REQUIRED"      : "Required",
+            "LIST"          : "List of",
+            "OCCURENCES"    : {
+                "MIN"           : "Min occurrences",
+                "MAX"           : "Max occurrences"
+            },
+            "UNIQUE_ITEMS"  : "Unique items",
+            "EXTRA_PROPS"   : {
+                "TITLE"         : "Additional properties",
+                "ALLOWED"       : "Allowed",
+                "NOT_ALLOWED"   : "Not allowed",
+                "STRING"        : "Strings only",
+                "NUMBER"        : "Numbers only",
+                "INTEGER"       : "Integers only",
+                "BOOLEAN"       : "Booleans only"
+            }
         }
     }
 }

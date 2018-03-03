@@ -13,20 +13,18 @@
         },
         "BUTTON"    : {
             "ADD_PROPERTY"  : "Aggiungi proprietà",
+            "DEL_PROPERTY"  : "Elimina proprietà",
             "MENU"          : "Menù",
             "SIDE_BAR"      : {
                 "SHOW"          : "Mostra albero servizi",
                 "HIDE"          : "Nascondi albero servizi"
             },
             "ADD_RESOURCE"      : "Aggiungi sotto risorsa",
-            "DELETE_RESOURCE"   : "Elimina risorsa",
+            "DEL_RESOURCE"      : "Elimina risorsa",
             "RESOURCE"          : {
                 "COLLAPSE"          : "Riduci risorsa",
                 "EXPAND"            : "Espandi risorsa"
             }
-        },
-        "INPUT": {
-            "PROJECT_NAME"  : "Nome progetto"
         }
     },
     "MENU"      : {
@@ -45,6 +43,34 @@
             "VERB_IO"       : "{{io}} {{verb}}",
             "REQUEST"       : "Richiesta",
             "RESPONSE"      : "Risposta"
+        },
+        "ITEM"      : {
+            "PROPERTY_NAME" : "Nome proprietà",
+            "DEPENDENCIES"  : "Dipendenze",
+            "TYPE"          : {
+                "TITLE"         : "Tipo",
+                "OBJECT"        : "Oggetto",
+                "STRING"        : "Testo",
+                "NUMBER"        : "Num. in virgola mobile",
+                "INTEGER"       : "Numero intero",
+                "BOOLEAN"       : "Booleano"
+            },
+            "REQUIRED"      : "Obbligatorio",
+            "LIST"          : "Lista",
+            "OCCURRENCES"   : {
+                "MIN"           : "N° minimo elementi",
+                "MAX" : "N° massimo elementi"
+            },
+            "UNIQUE_ITEMS"  : "Elementi distinti",
+            "EXTRA_PROPS"   : {
+                "TITLE"         : "Proprietà aggiuntive",
+                "ALLOWED"       : "Consentite",
+                "NOT_ALLOWED"   : "Proibite",
+                "STRING"        : "Solo di testo",
+                "NUMBER"        : "Solo num. in virgola mob.",
+                "INTEGER"       : "Solo num. interi",
+                "BOOLEAN"       : "Solo booleane"
+            }
         }
     }
 }

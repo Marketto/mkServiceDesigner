@@ -1,34 +1,34 @@
 <mat-grid-list cols="14">
   <mat-grid-tile colspan="4">
     <mat-form-field class="md-block md-valign">
-      <mat-select placeholder="Additional properties" [(ngModel)]="item.additionalProperties">
-        <mat-option ngValue="">
-          Allowed
+      <mat-select placeholder="{{'LABEL.ITEM.EXTRA_PROPS.TITLE'|translate}}" [(ngModel)]="item.additionalProperties">
+        <mat-option [value]="true">
+          {{'LABEL.ITEM.EXTRA_PROPS.ALLOWED'|translate}}
         </mat-option>
-        <mat-option value="boolean:false">
-          Not allowed
+        <mat-option [value]="false">
+          {{'LABEL.ITEM.EXTRA_PROPS.NOT_ALLOWED'|translate}}
         </mat-option>
-        <mat-option value="{type:'string'}">
-          String
+        <mat-option value="string">
+          {{'LABEL.ITEM.EXTRA_PROPS.STRING'|translate}}
         </mat-option>
-        <mat-option value="{type:'integer'}">
-          Integer
+        <mat-option value="integer">
+          {{'LABEL.ITEM.EXTRA_PROPS.INTEGER'|translate}}
         </mat-option>
-        <mat-option value="{type:'number'}">
-          Number
+        <mat-option value="number">
+          {{'LABEL.ITEM.EXTRA_PROPS.NUMBER'|translate}}
         </mat-option>
-        <mat-option value="{type:'boolean'}">
-          Boolean
+        <mat-option value="boolean">
+          {{'LABEL.ITEM.EXTRA_PROPS.BOOLEAN'|translate}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-  
   </mat-grid-tile>
+
   <mat-grid-tile colspan="9">
   </mat-grid-tile>
 
   <mat-grid-tile colspan="1"> 
-    <button mat-mini-fab color="primary" (click)="newItem()" matTooltip="Add property">
+    <button mat-mini-fab color="primary" (click)="newItem()" matTooltip="{{'TOOLTIP.BUTTON.ADD_PROPERTY'|translate}}">
       <mat-icon class="icon">add</mat-icon>
     </button>
   </mat-grid-tile>

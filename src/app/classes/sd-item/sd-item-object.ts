@@ -2,15 +2,11 @@ import { SdItemList } from './sd-item-list';
 import { SdItem } from './sd-item';
 
 
-type SdItemObjectAdditionalPropertiesType = 'string' | 'number' | 'integer' | 'boolean';
-
-class SdItemObjectAdditionalProperties {
-    type: SdItemObjectAdditionalPropertiesType;
-}
+type SdItemObjectAdditionalPropertiesType = boolean | 'string' | 'number' | 'integer' | 'boolean';
 
 export class SdItemObject extends SdItem {
     type: 'object' = 'object';
-    additionalProperties: Boolean | SdItemObjectAdditionalProperties = false;
+    additionalProperties: SdItemObjectAdditionalPropertiesType = false;
     children: SdItemList = new SdItemList;
 
     constructor(item?: SdItem) {

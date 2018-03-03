@@ -2,17 +2,17 @@
   <mat-grid-list cols="14" [ngSwitch]="item.listOf">
     <mat-grid-tile colspan="4">
       <mat-form-field>
-        <input matInput [(ngModel)]="item.name" required placeholder="Property name">
+        <input matInput [(ngModel)]="item.name" required placeholder="{{'LABEL.ITEM.PROPERTY_NAME'|translate}}">
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <mat-slide-toggle class="md-primary" name="required" [(ngModel)]="item.required">
-        Required
+        {{'LABEL.ITEM.REQUIRED'|translate}}
       </mat-slide-toggle>
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
       <mat-form-field>
-        <mat-select [(ngModel)]="item.dependencies" multiple ng-disabled="list.length<2" placeholder="Dependencies">
+        <mat-select [(ngModel)]="item.dependencies" multiple ng-disabled="list.length<2" placeholder="{{'LABEL.ITEM.DEPENDENCIES'|translate}}">
           <!--mat-option ng-value="sibling.name" ng-repeat="sibling in list|exclude:item">
             {{sibling.name}}
           </mat-option-->
@@ -21,40 +21,40 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <mat-form-field matTooltip="{{ ( item.children && item.children.length>0 ) ? 'Remove children to change type' : null}}">
-        <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="Type" [disabled]="item.children && item.children.length>0">
+        <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="{{'LABEL.ITEM.TYPE.TITLE'|translate}}" [disabled]="item.children && item.children.length>0">
           <mat-option value="object">
-            Object
+            {{'LABEL.ITEM.TYPE.OBJECT'|translate}}
           </mat-option>
           <mat-option value="string">
-            String
+            {{'LABEL.ITEM.TYPE.STRING'|translate}}
           </mat-option>
           <mat-option value="integer">
-            Integer
+            {{'LABEL.ITEM.TYPE.INTEGER'|translate}}
           </mat-option>
           <mat-option value="number">
-            Number
+            {{'LABEL.ITEM.TYPE.NUMBER'|translate}}
           </mat-option>
           <mat-option value="boolean">
-            Boolean
+            {{'LABEL.ITEM.TYPE.BOOLEAN'|translate}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <mat-slide-toggle class="md-primary" name="listOf" [(ngModel)]="item.listOf">
-        List/Array
+        {{'LABEL.ITEM.LIST'|translate}}
       </mat-slide-toggle>
     </mat-grid-tile>
     
     <mat-grid-tile colspan="1">
-      <button mat-mini-fab color="warn" (click)="removeItem(item)" matTooltip="Delete property">
+      <button mat-mini-fab color="warn" (click)="removeItem(item)" matTooltip="{{'TOOLTIP.BUTTON.DEL_PROPERTY'|translate}}">
         <mat-icon class="icon">delete</mat-icon>
       </button>
     </mat-grid-tile>
 
     <mat-grid-tile colspan="3" *ngSwitchCase="true">
       <mat-form-field ng-init="(item.minOccurrences>=0)?null:(item.minOccurrences=0)">
-        <input matInput placeholder="Min Occurrence" required type="number" step="1" name="minOccurrencess" [(ngModel)]="item.minOccurrences" min="0" [max]="item.maxOccurrences||999"
+        <input matInput placeholder="{{'LABEL.ITEM.OCCURRENCES.MIN'|translate}}" required type="number" step="1" name="minOccurrencess" [(ngModel)]="item.minOccurrences" min="0" [max]="item.maxOccurrences||999"
         />
         <!--div ng-messages="item.minOccurrences.error" multiple role="alert">
           <div ng-message="min">
@@ -68,7 +68,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="3" *ngSwitchCase="true">
       <mat-form-field>
-        <input matInput placeholder="Max Occurrence" type="number" step="1" name="maxOccurrencess" [(ngModel)]="item.maxOccurrences" max="999" [min]="item.minOccurrences||1"/>
+        <input matInput placeholder="{{'LABEL.ITEM.OCCURRENCES.MAX'|translate}}" type="number" step="1" name="maxOccurrencess" [(ngModel)]="item.maxOccurrences" max="999" [min]="item.minOccurrences||1"/>
         <!--div ng-messages="item.maxOccurrences.error" multiple role="alert">
           <div ng-message="max">
             The maximum possible should be less than 999
@@ -79,9 +79,9 @@
         </div-->
       </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2" *ngSwitchCase="true">
+    <mat-grid-tile colspan="3" *ngSwitchCase="true">
       <mat-slide-toggle class="md-primary" name="uniqueItems" [(ngModel)]="item.uniqueItems">
-        Unique Items
+         {{'LABEL.ITEM.UNIQUE_ITEMS'|translate}}
       </mat-slide-toggle>
     </mat-grid-tile>
   </mat-grid-list>

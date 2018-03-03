@@ -11,7 +11,7 @@
         <button mat-icon-button (click)="addItem(item)" matTooltip="{{'TOOLTIP.BUTTON.ADD_RESOURCE'|translate}}">
             <mat-icon>add</mat-icon>
         </button>
-        <button mat-icon-button *ngIf="item.parent" (click)="removeItem(item)" matTooltip="{{'TOOLTIP.BUTTON.DELETE_RESOURCE'|translate}}">
+        <button mat-icon-button *ngIf="item.parent" (click)="removeItem(item)" matTooltip="{{'TOOLTIP.BUTTON.DEL_RESOURCE'|translate}}">
             <mat-icon aria-hidden="true">delete</mat-icon>
         </button>
     </div>
