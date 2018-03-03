@@ -1,0 +1,26 @@
+{
+    "TOOLTIP"   : {
+        "VERB"      : {
+            "GET"           : "Read (GET)",
+            "POST"          : "Create (POST)",
+            "PUT"           : "Update (PUT)",
+            "DELETE"        : "Delete (DELETE)",
+            "PATCH"         : "PATCH"
+        },
+        "IO"        : {
+            "REQUEST"       : "Request",
+            "RESPONSE"      : "Response"
+        },
+        "BUTTON"    : {
+            "ADD_PROPERTY"  : "Add property",
+            "MENU"          : "Menu",
+            "SIDE_BAR"      : {
+                "SHOW"          : "Show side bar",
+                "HIDE"          : "Hide side bar"
+            }
+        },
+        "INPUT"     : {
+            "PROJECT_NAME"  : "Project name"
+        }
+    }
+}

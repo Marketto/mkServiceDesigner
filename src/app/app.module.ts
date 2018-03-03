@@ -43,7 +43,7 @@ import { SdItemObjectComponent } from './model-editor/sd-item/sd-item-object/sd-
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    TranslateModule,
+    TranslateModule.forRoot(),
     TreeviewModule.forRoot(),
     MatToolbarModule,
     MatIconModule,

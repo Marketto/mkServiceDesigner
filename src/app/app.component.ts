@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { TreeviewConfig } from 'ngx-treeview';
 
 import { saveAs } from 'file-saver/FileSaver';
@@ -7,6 +8,10 @@ import * as JSZip from 'jszip';
 import { SdService, SdServiceVerb, SdServiceIOType } from './classes/sd-service/sd-service';
 import { SdServiceTreeItem } from './classes/sd-service/sd-service-tree-item';
 import { SdItemObject } from './classes/sd-item/sd-item-object';
+
+
+import * as EN_TRANSLATION from '../assets/i18n/en.json';
+import * as IT_TRANSLATION from '../assets/i18n/it.json';
 
 @Component({
   selector: 'app-root',
@@ -80,5 +85,20 @@ export class AppComponent {
     }, err => {
       console.error('zip loading', err);
     });
+  }
+
+  constructor(private translate: TranslateService) {
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    const DEFAULT_LANGUAGE = 'en';
+
+    this.translate.setTranslation('en', EN_TRANSLATION);
+    this.translate.setTranslation('it', IT_TRANSLATION);
+
+
+    this.translate.setDefaultLang(DEFAULT_LANGUAGE);
+    this.translate.use(this.translate.getBrowserLang() || DEFAULT_LANGUAGE);
   }
 }

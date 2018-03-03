@@ -1,0 +1,26 @@
+{
+    "TOOLTIP"   : {
+        "VERB"      : {
+            "GET"           : "Lettura (GET)",
+            "POST"          : "Creazione (POST)",
+            "PUT"           : "Aggiornamento (PUT)",
+            "DELETE"        : "Eliminazione (DELETE)",
+            "PATCH"         : "Correzione (PATCH)"
+        },
+        "IO"        : {
+            "REQUEST"       : "Richiesta",
+            "RESPONSE"      : "Risposta"
+        },
+        "BUTTON"    : {
+            "ADD_PROPERTY"  : "Aggiungi proprietà",
+            "MENU"          : "Menù",
+            "SIDE_BAR"      : {
+                "SHOW"          : "Mostra albero servizi",
+                "HIDE"          : "Nascondi albero servizi"
+            }
+        },
+        "INPUT": {
+            "PROJECT_NAME"  : "Nome progetto"
+        }
+    }
+}
