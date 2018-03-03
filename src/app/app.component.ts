@@ -60,7 +60,7 @@ export class AppComponent {
       },
       'mimeType': this.mksdMimeType
     }).then(blobData => {
-      if (!this.projectName){
+      if (!this.projectName) {
         this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
           this.projectName = projectName;
           const mksdFileName = this.projectName + this.mksdFileType;
