@@ -70,17 +70,22 @@
         position: sticky;
         margin: 0 -1rem;
         width: auto;
+        .title:after {
+            display: inline;
+            content: ':';
+        }
         .title, .uri, .verb, .io {
             font-size: 1rem;
             padding: 0.1rem 0.2rem;
         }
+        .verb-io, .verb, .io {
+            color: #3f51b5;
+        }
         .verb {
             text-transform: uppercase;
-            color: #3f51b5;
         }
         .io{
             text-transform: capitalize;
-            color: #3f51b5;
         }
         .uri {
             color: #ff4081;

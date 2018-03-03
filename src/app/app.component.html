@@ -85,11 +85,12 @@
   <mat-drawer-content>
     <div class="mat-drawer-content-container">
       <mat-toolbar class="tiny-toolbar">
-        <span class="title">Resource:</span>
+        <span class="title" translate>LABEL.EDITOR.RESOURCE</span>
         <span class="uri">{{ currentService.uri }}</span>
         <span class="spacer"></span>
-        <span class="verb">{{verb}}</span>
-        <span class="io">{{io}}</span>
+        <span class="verb-io" translate [translateParams]="{'verb': verb, 'io': ('LABEL.EDITOR.' + io|uppercase)|translate}">
+          LABEL.EDITOR.VERB_IO
+        </span>
       </mat-toolbar>
       <app-model-editor [service]="currentService.value.verbs[verb][io]"></app-model-editor>
     </div>

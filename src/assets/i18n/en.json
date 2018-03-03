@@ -22,5 +22,13 @@
         "INPUT"     : {
             "PROJECT_NAME"  : "Project name"
         }
+    },
+    "LABEL"     : {
+        "EDITOR"    : {
+            "RESOURCE"      : "Resource",
+            "VERB_IO"       : "{{verb}} {{io}}",
+            "REQUEST"       : "Request",
+            "RESPONSE"      : "Response"
+        }
     }
 }
