@@ -81,7 +81,7 @@
         MENU.EXPORT.WSDL
       </span>
     </button>
-    <button mat-menu-item disabled>
+    <button mat-menu-item (click)="exportJsonSchema()" [disabled]="!(serviceRoot && serviceRoot.toJSONSchemaList())">
       <mat-icon>developer_board</mat-icon>
       <span translate>
         MENU.EXPORT.JSON_SCHEMA

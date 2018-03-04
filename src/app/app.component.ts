@@ -97,6 +97,31 @@ export class AppComponent {
     });
   }
 
+  exportJsonSchema() {
+    const zip = new JSZip();
+    this.serviceRoot.toJSONSchemaList().forEach(schemaCfg => {
+      zip.file(`${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`, JSON.stringify(schemaCfg.schema, null, 4));
+    });
+    zip.generateAsync({
+      'type': 'blob',
+      'compression': 'DEFLATE',
+      'compressionOptions': {
+        'level': 9
+      }
+    }).then(blobData => {
+      if (!this.projectName) {
+        this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
+          this.projectName = projectName;
+          const zipFileName = `${this.projectName} JSON Schema.zip`;
+          saveAs(blobData, zipFileName);
+        });
+      } else {
+        const zipFileName = `${this.projectName} JSON Schema.zip`;
+        saveAs(blobData, zipFileName);
+      }
+    });
+  }
+
   constructor(private translate: TranslateService) {
     this.initTranslate();
   }

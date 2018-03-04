@@ -11,9 +11,28 @@ interface SdServiceVerbsJSON {
 
 export class SdServiceVerbO {
     response: SdItemList = new SdItemList;
+
+    toJSONSchemaList() {
+        const jss = this.response.toJSONSchema();
+        return jss ? [{
+            io: 'response',
+            schema: jss
+        }] : undefined;
+    }
 }
 export class SdServiceVerbIO extends SdServiceVerbO {
     request: SdItemList = new SdItemList;
+
+    toJSONSchemaList() {
+        const jss = this.request.toJSONSchema();
+        const schemaList = [
+            jss && {
+                io: 'request',
+                schema: this.request.toJSONSchema()
+            }].concat(super.toJSONSchemaList()).filter(s => !!s);
+
+        return schemaList.length > 0 ? schemaList : undefined;
+    }
 }
 
 export class SdServiceVerbs {
@@ -45,5 +64,17 @@ export class SdServiceVerbs {
             DELETE: (this.DELETE && (this.DELETE.response || this.DELETE.request)) ? this.DELETE : undefined,
             PATCH: (this.PATCH && (this.PATCH.response || this.PATCH.request)) ? this.PATCH : undefined
         };
+    }
+
+    toJSONSchemaList() {
+        const getList = (this.GET.toJSONSchemaList() || []).map(io => Object.assign({ verb: 'GET' }, io));
+        const putList = (this.PUT.toJSONSchemaList() || []).map(io => Object.assign({ verb: 'PUT' }, io));
+        const postList = (this.POST.toJSONSchemaList() || []).map(io => Object.assign({ verb: 'POST' }, io));
+        const deleteList = (this.DELETE.toJSONSchemaList() || []).map(io => Object.assign({ verb: 'DELETE' }, io));
+        const patchList = (this.PATCH.toJSONSchemaList() || []).map(io => Object.assign({ verb: 'PATCH' }, io));
+
+        const verbList = [].concat(getList, putList, postList, deleteList, patchList).filter(s => !!s);
+
+        return verbList.length > 0 ? verbList : undefined;
     }
 }

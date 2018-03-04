@@ -28,6 +28,7 @@ export abstract class SdItem {
 
     protected toItemJSONSchema(): object {
         return {
+            id: this.id,
             type: this.type
         };
     }

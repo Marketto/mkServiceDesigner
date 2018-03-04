@@ -19,8 +19,8 @@ export class SdItemList extends Array<SdItem> {
             props[sdItem.name] = sdItem.toJSONSchema();
         });
 
-        return Object.assign(props, {
+        return sdItemArray.length > 0 ? Object.assign(props, {
             required: (required.length > 0) ? required : undefined
-        });
+        }) : undefined;
     }
 }
