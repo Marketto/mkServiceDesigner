@@ -1,7 +1,15 @@
 import { SdItem } from './sd-item';
 
-// Workaround to properly extend Array
-class SdItemListCore {
+export class SdItemList extends Array<SdItem> {
+    [index: number]: SdItem;
+    constructor(items?: Array<SdItem> | SdItemList) {
+        super(...items);
+        Object.assign(this,
+            ...Object.keys(SdItemList.prototype)
+                .filter(m => typeof Array.prototype[m] === 'undefined')
+                .map(m => ({ [m]: SdItemList.prototype[m]}))
+        );
+    }
     toJSONSchema(): object {
         const props = {};
         const sdItemArray = [].concat(this).filter(sdItem => !!sdItem.name);
@@ -15,13 +23,4 @@ class SdItemListCore {
             required: (required.length > 0) ? required : undefined
         });
     }
-}
-
-export class SdItemList extends Array<SdItem> implements SdItemListCore {
-    [index: number]: SdItem;
-    constructor(items?: Array<SdItem> | SdItemList) {
-        super(...items);
-        Object.assign(this, SdItemListCore.prototype);
-    }
-    toJSONSchema;
 }
