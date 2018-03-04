@@ -18,4 +18,15 @@ export abstract class SdItemNumeric extends SdItem {
             this.exclusiveMax = item.exclusiveMax;
         }
     }
+
+    protected toItemJSONSchema(): object {
+        const jss = super.toItemJSONSchema();
+        return Object.assign(jss, {
+            multipleOf: (this.multipleOf !== null) ? this.multipleOf : undefined,
+            minValue: (this.minValue !== null) ? this.minValue : undefined,
+            maxValue: (this.maxValue !== null) ? this.maxValue : undefined,
+            exclusiveMin: (this.minValue !== null && this.minValue !== undefined) ? this.exclusiveMin : undefined,
+            exclusiveMax: (this.maxValue !== null && this.maxValue !== undefined) ? this.exclusiveMax : undefined
+        });
+    }
 }

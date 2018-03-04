@@ -16,4 +16,12 @@ export class SdItemObject extends SdItem {
             this.children = item.children;
         }
     }
+
+    protected toItemJSONSchema(): object {
+        const jss = super.toItemJSONSchema();
+        const children = (this.children.length > 0) ? this.children.toJSONSchema() : undefined;
+        return Object.assign(jss, {
+                properties: children
+            });
+    }
 }

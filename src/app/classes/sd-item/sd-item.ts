@@ -6,6 +6,8 @@ export abstract class SdItem {
     type: SdItemType = null;
     required: Boolean = false;
     dependencies: Array<SdItem>;
+
+    // Array props
     listOf: Boolean = false;
     minOccurrences: Number = 0;
     maxOccurrences: Number = null;
@@ -22,5 +24,25 @@ export abstract class SdItem {
             this.maxOccurrences = item.maxOccurrences;
             this.uniqueItems = item.uniqueItems;
         }
+    }
+
+    protected toItemJSONSchema(): object {
+        return {
+            type: this.type
+        };
+    }
+    toJSONSchema(): object {
+        const itemJSS = this.toItemJSONSchema();
+        if (this.listOf) {
+            return {
+                type: 'array',
+                items: [itemJSS],
+                additionalItems: false,
+                uniqueItems: this.uniqueItems,
+                minItems: (this.minOccurrences !== null) ? this.minOccurrences : undefined,
+                maxItems: (this.maxOccurrences !== null) ? this.maxOccurrences : undefined
+            };
+        }
+        return itemJSS;
     }
 }
