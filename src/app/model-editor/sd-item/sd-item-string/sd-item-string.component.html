@@ -25,7 +25,7 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="7">
     <mat-form-field>
-      <input matInput placeholder="{{'LABEL.ITEM.REGEXP'|translate}}" [(ngModel)]="item.pattern" [disabled]="!!item.format || item.domain.length>0">
+      <input matInput placeholder="{{'LABEL.ITEM.REGEXP'|translate}}" appRegexpValidator [(ngModel)]="item.pattern" [disabled]="!!item.format || item.domain.length>0">
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
