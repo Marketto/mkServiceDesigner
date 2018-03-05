@@ -26,13 +26,25 @@ export abstract class SdItem {
         }
     }
 
+    public static fromJSON(key: string, value: any): SdItem {
+        if (!key) {
+            const sdItem = Object.create(SdItem.prototype);
+
+            return Object.assign(sdItem, {});
+        }
+        return value;
+    }
+    public toJSON(): SdItem {
+        return Object.assign({}, this);
+    }
+
     protected toItemJSONSchema(): object {
         return {
             id: this.id,
             type: this.type
         };
     }
-    toJSONSchema(): object {
+    public toJSONSchema(): object {
         const itemJSS = this.toItemJSONSchema();
         if (this.listOf) {
             return {

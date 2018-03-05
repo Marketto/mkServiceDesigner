@@ -1,21 +1,26 @@
-import { Directive } from '@angular/core';
-import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
+import { Directive, forwardRef } from '@angular/core';
+import { NG_VALIDATORS, Validator, AbstractControl, FormControl } from '@angular/forms';
 
 @Directive({
-  selector: '[appRegexpValidator]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: RegexpValidatorDirective, multi: true }]
+  selector: '[appRegexpValidator][ngModel],[appRegexpValidator][formControl]',
+  providers: [{
+      provide: NG_VALIDATORS,
+      useValue: RegexpValidatorDirective,
+      useExisting: forwardRef(() => RegexpValidatorDirective),
+      multi: true
+    }]
 })
 export class RegexpValidatorDirective implements Validator {
 
-  validate(control: AbstractControl): {[key: string]: any} {
+  validate(control: AbstractControl|FormControl): {[key: string]: any} {
     try {
       const typedRegexp = new RegExp(control.value);
     } catch (e) {
-      return { 'malformedRegexp': { value: control.value } };
+      return { 'regexpValidator' : { value: control.value, valid: false } };
     }
     return null;
   }
 
-  constructor() { }
+  constructor() {}
 
 }
