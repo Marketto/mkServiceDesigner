@@ -10,16 +10,16 @@
         {{'LABEL.ITEM.REQUIRED'|translate}}
       </mat-slide-toggle>
     </mat-grid-tile>
-    <mat-grid-tile colspan="3">
-      <mat-form-field>
-        <mat-select [(ngModel)]="item.dependencies" multiple ng-disabled="list.length<2" placeholder="{{'LABEL.ITEM.DEPENDENCIES'|translate}}">
-          <!--mat-option ng-value="sibling.name" ng-repeat="sibling in list|exclude:item">
-            {{sibling.name}}
-          </mat-option-->
-        </mat-select>
-      </mat-form-field>
-    </mat-grid-tile>
     <mat-grid-tile colspan="2">
+      <!--mat-form-field>
+        <mat-select [(ngModel)]="item.dependencies" multiple ng-disabled="list.length<2" placeholder="{{'LABEL.ITEM.DEPENDENCIES'|translate}}">
+          <mat-option ng-value="sibling.name" ng-repeat="sibling in list|exclude:item">
+            {{sibling.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field-->
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
       <mat-form-field matTooltip="{{ ( item.children && item.children.length>0 ) ? ('TOOLTIP.INPUT.LOCKED_OBJECT_TYPE'|translate) : null}}">
         <mat-select [ngModel]="item.type" (change)="changeType(item, $event.value)" placeholder="{{'LABEL.ITEM.TYPE.TITLE'|translate}}" [disabled]="item.children && item.children.length>0">
           <mat-option value="object">

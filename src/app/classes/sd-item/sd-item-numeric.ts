@@ -2,6 +2,7 @@ import { SdItem } from './sd-item';
 
 export abstract class SdItemNumeric extends SdItem {
     type: 'number' | 'integer';
+    default: Number;
     multipleOf: Number;
     minValue: Number;
     exclusiveMin: Boolean = false;
@@ -22,6 +23,7 @@ export abstract class SdItemNumeric extends SdItem {
     protected toItemJSONSchema(): object {
         const jss = super.toItemJSONSchema();
         return Object.assign(jss, {
+            default: (this.default !== null) ? this.default : undefined,
             multipleOf: (this.multipleOf !== null) ? this.multipleOf : undefined,
             minValue: (this.minValue !== null) ? this.minValue : undefined,
             maxValue: (this.maxValue !== null) ? this.maxValue : undefined,

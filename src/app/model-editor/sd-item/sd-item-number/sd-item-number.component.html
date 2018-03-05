@@ -1,5 +1,10 @@
-<mat-grid-list cols="13">
+<mat-grid-list cols="14">
   <mat-grid-tile colspan="3">
+    <mat-form-field>
+      <input matInput [(ngModel)]="item.default" placeholder="{{'LABEL.ITEM.DEFAULT_VALUE'|translate}}" type="number" [max]="item.maxValue" [min]="item.minValue">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
     <mat-form-field>
       <input matInput placeholder="{{'LABEL.ITEM.MULTIPLE'|translate}}" type="number" step="{{integer?1:0.1}}" name="multipleOf" [(ngModel)]="item.multipleOf"/>
     </mat-form-field>
@@ -16,7 +21,7 @@
       </mat-select>
     </mat-form-field>
   </mat-grid-tile>
-  <mat-grid-tile colspan="3">
+  <mat-grid-tile colspan="2">
     <mat-form-field>
       <input matInput placeholder="{{'LABEL.ITEM.MIN_VAL'|translate}}" type="number" step="{{integer?1:0.1}}" name="minValue" [(ngModel)]="item.minValue"
         [max]="item.maxValue" />
@@ -34,9 +39,8 @@
       </mat-select>
     </mat-form-field>
   </mat-grid-tile>
-  <mat-grid-tile colspan="3">
+  <mat-grid-tile colspan="2">
     <mat-form-field>
-      <label></label>
       <input placeholder="{{'LABEL.ITEM.MAX_VAL'|translate}}" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maxValue"
          [min]="item.maxValue" />
       <!--div ng-messages="item.maxValue.error" role="alert">

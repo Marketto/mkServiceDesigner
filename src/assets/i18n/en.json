@@ -51,6 +51,7 @@
         },
         "ITEM"      : {
             "PROPERTY_NAME" : "Property name",
+            "DEFAULT_VALUE" : "Default value",
             "DEPENDENCIES"  : "Dependencies",
             "TYPE"          : {
                 "TITLE"         : "Type",

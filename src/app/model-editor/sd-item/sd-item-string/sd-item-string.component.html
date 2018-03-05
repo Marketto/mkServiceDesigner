@@ -1,4 +1,9 @@
 <mat-grid-list cols="14">
+  <mat-grid-tile colspan="4">
+    <mat-form-field>
+      <input matInput [(ngModel)]="item.default" placeholder="{{'LABEL.ITEM.DEFAULT_VALUE'|translate}}">
+    </mat-form-field>
+  </mat-grid-tile>
   <mat-grid-tile colspan="3">
     <mat-form-field>
       <input matInput placeholder="{{'LABEL.ITEM.LENGTH.MIN'|translate}}" type="number" step="1" name="minLength" [(ngModel)]="item.minLength" min="0" max="{{item.maxLength}}"/>
@@ -21,11 +26,6 @@
           {{item.maxLength.viewValue}} is lower than {{item.minLength}} (min value).
         </div>
       </div-->
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="7">
-    <mat-form-field>
-      <input matInput placeholder="{{'LABEL.ITEM.REGEXP'|translate}}" appRegexpValidator [(ngModel)]="item.pattern" [disabled]="!!item.format || item.domain.length>0">
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
@@ -55,7 +55,12 @@
       </mat-select>
     </mat-form-field>
   </mat-grid-tile>
-  <mat-grid-tile colspan="10">
+  <mat-grid-tile colspan="5">
+    <mat-form-field>
+      <input matInput placeholder="{{'LABEL.ITEM.REGEXP'|translate}}" appRegexpValidator [(ngModel)]="item.pattern" [disabled]="!!item.format || item.domain.length>0">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="8">
     <mat-form-field>
       <mat-chip-list #chipDomain [disabled]="!!item.format || !!item.pattern">
         <mat-chip *ngFor="let value of item.domain" (remove)="removeDomain(value)">

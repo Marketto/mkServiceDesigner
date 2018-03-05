@@ -4,6 +4,7 @@ type SdItemStringFormatJson = 'hostname' | 'ipv4' | 'ipv6' | 'date-time' | 'emai
 
 export class SdItemString extends SdItem {
     type: 'string' = 'string';
+    default: string;
     domain: Array<String> = [];
     minLength: number;
     maxLength: number;
