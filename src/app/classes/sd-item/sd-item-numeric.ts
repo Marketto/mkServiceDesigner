@@ -12,6 +12,7 @@ export abstract class SdItemNumeric extends SdItem {
     constructor(item?: SdItem) {
         super(item);
         if (item && item instanceof SdItemNumeric) {
+            this.default = item.default;
             this.multipleOf = item.multipleOf;
             this.minValue = item.minValue;
             this.exclusiveMin = item.exclusiveMin;

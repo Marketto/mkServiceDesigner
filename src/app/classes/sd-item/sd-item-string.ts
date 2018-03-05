@@ -31,6 +31,7 @@ export class SdItemString extends SdItem {
     constructor(item?: SdItem) {
         super(item);
         if (item && item instanceof SdItemString) {
+            this.default = item.default;
             this.domain = item.domain;
             this.minLength = item.minLength;
             this.maxLength = item.maxLength;
@@ -56,6 +57,7 @@ export class SdItemString extends SdItem {
             } catch (e) {}
         } */
         return Object.assign(jss, {
+            default: (this.default !== null) ? this.default : undefined,
             enum: (this.domain.length > 0) ? this.domain : undefined,
             minLength: Number.isInteger(this.minLength) ? this.minLength : undefined,
             maxLength: Number.isInteger(this.maxLength) ? this.maxLength : undefined,
