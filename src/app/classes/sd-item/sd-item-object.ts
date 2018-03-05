@@ -6,8 +6,15 @@ type SdItemObjectAdditionalPropertiesType = boolean | 'string' | 'number' | 'int
 
 export class SdItemObject extends SdItem {
     type: 'object' = 'object';
-    additionalProperties: SdItemObjectAdditionalPropertiesType = false;
+    private $additionalProperties: SdItemObjectAdditionalPropertiesType = true;
     children: SdItemList = new SdItemList;
+
+    get additionalProperties(): SdItemObjectAdditionalPropertiesType {
+        return ( (this.children || []).length > 0 || this.$additionalProperties) ? this.$additionalProperties : true;
+    }
+    set additionalProperties(value: SdItemObjectAdditionalPropertiesType) {
+        this.$additionalProperties = value;
+    }
 
     constructor(item?: SdItem) {
         super(item);
@@ -17,11 +24,20 @@ export class SdItemObject extends SdItem {
         }
     }
 
+    public toJSON(): object {
+        const json = super.toJSON();
+        return Object.assign(json, {
+            $additionalProperties: undefined,
+            additionalProperties: this.additionalProperties
+        });
+    }
+
     protected toItemJSONSchema(): object {
         const jss = super.toItemJSONSchema();
         const children = (this.children.length > 0) ? this.children.toJSONSchema() : undefined;
         return Object.assign(jss, {
-                properties: children
-            });
+            properties: children,
+            additionalProperties: this.additionalProperties
+        });
     }
 }

@@ -34,7 +34,7 @@ export abstract class SdItem {
         }
         return value;
     }
-    public toJSON(): SdItem {
+    public toJSON(): object {
         return Object.assign({}, this);
     }
 

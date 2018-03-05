@@ -5,7 +5,7 @@
         <mat-option [value]="true">
           {{'LABEL.ITEM.EXTRA_PROPS.ALLOWED'|translate}}
         </mat-option>
-        <mat-option [value]="false">
+        <mat-option [value]="false" [disabled]="item.children.length===0">
           {{'LABEL.ITEM.EXTRA_PROPS.NOT_ALLOWED'|translate}}
         </mat-option>
         <mat-option value="string">

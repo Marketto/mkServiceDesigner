@@ -40,8 +40,9 @@ export class SdItemString extends SdItem {
         }
     }
 
-    public toJSON(): SdItemString {
-        return Object.assign({}, this, {
+    public toJSON(): object {
+        const json = super.toJSON();
+        return Object.assign(json, {
             $pattern : undefined,
             pattern: this.pattern
         });
@@ -49,13 +50,6 @@ export class SdItemString extends SdItem {
 
     protected toItemJSONSchema(): object {
         const jss = super.toItemJSONSchema();
-        /* let pattern;
-        if (this.pattern) {
-            try {
-                const regexp = new RegExp(this.pattern).toString();
-                pattern = regexp.substr(1, regexp.length - 2);
-            } catch (e) {}
-        } */
         return Object.assign(jss, {
             default: (this.default !== null) ? this.default : undefined,
             enum: (this.domain.length > 0) ? this.domain : undefined,
