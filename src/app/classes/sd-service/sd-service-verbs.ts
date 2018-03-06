@@ -1,5 +1,9 @@
-import { SdItemList } from './../sd-item/sd-item-list';
+import { XMLElement, XMLAttribute, XMLChild, xml } from 'xml-decorators';
+import { SdItemList, XsdSdItemList } from './../sd-item/sd-item-list';
 
+
+export type SdServiceVerb = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+export type SdServiceIOType = 'request' | 'response';
 
 interface SdServiceVerbsJSON {
     GET?: SdServiceVerbO;
@@ -8,6 +12,7 @@ interface SdServiceVerbsJSON {
     DELETE?: SdServiceVerbIO;
     PATCH?: SdServiceVerbIO;
 }
+
 
 export class SdServiceVerbO {
     response: SdItemList = new SdItemList;
@@ -18,6 +23,10 @@ export class SdServiceVerbO {
             io: 'response',
             schema: jss
         }] : undefined;
+    }
+
+    public toXSD(): XsdSdServiceVerbIO {
+        return this.response.filter(item => !!item.name).length > 0 ? new XsdSdServiceVerbIO(this) : undefined;
     }
 }
 export class SdServiceVerbIO extends SdServiceVerbO {
@@ -33,7 +42,12 @@ export class SdServiceVerbIO extends SdServiceVerbO {
 
         return schemaList.length > 0 ? schemaList : undefined;
     }
+
+    public toXSD(): XsdSdServiceVerbIO {
+        return this.request.filter(item => !!item.name).length > 0 ? new XsdSdServiceVerbIO(this) : super.toXSD();
+    }
 }
+
 
 export class SdServiceVerbs {
     GET: SdServiceVerbO = new SdServiceVerbO;
@@ -76,5 +90,77 @@ export class SdServiceVerbs {
         const verbList = [].concat(getList, putList, postList, deleteList, patchList).filter(s => !!s);
 
         return verbList.length > 0 ? verbList : undefined;
+    }
+
+    public toXSD(): XsdSdServiceVerbs {
+        return new XsdSdServiceVerbs(this);
+    }
+}
+
+
+
+
+@XMLElement({ root: 'operation' })
+class XsdSdServiceVerbIO {
+    @XMLChild({})
+    private output: XsdSdItemList;
+    @XMLChild({})
+    private input: XsdSdItemList;
+    @XMLAttribute({ required: true, name: 'whttp:method'})
+    public method: SdServiceVerb;
+
+    constructor(verbIo: SdServiceVerbO) {
+        this.output = verbIo.response.length > 0 ? verbIo.response.toXSD() : undefined;
+        if (verbIo instanceof SdServiceVerbIO) {
+            this.input = verbIo.request.length > 0 ? verbIo.request.toXSD() : undefined;
+        }
+    }
+
+    public serialize(): string {
+        return xml.serialize(this);
+    }
+}
+
+@XMLElement({ root: 'endpoint' })
+export class XsdSdServiceVerbs {
+    @XMLChild({})
+    private operation: XsdSdServiceVerbIO[] = new Array < XsdSdServiceVerbIO >();
+    @XMLAttribute({required: true})
+    public address: string;
+
+    constructor(verb: SdServiceVerbs) {
+        const get = verb.GET.toXSD();
+        if (get) {
+            get.method = 'GET';
+            this.operation.push(get);
+        }
+
+        const post = verb.POST.toXSD();
+        if (post) {
+            post.method = 'POST';
+            this.operation.push(post);
+        }
+
+        const put = verb.PUT.toXSD();
+        if (put) {
+            put.method = 'PUT';
+            this.operation.push(put);
+        }
+
+        const del = verb.DELETE.toXSD();
+        if (del) {
+            del.method = 'DELETE';
+            this.operation.push(del);
+        }
+
+        const patch = verb.PATCH.toXSD();
+        if (patch) {
+            patch.method = 'PATCH';
+            this.operation.push(patch);
+        }
+    }
+
+    public serialize(): string {
+        return xml.serialize(this);
     }
 }

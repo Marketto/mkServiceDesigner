@@ -26,17 +26,18 @@ export class SdItemList extends Array<SdItem> {
     }
 
     public toXSD(): XsdSdItemList {
-        return new XsdSdItemList(this);
+        const eligibleXsdList = this.filter(item => !!item.name);
+        return eligibleXsdList.length > 0 ? new XsdSdItemList(new SdItemList(eligibleXsdList)) : undefined;
     }
 }
 
 @XMLElement({ root: 'xs:complexType' })
-class XsdSdItemList {
+export class XsdSdItemList {
     @XMLChild({ name: 'xs:element', implicitStructure: 'xs:sequence.$' })
     private elements: XsdSdItem[];
 
     constructor(itemList: SdItemList) {
-        this.elements = itemList.filter(item => !!item.name).map(item => item.toXSD());
+        this.elements = itemList.map(item => item.toXSD());
     }
 
     public serialize(root?: string): string {

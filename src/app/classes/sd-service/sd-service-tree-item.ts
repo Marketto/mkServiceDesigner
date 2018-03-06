@@ -1,3 +1,5 @@
+import { XsdSdServiceVerbs } from './sd-service-verbs';
+import { XMLElement, XMLAttribute, XMLChild, xml } from 'xml-decorators';
 import { SdService, SdServiceJSON } from './sd-service';
 import { TreeviewItem } from 'ngx-treeview';
 
@@ -62,5 +64,41 @@ export class SdServiceTreeItem extends TreeviewItem {
             })
         })).concat(...(this.children || []).map(c => c.toJSONSchemaList()));
         return serviceList.length > 0 ? serviceList : undefined;
+    }
+
+    public toXSD(): XsdSdService {
+        return this.value.endPoint ? new XsdSdService(this) : undefined;
+    }
+    public toXSDList(): XsdSdService[] {
+        const xsdServiceChildren = this.children ? this.children.map(s => s.toXSDList()) : undefined;
+        return [this.toXSD()].concat(...xsdServiceChildren).filter(s => !!s);
+    }
+}
+
+
+@XMLElement({ root: 'description' })
+class XsdSdService {
+    public path: string;
+    @XMLChild({ implicitStructure: 'service.$'})
+    private endpoint: XsdSdServiceVerbs;
+    @XMLAttribute({})
+    private xmlns = 'http://www.w3.org/ns/wsdl';
+    @XMLAttribute({})
+    private 'xmls:whttp' = 'http://www.w3.org/ns/wsdl/http';
+    @XMLAttribute({})
+    private 'xmlns:wsoap' = 'http://www.w3.org/ns/wsdl/soap';
+    // @XMLAttribute({})
+    // targetNamespace = 'http://www.example.com/wsdl20sample';
+
+    constructor(service: SdServiceTreeItem) {
+        const serviceVerbs = service.value.verbs.toXSD();
+        if (serviceVerbs) {
+            this.path = serviceVerbs.address = service.uri.toString();
+            this.endpoint = serviceVerbs;
+        }
+    }
+
+    public serialize(): string {
+        return xml.serialize(this);
     }
 }

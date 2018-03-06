@@ -1,10 +1,7 @@
-import { SdServiceVerbs } from './sd-service-verbs';
+import { SdServiceVerbs, SdServiceVerb, SdServiceIOType, XsdSdServiceVerbs } from './sd-service-verbs';
 import { SdItemList } from '../sd-item/sd-item-list';
 import { TreeviewItem } from 'ngx-treeview';
 
-
-export type SdServiceVerb = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-export type SdServiceIOType = 'request' | 'response';
 
 export interface SdServiceJSON {
     endPoint: String;

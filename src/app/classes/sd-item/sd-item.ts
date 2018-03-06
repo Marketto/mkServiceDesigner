@@ -1,4 +1,4 @@
-import { XMLElement, XMLAttribute, XMLChild, xml } from 'xml-decorators';
+import { XMLElement, XMLAttribute, xml } from 'xml-decorators';
 import { ClassProvider } from '@angular/core';
 export type SdItemType = 'object' | 'string' | 'number' | 'integer' | 'boolean';
 

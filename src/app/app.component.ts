@@ -5,7 +5,8 @@ import { TreeviewConfig } from 'ngx-treeview';
 import { saveAs } from 'file-saver/FileSaver';
 import * as JSZip from 'jszip';
 
-import { SdService, SdServiceVerb, SdServiceIOType } from './classes/sd-service/sd-service';
+import { SdServiceVerb, SdServiceIOType } from './classes/sd-service/sd-service-verbs';
+import { SdService } from './classes/sd-service/sd-service';
 import { SdServiceTreeItem } from './classes/sd-service/sd-service-tree-item';
 import { SdItemObject } from './classes/sd-item/sd-item-object';
 
@@ -99,6 +100,7 @@ export class AppComponent {
 
   exportJsonSchema() {
     const zip = new JSZip();
+    const ARCHIVE_NAME = 'JSON Schema.zip';
     this.serviceRoot.toJSONSchemaList().forEach(schemaCfg => {
       zip.file(`${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`, JSON.stringify(schemaCfg.schema, null, 4));
     });
@@ -112,12 +114,34 @@ export class AppComponent {
       if (!this.projectName) {
         this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
           this.projectName = projectName;
-          const zipFileName = `${this.projectName} JSON Schema.zip`;
-          saveAs(blobData, zipFileName);
+          saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
         });
       } else {
-        const zipFileName = `${this.projectName} JSON Schema.zip`;
-        saveAs(blobData, zipFileName);
+        saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
+      }
+    });
+  }
+
+  exportWSDL() {
+    const zip = new JSZip();
+    const ARCHIVE_NAME = 'WSDL.zip';
+    this.serviceRoot.toXSDList().forEach(xsd => {
+      zip.file(`${xsd.path}.wsdl`, xsd.serialize());
+    });
+    zip.generateAsync({
+      'type': 'blob',
+      'compression': 'DEFLATE',
+      'compressionOptions': {
+        'level': 9
+      }
+    }).then(blobData => {
+      if (!this.projectName) {
+        this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
+          this.projectName = projectName;
+          saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
+        });
+      } else {
+        saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
       }
     });
   }
