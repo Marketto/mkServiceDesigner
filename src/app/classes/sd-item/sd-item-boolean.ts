@@ -1,4 +1,5 @@
-import { SdItem } from './sd-item';
+import { SdItem, XsdSdItem } from './sd-item';
+
 
 export class SdItemBoolean extends SdItem {
     type: 'boolean' = 'boolean';
@@ -16,5 +17,18 @@ export class SdItemBoolean extends SdItem {
         return Object.assign(jss, {
             default: (this.default !== null) ? this.default : undefined
         });
+    }
+
+    public toXSD(): XsdSdItemBoolean {
+        return super.toXSD(XsdSdItemBoolean);
+    }
+}
+
+
+
+class XsdSdItemBoolean extends XsdSdItem {
+    protected type: 'xs:boolean' = 'xs:boolean';
+    constructor(item: SdItemBoolean) {
+        super(item);
     }
 }

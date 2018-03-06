@@ -1,6 +1,7 @@
-import { SdItem } from './sd-item';
+import { SdItem, XsdSdItem } from './sd-item';
 
 type SdItemStringFormatJson = 'hostname' | 'ipv4' | 'ipv6' | 'date-time' | 'email' | 'uri' | false;
+
 
 export class SdItemString extends SdItem {
     type: 'string' = 'string';
@@ -40,6 +41,7 @@ export class SdItemString extends SdItem {
         }
     }
 
+
     public toJSON(): object {
         const json = super.toJSON();
         return Object.assign(json, {
@@ -58,5 +60,18 @@ export class SdItemString extends SdItem {
             pattern: this.pattern,
             format: this.format ? this.format : undefined
         });
+    }
+
+    public toXSD(): XsdSdItemString {
+        return super.toXSD(XsdSdItemString);
+    }
+}
+
+
+class XsdSdItemString extends XsdSdItem {
+    protected type: 'xs:string' = 'xs:string';
+
+    constructor(item: SdItemString) {
+        super(item);
     }
 }

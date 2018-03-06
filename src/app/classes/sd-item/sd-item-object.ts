@@ -1,8 +1,10 @@
+import { XMLChild } from 'xml-decorators';
 import { SdItemList } from './sd-item-list';
-import { SdItem } from './sd-item';
+import { SdItem, XsdSdItem } from './sd-item';
 
 
 type SdItemObjectAdditionalPropertiesType = boolean | 'string' | 'number' | 'integer' | 'boolean';
+
 
 export class SdItemObject extends SdItem {
     type: 'object' = 'object';
@@ -24,6 +26,7 @@ export class SdItemObject extends SdItem {
         }
     }
 
+
     public toJSON(): object {
         const json = super.toJSON();
         return Object.assign(json, {
@@ -39,5 +42,21 @@ export class SdItemObject extends SdItem {
             properties: children,
             additionalProperties: this.additionalProperties
         });
+    }
+
+    public toXSD(): XsdSdItemSObject {
+        return super.toXSD(XsdSdItemSObject);
+    }
+}
+
+
+class XsdSdItemSObject extends XsdSdItem {
+    protected type: undefined = undefined;
+    @XMLChild({ name: 'xs:complexType'})
+    private complexType;
+
+    constructor(item: SdItemObject) {
+        super(item);
+        this.complexType = item.children.toXSD();
     }
 }

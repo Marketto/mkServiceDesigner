@@ -1,4 +1,5 @@
-import { SdItem } from './sd-item';
+import { XMLElement, XMLChild, xml } from 'xml-decorators';
+import { SdItem, XsdSdItem } from './sd-item';
 
 export class SdItemList extends Array<SdItem> {
     [index: number]: SdItem;
@@ -22,5 +23,23 @@ export class SdItemList extends Array<SdItem> {
         return sdItemArray.length > 0 ? Object.assign(props, {
             required: (required.length > 0) ? required : undefined
         }) : undefined;
+    }
+
+    public toXSD(): XsdSdItemList {
+        return new XsdSdItemList(this);
+    }
+}
+
+@XMLElement({ root: 'xs:complexType' })
+class XsdSdItemList {
+    @XMLChild({ name: 'xs:element', implicitStructure: 'xs:sequence.$' })
+    private elements: XsdSdItem[];
+
+    constructor(itemList: SdItemList) {
+        this.elements = itemList.filter(item => !!item.name).map(item => item.toXSD());
+    }
+
+    public serialize(root?: string): string {
+        return xml.serialize(this);
     }
 }
