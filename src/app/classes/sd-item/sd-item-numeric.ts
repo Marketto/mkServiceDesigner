@@ -23,7 +23,6 @@ export abstract class SdItemNumeric extends SdItem {
         }
     }
 
-
     protected toItemJSONSchema(): object {
         const jss = super.toItemJSONSchema();
         return Object.assign(jss, {

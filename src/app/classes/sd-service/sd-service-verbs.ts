@@ -13,15 +13,25 @@ interface SdServiceVerbsJSON {
     PATCH?: SdServiceVerbIO;
 }
 
+const SCHEMA_VERSION = 'http://json-schema.org/schema#';
 
 export class SdServiceVerbO {
     response: SdItemList = new SdItemList;
 
+    public static fromJSON(key: string, value: any): SdServiceVerbO {
+        if (!key) {
+            const sdServiceVerbO = new SdServiceVerbO;
+            sdServiceVerbO.response = SdItemList.fromJSON(null, value.response);
+            return sdServiceVerbO;
+        }
+    }
     toJSONSchemaList() {
         const jss = this.response.toJSONSchema();
         return jss ? [{
             io: 'response',
-            schema: jss
+            schema: Object.assign({
+                $schema: SCHEMA_VERSION
+            }, jss)
         }] : undefined;
     }
 
@@ -32,12 +42,22 @@ export class SdServiceVerbO {
 export class SdServiceVerbIO extends SdServiceVerbO {
     request: SdItemList = new SdItemList;
 
+    public static fromJSON(key: string, value: any): SdServiceVerbIO {
+        if (!key) {
+            const sdServiceVerbIO = new SdServiceVerbIO;
+            sdServiceVerbIO.request = SdItemList.fromJSON(null, value.request);
+            sdServiceVerbIO.response = SdItemList.fromJSON(null, value.response);
+            return sdServiceVerbIO;
+        }
+    }
     toJSONSchemaList() {
         const jss = this.request.toJSONSchema();
         const schemaList = [
             jss && {
                 io: 'request',
-                schema: this.request.toJSONSchema()
+                schema: Object.assign({
+                    $schema: SCHEMA_VERSION
+                }, jss)
             }].concat(super.toJSONSchemaList()).filter(s => !!s);
 
         return schemaList.length > 0 ? schemaList : undefined;
@@ -58,16 +78,14 @@ export class SdServiceVerbs {
 
     public static fromJSON(key: string, value: any): SdServiceVerbs {
         if (!key) {
-            const sdServiceVerb = Object.create(SdServiceVerbs.prototype);
-            return Object.assign(sdServiceVerb, {
-                GET: value.GET || new SdServiceVerbO,
-                POST: value.POST || new SdServiceVerbIO,
-                PUT: value.PUT || new SdServiceVerbIO,
-                DELETE: value.DELETE || new SdServiceVerbIO,
-                PATCH: value.PATCH || new SdServiceVerbIO
-            });
+            const sdServiceVerbs = new SdServiceVerbs;
+            sdServiceVerbs.GET = SdServiceVerbO.fromJSON(null, value.GET);
+            sdServiceVerbs.POST = SdServiceVerbIO.fromJSON(null, value.POST);
+            sdServiceVerbs.PUT = SdServiceVerbIO.fromJSON(null, value.PUT);
+            sdServiceVerbs.DELETE = SdServiceVerbIO.fromJSON(null, value.DELETE);
+            sdServiceVerbs.PATCH = SdServiceVerbIO.fromJSON(null, value.PATCH);
+            return sdServiceVerbs;
         }
-        return value;
     }
     public toJSON(): SdServiceVerbsJSON {
         const json: Object = new Object();

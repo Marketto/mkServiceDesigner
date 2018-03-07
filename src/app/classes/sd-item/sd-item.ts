@@ -45,12 +45,7 @@ export abstract class SdItem implements SdItemInterface {
 
 
     public static fromJSON(key: string, value: any): SdItem {
-        if (!key) {
-            const sdItem = Object.create(SdItem.prototype);
-
-            return Object.assign(sdItem, {});
-        }
-        return value;
+        return;
     }
     public toJSON(): object {
         return Object.assign({}, this);

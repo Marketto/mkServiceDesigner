@@ -36,16 +36,15 @@ export class SdServiceTreeItem extends TreeviewItem {
     }
     public static fromJSON(key: string, value: any): SdServiceTreeItem {
         if (!key) {
-            const sdServiceTreeItem = Object.create(SdServiceTreeItem.prototype);
+            const sdServiceTreeItem = new SdServiceTreeItem;
+            sdServiceTreeItem.value = SdService.fromJSON(null, value);
+            sdServiceTreeItem.children = Array.isArray(value.children) ? (value.children || []).map(child => {
+                const sdServiceTreeItemChild = SdServiceTreeItem.fromJSON(null, child);
+                sdServiceTreeItemChild.parent = sdServiceTreeItem;
+                return sdServiceTreeItemChild;
+            }) : undefined;
 
-            return Object.assign(sdServiceTreeItem, {
-                value: SdService.fromJSON(null, value),
-                children: Array.isArray(value.children) ? (value.children || []).map(child => {
-                    const sdServiceTreeItemChild = SdServiceTreeItem.fromJSON(null, child);
-                    sdServiceTreeItemChild.parent = sdServiceTreeItem;
-                    return sdServiceTreeItemChild;
-                }) : undefined
-            });
+            return sdServiceTreeItem;
         }
         return value;
     }
@@ -59,9 +58,7 @@ export class SdServiceTreeItem extends TreeviewItem {
     toJSONSchemaList () {
         const serviceList = (this.value.toJSONSchemaList() || []).map(s => Object.assign({}, s, {
             uri: this.uri,
-            schema: Object.assign(s.schema, {
-                $schema: this.uri + '#'
-            })
+            schema: s.schema
         })).concat(...(this.children || []).map(c => c.toJSONSchemaList()));
         return serviceList.length > 0 ? serviceList : undefined;
     }

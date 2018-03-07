@@ -12,6 +12,12 @@ export class SdItemBoolean extends SdItem {
         }
     }
 
+    public static fromJSON(key: string, value: any): SdItemBoolean {
+        if (!key) {
+            return new SdItemBoolean(Object.assign(Object.create(SdItemBoolean.prototype), value || {}));
+        }
+    }
+
     protected toItemJSONSchema(): object {
         const jss = super.toItemJSONSchema();
         return Object.assign(jss, {

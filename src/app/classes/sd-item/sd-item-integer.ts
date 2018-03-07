@@ -27,4 +27,10 @@ export class SdItemInteger extends SdItemNumeric {
     set maxValue(maxValue: Number) {
         this.$maxValue = maxValue ? Math.round(maxValue.valueOf()) : maxValue;
     }
+
+    public static fromJSON(key: string, value: any): SdItemInteger {
+        if (!key) {
+            return new SdItemInteger(Object.assign(Object.create(SdItemInteger.prototype), value || {}));
+        }
+    }
 }

@@ -42,6 +42,11 @@ export class SdItemString extends SdItem {
     }
 
 
+    public static fromJSON(key: string, value: any): SdItemString {
+        if (!key) {
+            return new SdItemString(Object.assign(Object.create(SdItemString.prototype), value || {}));
+        }
+    }
     public toJSON(): object {
         const json = super.toJSON();
         return Object.assign(json, {

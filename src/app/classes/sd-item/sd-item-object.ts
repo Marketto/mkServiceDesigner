@@ -26,7 +26,15 @@ export class SdItemObject extends SdItem {
         }
     }
 
-
+    public static fromJSON(key: string, value: any): SdItemObject {
+        if (!key) {
+            const jsonItem = value || {};
+            const sdItemObject = Object.assign(new SdItemObject, jsonItem, {
+                children: SdItemList.fromJSON(null, jsonItem.children || [])
+            });
+            return sdItemObject;
+        }
+    }
     public toJSON(): object {
         const json = super.toJSON();
         return Object.assign(json, {
@@ -37,11 +45,10 @@ export class SdItemObject extends SdItem {
 
     protected toItemJSONSchema(): object {
         const jss = super.toItemJSONSchema();
-        const children = (this.children.length > 0) ? this.children.toJSONSchema() : undefined;
+        const properties = (this.children.length > 0) ? this.children.toJSONSchema() : {};
         return Object.assign(jss, {
-            properties: children,
             additionalProperties: this.additionalProperties
-        });
+        }, properties);
     }
 
     public toXSD(): XsdSdItemSObject {

@@ -13,12 +13,10 @@ export class SdService {
 
     public static fromJSON(key: string, value: any): SdService {
         if (!key) {
-            const sdService = Object.create(SdService.prototype);
-
-            return Object.assign(sdService, {
-                endPoint: value.endPoint || '',
-                verbs: SdServiceVerbs.fromJSON(null, value.verbs)
-            });
+            const sdService = new SdService;
+            sdService.endPoint = value.endPoint || '';
+            sdService.verbs = SdServiceVerbs.fromJSON(null, value.verbs);
+            return sdService;
         }
         return value;
     }
