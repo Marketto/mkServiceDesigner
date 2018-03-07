@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { TreeviewConfig } from 'ngx-treeview';
 
 import { saveAs } from 'file-saver/FileSaver';
+import * as jsf from 'json-schema-faker';
+import faker from 'typescript-json-schema-faker';
 import * as JSZip from 'jszip';
 
 import { SdServiceVerb, SdServiceIOType } from './classes/sd-service/sd-service-verbs';
@@ -101,53 +103,104 @@ export class AppComponent {
   exportJsonSchema() {
     const zip = new JSZip();
     const ARCHIVE_NAME = 'JSON Schema.zip';
-    this.serviceRoot.toJSONSchemaList().forEach(schemaCfg => {
-      zip.file(`${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`, JSON.stringify(schemaCfg.schema, null, 4));
-    });
-    zip.generateAsync({
-      'type': 'blob',
-      'compression': 'DEFLATE',
-      'compressionOptions': {
-        'level': 9
-      }
-    }).then(blobData => {
-      if (!this.projectName) {
-        this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
-          this.projectName = projectName;
+    const schemaList = this.serviceRoot.toJSONSchemaList();
+    if ((schemaList || []).length > 0) {
+      schemaList.forEach(schemaCfg => {
+        zip.file(`${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`, JSON.stringify(schemaCfg.schema, null, 4));
+      });
+      zip.generateAsync({
+        'type': 'blob',
+        'compression': 'DEFLATE',
+        'compressionOptions': {
+          'level': 9
+        }
+      }).then(blobData => {
+        if (!this.projectName) {
+          this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
+            this.projectName = projectName;
+            saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
+          });
+        } else {
           saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-        });
-      } else {
-        saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-      }
-    });
+        }
+      });
+    } else {
+      // TODO message for nothing to save
+    }
+  }
+
+  exportJsonMock() {
+    const zip = new JSZip();
+    const ARCHIVE_NAME = 'JSON MOCKS.zip';
+    const schemaList = (this.serviceRoot.toJSONSchemaList() || []).map(schemaCfg => {
+        const jsonMock = faker(schemaCfg.schema);
+        if (jsonMock) {
+          return {
+            filePath: `${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`,
+            data: JSON.stringify(jsonMock, null, 4)
+          };
+        }
+      }).filter(schemaCfg => !!schemaCfg);
+
+    if (schemaList.length > 0) {
+      schemaList.forEach(schemaCfg => {
+        zip.file(schemaCfg.filePath, schemaCfg.data);
+      });
+      zip.generateAsync({
+        'type': 'blob',
+        'compression': 'DEFLATE',
+        'compressionOptions': {
+          'level': 9
+        }
+      }).then(blobData => {
+        if (!this.projectName) {
+          this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
+            this.projectName = projectName;
+            saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
+          });
+        } else {
+          saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
+        }
+      });
+    } else {
+      // TODO message for nothing to save
+    }
   }
 
   exportWSDL() {
     const zip = new JSZip();
     const ARCHIVE_NAME = 'WSDL.zip';
-    this.serviceRoot.toXSDList().forEach(xsd => {
-      zip.file(`${xsd.path}.wsdl`, xsd.serialize());
-    });
-    zip.generateAsync({
-      'type': 'blob',
-      'compression': 'DEFLATE',
-      'compressionOptions': {
-        'level': 9
-      }
-    }).then(blobData => {
-      if (!this.projectName) {
-        this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
-          this.projectName = projectName;
+    const schemaList = this.serviceRoot.toXSDList();
+    if ((schemaList || []).length > 0) {
+      schemaList.forEach(xsd => {
+        zip.file(`${xsd.path}.wsdl`, xsd.serialize());
+      });
+      zip.generateAsync({
+        'type': 'blob',
+        'compression': 'DEFLATE',
+        'compressionOptions': {
+          'level': 9
+        }
+      }).then(blobData => {
+        if (!this.projectName) {
+          this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
+            this.projectName = projectName;
+            saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
+          });
+        } else {
           saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-        });
-      } else {
-        saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-      }
-    });
+        }
+      });
+    } else {
+      // TODO message for nothing to save
+    }
   }
 
   constructor(private translate: TranslateService) {
     this.initTranslate();
+    jsf.option({
+      alwaysFakeOptionals: true
+    });
   }
 
   initTranslate() {

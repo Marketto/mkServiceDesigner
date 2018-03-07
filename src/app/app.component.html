@@ -75,16 +75,22 @@
         MENU.EXPORT.JAVA
       </span>
     </button-->
-    <button mat-menu-item (click)="exportWSDL()" [disabled]="!(serviceRoot && serviceRoot.toXSDList().length>0)">
+    <button mat-menu-item (click)="exportWSDL()">
       <mat-icon>code</mat-icon>
       <span translate>
         MENU.EXPORT.WSDL
       </span>
     </button>
-    <button mat-menu-item (click)="exportJsonSchema()" [disabled]="!(serviceRoot && serviceRoot.toJSONSchemaList())">
+    <button mat-menu-item (click)="exportJsonSchema()">
       <mat-icon>developer_board</mat-icon>
       <span translate>
         MENU.EXPORT.JSON_SCHEMA
+      </span>
+    </button>
+    <button mat-menu-item (click)="exportJsonMock()">
+      <mat-icon>developer_board</mat-icon>
+      <span translate>
+        MENU.EXPORT.JSON_MOCK
       </span>
     </button>
   </mat-menu>

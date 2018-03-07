@@ -39,7 +39,8 @@
             "TITLE"         : "Esporta",
             "JAVA"          : "Pacchetto Java",
             "WSDL"          : "WSDL",
-            "JSON_SCHEMA"   : "JSON Schema"
+            "JSON_SCHEMA"   : "JSON Schema",
+            "JSON_MOCK"     : "Mock JSON"
         }
     },
     "LABEL"     : {

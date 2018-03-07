@@ -38,8 +38,9 @@
         "EXPORT"    : {
             "TITLE"         : "Export",
             "JAVA"          : "Java Package",
-            "WSDL"          : "WSDL",
-            "JSON_SCHEMA"   : "JSON Schema"
+            "WSDL"          : "WSDL set",
+            "JSON_SCHEMA"   : "JSON Schemas",
+            "JSON_MOCK"     : "JSON Mocks"
         }
     },
     "LABEL"     : {
