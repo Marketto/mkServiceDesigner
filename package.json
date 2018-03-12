@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng  build --prod --aot",
+    "build": "node --max_old_space_size=512 node_modules/@angular/cli/bin/ng  build --prod --aot",
 
     "test": "ng test",
     "lint": "ng lint",
