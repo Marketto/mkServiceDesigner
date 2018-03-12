@@ -14,6 +14,13 @@
   ],
   "include": [
     "**/*.spec.ts",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "./node_modules/xml-decorators/lib/utils.ts",
+    "./node_modules/xml-decorators/lib/models/XMLElement.ts",
+    "./node_modules/xml-decorators/lib/models/XMLChild.ts",
+    "./node_modules/xml-decorators/lib/models/XMLAttribute.ts",
+    "./node_modules/xml-decorators/lib/annotations/XMLElement.ts",
+    "./node_modules/xml-decorators/lib/annotations/XMLChild.ts",
+    "./node_modules/xml-decorators/lib/annotations/XMLAttribute.ts"
   ]
 }
