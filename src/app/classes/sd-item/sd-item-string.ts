@@ -72,11 +72,21 @@ export class SdItemString extends SdItem {
     }
 }
 
-
+type XsdStringType = 'xs:string' | 'xs:dateTime' | 'xs:anyURI';
 class XsdSdItemString extends XsdSdItem {
-    protected type: 'xs:string' = 'xs:string';
+  protected type: XsdStringType;
 
     constructor(item: SdItemString) {
         super(item);
+        switch (item.format) {
+          case 'date-time':
+            this.type = 'xs:dateTime';
+            break;
+          case 'uri':
+            this.type = 'xs:anyURI';
+            break;
+          default:
+            this.type = 'xs:string';
+        }
     }
 }

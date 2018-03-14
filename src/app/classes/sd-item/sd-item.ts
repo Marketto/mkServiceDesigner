@@ -81,7 +81,7 @@ export abstract class SdItem implements SdItemInterface {
 }
 
 
-type XsdType = 'xs:anyType' | 'xs:string' | 'xs:boolean' | 'xs:integer' | 'xs:decimal' |
+type XsdType = 'xs:anyType' | 'xs:string' | 'xs:dateTime' | 'xs:anyURI' | 'xs:boolean' | 'xs:integer' | 'xs:decimal' |
     'xs:nonPositiveInteger' | 'xs:negativeInteger' | 'xs:nonNegativeInteger' | 'xs:positiveInteger';
 @XMLElement({ root: 'xs:element' })
 export class XsdSdItem {
