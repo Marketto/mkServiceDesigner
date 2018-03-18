@@ -216,7 +216,7 @@ export class AppComponent {
     this.translate.setDefaultLang(DEFAULT_LANGUAGE);
 
     const appropriateLanguage = Object.keys(this.translate.translations).find(ln => {
-      const cultureLang = (this.translate.getBrowserCultureLang() || '').substr(0, 2).toLowerCase();
+      const cultureLang = this.translate.getBrowserCultureLang();
       const browserLang = this.translate.getBrowserLang();
 
       return ln === cultureLang || ln === browserLang;
