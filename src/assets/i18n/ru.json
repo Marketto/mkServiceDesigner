@@ -1,0 +1,107 @@
+{
+  "TOOLTIP": {
+    "VERB": {
+      "GET": "Читать (GET)",
+      "POST": "Создать (POST)",
+      "PUT": "Обновить (PUT)",
+      "DELETE": "Удалить (DELETE)",
+      "PATCH": "PATCH"
+    },
+    "IO": {
+      "REQUEST": "Request",
+      "RESPONSE": "Response"
+    },
+    "BUTTON": {
+      "ADD_PROPERTY": "Add property",
+      "DEL_PROPERTY": "Delete property",
+      "MENU": "Меню",
+      "SIDE_BAR": {
+        "SHOW": "Show side bar",
+        "HIDE": "Hide side bar"
+      },
+      "ADD_RESOURCE": "Add child resource",
+      "DEL_RESOURCE": "Delete resource",
+      "RESOURCE": {
+        "COLLAPSE": "Collapse resource node",
+        "EXPAND": "Expand resource node"
+      },
+      "DEL_DOMAIN_VAL": "Delete domain value"
+    },
+    "INPUT": {
+      "PROJECT_NAME": "Project name",
+      "LOCKED_OBJECT_TYPE": "Remove children to change type"
+    }
+  },
+  "MENU": {
+    "OPEN": "Open",
+    "SAVE": "Save",
+    "EXPORT": {
+      "TITLE": "Export",
+      "JAVA": "Java Package",
+      "WSDL": "WSDL set",
+      "JSON_SCHEMA": "JSON Schemas",
+      "JSON_MOCK": "JSON Mocks"
+    }
+  },
+  "LABEL": {
+    "EDITOR": {
+      "RESOURCE": "Resource",
+      "VERB_IO": "{{verb}} {{io}}",
+      "REQUEST": "Request",
+      "RESPONSE": "Response"
+    },
+    "ITEM": {
+      "PROPERTY_NAME": "Property name",
+      "DEFAULT_VALUE": "Default value",
+      "DEPENDENCIES": "Dependencies",
+      "TYPE": {
+        "TITLE": "Type",
+        "OBJECT": "Object",
+        "STRING": "String",
+        "NUMBER": "Number",
+        "INTEGER": "Integer",
+        "BOOLEAN": "Boolean"
+      },
+      "REQUIRED": "Required",
+      "LIST": "List of",
+      "OCCURENCES": {
+        "MIN": "Min occurrences",
+        "MAX": "Max occurrences"
+      },
+      "UNIQUE_ITEMS": "Unique items",
+      "EXTRA_PROPS": {
+        "TITLE": "Additional properties",
+        "ALLOWED": "Allowed",
+        "NOT_ALLOWED": "Not allowed",
+        "STRING": "Strings only",
+        "NUMBER": "Numbers only",
+        "INTEGER": "Integers only",
+        "BOOLEAN": "Booleans only"
+      },
+      "LENGTH": {
+        "MIN": "Min length",
+        "MAX": "Max length"
+      },
+      "REGEXP": "Regular expression pattern",
+      "FORMAT": {
+        "TITLE": "Format",
+        "GENERIC": "Generic",
+        "DATE_TIME": "Date / Time",
+        "EMAIL": "Email",
+        "HOST_NAME": "Host name",
+        "IPV4": "IP v4",
+        "IPV6": "IP v6",
+        "URI": "URI"
+      },
+      "DOMAIN": "Value domain",
+      "MULTIPLE": "Multiple of",
+      "MIN_VAL": "Min value",
+      "MAX_VAL": "Max value",
+      "GT_MIN": "Lower limit",
+      "LT_MAX": "Upper limit"
+    }
+  },
+  "DEFAULT": {
+    "FILE_NAME": "New project"
+  }
+}

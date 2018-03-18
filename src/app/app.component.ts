@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { browser } from 'protractor';
+import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { TreeviewConfig } from 'ngx-treeview';
 
 import { saveAs } from 'file-saver/FileSaver';
@@ -15,6 +17,7 @@ import { SdItemObject } from './classes/sd-item/sd-item-object';
 
 import * as EN_TRANSLATION from '../assets/i18n/en.json';
 import * as IT_TRANSLATION from '../assets/i18n/it.json';
+import * as RU_TRANSLATION from '../assets/i18n/ru.json';
 
 @Component({
   selector: 'app-root',
@@ -196,7 +199,7 @@ export class AppComponent {
     }
   }
 
-  constructor(private translate: TranslateService) {
+  constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService) {
     this.initTranslate();
     jsf.option({
       alwaysFakeOptionals: true
@@ -208,9 +211,19 @@ export class AppComponent {
 
     this.translate.setTranslation('en', EN_TRANSLATION);
     this.translate.setTranslation('it', IT_TRANSLATION);
-
+    this.translate.setTranslation('ru', RU_TRANSLATION);
 
     this.translate.setDefaultLang(DEFAULT_LANGUAGE);
-    this.translate.use(this.translate.getBrowserLang() || DEFAULT_LANGUAGE);
+
+    const appropriateLanguage = Object.keys(this.translate.translations).find(ln => {
+      const cultureLang = (this.translate.getBrowserCultureLang() || '').substr(0, 2).toLowerCase();
+      const browserLang = this.translate.getBrowserLang();
+
+      return ln === cultureLang || ln === browserLang;
+    }) || DEFAULT_LANGUAGE;
+
+    this.translate.use(appropriateLanguage);
+
+    this.document.documentElement.lang = appropriateLanguage;
   }
 }
