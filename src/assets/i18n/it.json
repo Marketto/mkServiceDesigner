@@ -1,107 +1,107 @@
 {
   "TOOLTIP"   : {
-      "VERB"      : {
-          "GET"           : "Lettura (GET)",
-          "POST"          : "Creazione (POST)",
-          "PUT"           : "Aggiornamento (PUT)",
-          "DELETE"        : "Eliminazione (DELETE)",
-          "PATCH"         : "Correzione (PATCH)"
+    "VERB"      : {
+      "GET"           : "Lettura (GET)",
+      "POST"          : "Creazione (POST)",
+      "PUT"           : "Aggiornamento (PUT)",
+      "DELETE"        : "Eliminazione (DELETE)",
+      "PATCH"         : "Correzione (PATCH)"
+    },
+    "IO"        : {
+      "REQUEST"       : "Richiesta",
+      "RESPONSE"      : "Risposta"
+    },
+    "BUTTON"    : {
+      "ADD_PROPERTY"  : "Aggiungi proprietà",
+      "DEL_PROPERTY"  : "Elimina proprietà",
+      "MENU"          : "Menù",
+      "SIDE_BAR"      : {
+        "SHOW"          : "Mostra albero servizi",
+        "HIDE"          : "Nascondi albero servizi"
       },
-      "IO"        : {
-          "REQUEST"       : "Richiesta",
-          "RESPONSE"      : "Risposta"
+      "ADD_RESOURCE"      : "Aggiungi sotto risorsa",
+      "DEL_RESOURCE"      : "Elimina risorsa",
+      "RESOURCE"          : {
+        "COLLAPSE"          : "Riduci risorsa",
+        "EXPAND"            : "Espandi risorsa"
       },
-      "BUTTON"    : {
-          "ADD_PROPERTY"  : "Aggiungi proprietà",
-          "DEL_PROPERTY"  : "Elimina proprietà",
-          "MENU"          : "Menù",
-          "SIDE_BAR"      : {
-              "SHOW"          : "Mostra albero servizi",
-              "HIDE"          : "Nascondi albero servizi"
-          },
-          "ADD_RESOURCE"      : "Aggiungi sotto risorsa",
-          "DEL_RESOURCE"      : "Elimina risorsa",
-          "RESOURCE"          : {
-              "COLLAPSE"          : "Riduci risorsa",
-              "EXPAND"            : "Espandi risorsa"
-          },
-          "DEL_DOMAIN_VAL"    : "Elimina valore"
-      },
-      "INPUT": {
-          "PROJECT_NAME"          : "Nome progetto",
-          "LOCKED_OBJECT_TYPE"    : "Eliminare le sotto proprietà per cambiare tipo"
-      }
+      "DEL_DOMAIN_VAL"    : "Elimina valore"
+    },
+    "INPUT": {
+      "PROJECT_NAME"          : "Nome progetto",
+      "LOCKED_OBJECT_TYPE"    : "Eliminare le sotto proprietà per cambiare tipo"
+    }
   },
   "MENU"      : {
-      "OPEN"      : "Apri",
-      "SAVE"      : "Salva",
-      "EXPORT"    : {
-          "TITLE"         : "Esporta",
-          "JAVA"          : "Pacchetto Java",
-          "WSDL"          : "WSDL",
-          "JSON_SCHEMA"   : "JSON Schema",
-          "JSON_MOCK"     : "Mock JSON"
-      }
+    "OPEN"      : "Apri",
+    "SAVE"      : "Salva",
+    "EXPORT"    : {
+      "TITLE"         : "Esporta",
+      "JAVA"          : "Pacchetto Java",
+      "WSDL"          : "WSDL",
+      "JSON_SCHEMA"   : "JSON Schema",
+      "JSON_MOCK"     : "Mock JSON"
+    }
   },
   "LABEL"     : {
-      "EDITOR"    : {
-          "RESOURCE"      : "Risorsa",
-          "VERB_IO"       : "{{io}} {{verb}}",
-          "REQUEST"       : "Richiesta",
-          "RESPONSE"      : "Risposta"
+    "EDITOR"    : {
+      "RESOURCE"      : "Risorsa",
+      "VERB_IO"       : "{{io}} {{verb}}",
+      "REQUEST"       : "Richiesta",
+      "RESPONSE"      : "Risposta"
+    },
+    "ITEM"      : {
+      "PROPERTY_NAME" : "Nome proprietà",
+      "DEFAULT_VALUE" : "Valore predefinito",
+      "DEPENDENCIES"  : "Dipendenze",
+      "TYPE"          : {
+        "TITLE"         : "Tipo",
+        "OBJECT"        : "Oggetto",
+        "STRING"        : "Testo",
+        "NUMBER"        : "Num. in virgola mobile",
+        "INTEGER"       : "Numero intero",
+        "BOOLEAN"       : "Booleano"
       },
-      "ITEM"      : {
-          "PROPERTY_NAME" : "Nome proprietà",
-          "DEFAULT_VALUE" : "Valore predefinito",
-          "DEPENDENCIES"  : "Dipendenze",
-          "TYPE"          : {
-              "TITLE"         : "Tipo",
-              "OBJECT"        : "Oggetto",
-              "STRING"        : "Testo",
-              "NUMBER"        : "Num. in virgola mobile",
-              "INTEGER"       : "Numero intero",
-              "BOOLEAN"       : "Booleano"
-          },
-          "REQUIRED"      : "Obbligatorio",
-          "LIST"          : "Lista",
-          "OCCURRENCES"   : {
-              "MIN"           : "N° minimo elementi",
-              "MAX" : "N° massimo elementi"
-          },
-          "UNIQUE_ITEMS"  : "Elementi distinti",
-          "EXTRA_PROPS"   : {
-              "TITLE"         : "Proprietà aggiuntive",
-              "ALLOWED"       : "Consentite",
-              "NOT_ALLOWED"   : "Proibite",
-              "STRING"        : "Solo di testo",
-              "NUMBER"        : "Solo num. in virgola mob.",
-              "INTEGER"       : "Solo num. interi",
-              "BOOLEAN"       : "Solo booleane"
-          },
-          "LENGTH"        : {
-              "MIN"           : "Lunghezza minima",
-              "MAX"           : "Lunghezza massima"
-          },
-          "REGEXP"        : "Espressione regolare di validaizone",
-          "FORMAT"        : {
-              "TITLE"         : "Formato",
-              "GENERIC"       : "Non specificato",
-              "DATE_TIME"     : "Data / ora",
-              "EMAIL"         : "Email",
-              "HOST_NAME"     : "Nome host",
-              "IPV4"          : "IP v4",
-              "IPV6"          : "IP v6",
-              "URI"           : "URI"
-          },
-          "DOMAIN"        : "Valori consentiti",
-          "MULTIPLE"      : "Multiplo di",
-          "MIN_VAL"       : "Minimo",
-          "MAX_VAL"       : "Massimo",
-          "GT_MIN"        : "Limite minimo",
-          "LT_MAX"        : "Limite massimo"
-      }
+      "REQUIRED"      : "Obbligatorio",
+      "LIST"          : "Lista",
+      "OCCURRENCES"   : {
+        "MIN"           : "N° minimo elementi",
+        "MAX" : "N° massimo elementi"
+      },
+      "UNIQUE_ITEMS"  : "Elementi distinti",
+      "EXTRA_PROPS"   : {
+        "TITLE"         : "Proprietà aggiuntive",
+        "ALLOWED"       : "Consentite",
+        "NOT_ALLOWED"   : "Proibite",
+        "STRING"        : "Solo di testo",
+        "NUMBER"        : "Solo num. in virgola mob.",
+        "INTEGER"       : "Solo num. interi",
+        "BOOLEAN"       : "Solo booleane"
+      },
+      "LENGTH"        : {
+        "MIN"           : "Lunghezza minima",
+        "MAX"           : "Lunghezza massima"
+      },
+      "REGEXP"        : "Espressione regolare di validaizone",
+      "FORMAT"        : {
+        "TITLE"         : "Formato",
+        "GENERIC"       : "Non specificato",
+        "DATE_TIME"     : "Data / ora",
+        "EMAIL"         : "Email",
+        "HOST_NAME"     : "Nome host",
+        "IPV4"          : "IP v4",
+        "IPV6"          : "IP v6",
+        "URI"           : "URI"
+      },
+      "DOMAIN"        : "Valori consentiti",
+      "MULTIPLE"      : "Multiplo di",
+      "MIN_VAL"       : "Minimo",
+      "MAX_VAL"       : "Massimo",
+      "GT_MIN"        : "Limite minimo",
+      "LT_MAX"        : "Limite massimo"
+    }
   },
   "DEFAULT"   : {
-      "FILE_NAME"     : "Nuovo progetto"
+    "FILE_NAME"     : "Nuovo progetto"
   }
 }
