@@ -8,16 +8,16 @@
       "PATCH": "PATCH"
     },
     "IO": {
-      "REQUEST": "Request",
-      "RESPONSE": "Response"
+      "REQUEST": "Запрос",
+      "RESPONSE": "Ответ"
     },
     "BUTTON": {
-      "ADD_PROPERTY": "Add property",
-      "DEL_PROPERTY": "Delete property",
+      "ADD_PROPERTY": "Добавить свойство",
+      "DEL_PROPERTY": "Удалить свойство",
       "MENU": "Меню",
       "SIDE_BAR": {
-        "SHOW": "Show side bar",
-        "HIDE": "Hide side bar"
+        "SHOW": "Показать боковую панель",
+        "HIDE": "Скрыть боковую панель"
       },
       "ADD_RESOURCE": "Add child resource",
       "DEL_RESOURCE": "Delete resource",
@@ -28,27 +28,27 @@
       "DEL_DOMAIN_VAL": "Delete domain value"
     },
     "INPUT": {
-      "PROJECT_NAME": "Project name",
+      "PROJECT_NAME": "Название проекта",
       "LOCKED_OBJECT_TYPE": "Remove children to change type"
     }
   },
   "MENU": {
-    "OPEN": "Open",
-    "SAVE": "Save",
+    "OPEN": "Открыть",
+    "SAVE": "Сохранить",
     "EXPORT": {
-      "TITLE": "Export",
+      "TITLE": "Сохранить как",
       "JAVA": "Java Package",
-      "WSDL": "WSDL set",
+      "WSDL": "WSDL группа",
       "JSON_SCHEMA": "JSON Schemas",
       "JSON_MOCK": "JSON Mocks"
     }
   },
   "LABEL": {
     "EDITOR": {
-      "RESOURCE": "Resource",
+      "RESOURCE": "Источник",
       "VERB_IO": "{{verb}} {{io}}",
-      "REQUEST": "Request",
-      "RESPONSE": "Response"
+      "REQUEST": "Запрос",
+      "RESPONSE": "Ответ"
     },
     "ITEM": {
       "PROPERTY_NAME": "Property name",
@@ -102,6 +102,6 @@
     }
   },
   "DEFAULT": {
-    "FILE_NAME": "New project"
+    "FILE_NAME": "Новый проект"
   }
 }
