@@ -44,6 +44,9 @@
     }
   },
   "LABEL"     : {
+    "SERVICE_TREE"  : {
+      "TITLE"         : "Struttura servizi"
+    },
     "EDITOR"    : {
       "RESOURCE"      : "Risorsa",
       "VERB_IO"       : "{{io}} {{verb}}",
@@ -101,7 +104,7 @@
       "LT_MAX"        : "Limite massimo"
     }
   },
-  "DEFAULT"   : {
+  "DEFAULT"       : {
     "FILE_NAME"     : "Nuovo progetto"
   }
 }

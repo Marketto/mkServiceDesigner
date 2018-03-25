@@ -1,31 +1,23 @@
 @mat-primary-color: #3f51b5;
 @mat-secondary-color: #ff4081;
 .mat-toolbar {
-    position: fixed;
-    bottom: 0;
+    position: sticky;
     width: auto;
+    margin: 0 -0.8em;
     left: 0;
     right: 0;
-    top: auto;
-    height: 2rem;
+    top: 0;
+    height: 1.6rem;
     min-height: unset;
     display: block;
-    .mat-toolbar-row{
-        height: 100%;
-        padding: 0;
-        flex-direction: row-reverse;
-        button {
-            width: 32px;
-            height: 32px;
-            line-height: 32px;
-            &:hover{
-                background-color: rgba(0,0,0,0.12);
-            }
-            &, &::ng-deep .mat-button-ripple-round {
-                border-radius: 8%;
-            }
-        }
+    font-size: 1rem;
+    background-color: #eeeeee;
+    .title {
+      line-height: 1.6em;
+      display: block;
     }
+    margin-bottom: 1em;
+    z-index: 1;
 }
 
 .tree-item::ng-deep {
@@ -48,7 +40,7 @@
             font-size: 1.2em;
         }
     }
-    
+
     input {
         border: 2px solid transparent;
         box-shadow: 0 0 1px 0px white inset, 0 0 1px 0px white;

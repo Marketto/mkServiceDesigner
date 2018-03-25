@@ -19,17 +19,17 @@
         "SHOW"          : "Show side bar",
         "HIDE"          : "Hide side bar"
       },
-      "ADD_RESOURCE"      : "Add child resource",
-      "DEL_RESOURCE"      : "Delete resource",
-      "RESOURCE"          : {
-        "COLLAPSE"          : "Collapse resource node",
-        "EXPAND"            : "Expand resource node"
+      "ADD_RESOURCE"  : "Add child resource",
+      "DEL_RESOURCE"  : "Delete resource",
+      "RESOURCE"      : {
+        "COLLAPSE"      : "Collapse resource node",
+        "EXPAND"        : "Expand resource node"
       },
-      "DEL_DOMAIN_VAL"    : "Delete domain value"
+      "DEL_DOMAIN_VAL": "Delete domain value"
     },
-    "INPUT": {
-      "PROJECT_NAME"          : "Project name",
-      "LOCKED_OBJECT_TYPE"    : "Remove children to change type"
+    "INPUT"     : {
+      "PROJECT_NAME"      : "Project name",
+      "LOCKED_OBJECT_TYPE": "Remove children to change type"
     }
   },
   "MENU"      : {
@@ -44,7 +44,10 @@
     }
   },
   "LABEL"     : {
-    "EDITOR"    : {
+    "SERVICE_TREE"    : {
+      "TITLE"           : "Service tree"
+    },
+    "EDITOR"          : {
         "RESOURCE"      : "Resource",
         "VERB_IO"       : "{{verb}} {{io}}",
         "REQUEST"       : "Request",
@@ -101,7 +104,7 @@
       "LT_MAX"        : "Upper limit"
     }
   },
-  "DEFAULT"   : {
+  "DEFAULT"       : {
     "FILE_NAME"     : "New project"
   }
 }

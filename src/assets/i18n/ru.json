@@ -1,107 +1,110 @@
 {
-  "TOOLTIP": {
-    "VERB": {
-      "GET": "Читать (GET)",
-      "POST": "Создать (POST)",
-      "PUT": "Обновить (PUT)",
-      "DELETE": "Удалить (DELETE)",
-      "PATCH": "PATCH"
+  "TOOLTIP"   : {
+    "VERB"      : {
+      "GET"           : "Читать (GET)",
+      "POST"          : "Создать (POST)",
+      "PUT"           : "Обновить (PUT)",
+      "DELETE"        : "Удалить (DELETE)",
+      "PATCH"         : "PATCH"
     },
-    "IO": {
-      "REQUEST": "Запрос",
-      "RESPONSE": "Ответ"
+    "IO"        : {
+      "REQUEST"       : "Запрос",
+      "RESPONSE"      : "Ответ"
     },
-    "BUTTON": {
-      "ADD_PROPERTY": "Добавить свойство",
-      "DEL_PROPERTY": "Удалить свойство",
-      "MENU": "Меню",
-      "SIDE_BAR": {
-        "SHOW": "Показать боковую панель",
-        "HIDE": "Скрыть боковую панель"
+    "BUTTON"    : {
+      "ADD_PROPERTY"  : "Добавить свойство",
+      "DEL_PROPERTY"  : "Удалить свойство",
+      "MENU"          : "Меню",
+      "SIDE_BAR"      : {
+        "SHOW"          : "Показать боковую панель",
+        "HIDE"          : "Скрыть боковую панель"
       },
-      "ADD_RESOURCE": "Add child resource",
-      "DEL_RESOURCE": "Delete resource",
-      "RESOURCE": {
-        "COLLAPSE": "Collapse resource node",
-        "EXPAND": "Expand resource node"
+      "ADD_RESOURCE"  : "Add child resource",
+      "DEL_RESOURCE"  : "Delete resource",
+      "RESOURCE"      : {
+        "COLLAPSE"      : "Collapse resource node",
+        "EXPAND"        : "Expand resource node"
       },
       "DEL_DOMAIN_VAL": "Delete domain value"
     },
-    "INPUT": {
-      "PROJECT_NAME": "Название проекта",
+    "INPUT"     : {
+      "PROJECT_NAME"      : "Название проекта",
       "LOCKED_OBJECT_TYPE": "Remove children to change type"
     }
   },
-  "MENU": {
-    "OPEN": "Открыть",
-    "SAVE": "Сохранить",
-    "EXPORT": {
-      "TITLE": "Сохранить как",
-      "JAVA": "Java Package",
-      "WSDL": "WSDL группа",
-      "JSON_SCHEMA": "JSON Schemas",
-      "JSON_MOCK": "JSON Mocks"
+  "MENU"      : {
+    "OPEN"      : "Открыть",
+    "SAVE"      : "Сохранить",
+    "EXPORT"    : {
+      "TITLE"       : "Сохранить как",
+      "JAVA"        : "Java Package",
+      "WSDL"        : "WSDL группа",
+      "JSON_SCHEMA" : "JSON Schemas",
+      "JSON_MOCK"   : "JSON Mocks"
     }
   },
-  "LABEL": {
-    "EDITOR": {
-      "RESOURCE": "Источник",
-      "VERB_IO": "{{verb}} {{io}}",
-      "REQUEST": "Запрос",
-      "RESPONSE": "Ответ"
+  "LABEL"     : {
+    "SERVICE_TREE"  : {
+      "TITLE"         : "Service tree"
     },
-    "ITEM": {
-      "PROPERTY_NAME": "Property name",
-      "DEFAULT_VALUE": "Default value",
-      "DEPENDENCIES": "Dependencies",
-      "TYPE": {
-        "TITLE": "Type",
-        "OBJECT": "Object",
-        "STRING": "String",
-        "NUMBER": "Number",
-        "INTEGER": "Integer",
-        "BOOLEAN": "Boolean"
+    "EDITOR"    : {
+      "RESOURCE"  : "Источник",
+      "VERB_IO"   : "{{verb}} {{io}}",
+      "REQUEST"   : "Запрос",
+      "RESPONSE"  : "Ответ"
+    },
+    "ITEM"    : {
+      "PROPERTY_NAME" : "Property name",
+      "DEFAULT_VALUE" : "Default value",
+      "DEPENDENCIES"  : "Dependencies",
+      "TYPE"          : {
+        "TITLE"         : "Type",
+        "OBJECT"        : "Object",
+        "STRING"        : "String",
+        "NUMBER"        : "Number",
+        "INTEGER"       : "Integer",
+        "BOOLEAN"       : "Boolean"
       },
-      "REQUIRED": "Required",
-      "LIST": "List of",
-      "OCCURENCES": {
-        "MIN": "Min occurrences",
-        "MAX": "Max occurrences"
+      "REQUIRED"      : "Required",
+      "LIST"          : "List of",
+      "OCCURENCES"    : {
+        "MIN"           : "Min occurrences",
+        "MAX"           : "Max occurrences"
       },
-      "UNIQUE_ITEMS": "Unique items",
-      "EXTRA_PROPS": {
-        "TITLE": "Additional properties",
-        "ALLOWED": "Allowed",
-        "NOT_ALLOWED": "Not allowed",
-        "STRING": "Strings only",
-        "NUMBER": "Numbers only",
-        "INTEGER": "Integers only",
-        "BOOLEAN": "Booleans only"
+      "UNIQUE_ITEMS"  : "Unique items",
+      "EXTRA_PROPS"   : {
+        "TITLE"         : "Additional properties",
+        "ALLOWED"       : "Allowed",
+        "NOT_ALLOWED"   : "Not allowed",
+        "STRING"        : "Strings only",
+        "NUMBER"        : "Numbers only",
+        "INTEGER"       : "Integers only",
+        "BOOLEAN"       : "Booleans only"
       },
-      "LENGTH": {
-        "MIN": "Min length",
-        "MAX": "Max length"
+      "LENGTH"        : {
+        "MIN"           : "Min length",
+        "MAX"           : "Max length"
       },
-      "REGEXP": "Regular expression pattern",
-      "FORMAT": {
-        "TITLE": "Format",
-        "GENERIC": "Generic",
-        "DATE_TIME": "Date / Time",
-        "EMAIL": "Email",
-        "HOST_NAME": "Host name",
-        "IPV4": "IP v4",
-        "IPV6": "IP v6",
-        "URI": "URI"
+      "REGEXP"        : "Regular expression pattern",
+      "FORMAT"        : {
+        "TITLE"         : "Format",
+        "GENERIC"       : "Generic",
+        "DATE_TIME"     : "Date / Time",
+        "EMAIL"         : "Email",
+        "HOST_NAME"     : "Host name",
+        "IPV4"          : "IP v4",
+        "IPV6"          : "IP v6",
+        "URI"           : "URI"
       },
-      "DOMAIN": "Value domain",
-      "MULTIPLE": "Multiple of",
-      "MIN_VAL": "Min value",
-      "MAX_VAL": "Max value",
-      "GT_MIN": "Lower limit",
-      "LT_MAX": "Upper limit"
+      "DOMAIN"        : "Value domain",
+      "MULTIPLE"      : "Multiple of",
+      "MIN_VAL"       : "Min value",
+      "MAX_VAL"       : "Max value",
+      "GT_MIN"        : "Lower limit",
+      "LT_MAX"        : "Upper limit"
     }
   },
-  "DEFAULT": {
-    "FILE_NAME": "Новый проект"
+  "DEFAULT"       : {
+    "FILE_NAME"     : "Новый проект"
   }
 }

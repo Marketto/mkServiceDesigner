@@ -5,9 +5,9 @@
                 keyboard_arrow_{{item.collapsed?'right':'down'}}
             </mat-icon>
         </button>
-        
+
         <input #itemInput (focus)="selectItem(item)" [(ngModel)]="item.text" [class.selected]="!editMode && selected === item" [class.no-children]="!(item.children||[]).length">
-        
+
         <button mat-icon-button (click)="addItem(item)" matTooltip="{{'TOOLTIP.BUTTON.ADD_RESOURCE'|translate}}">
             <mat-icon>add</mat-icon>
         </button>
@@ -17,5 +17,8 @@
     </div>
 </ng-template>
 
+<mat-toolbar class="tiny-toolbar">
+  <span class="title" translate>LABEL.SERVICE_TREE.TITLE</span>
+</mat-toolbar>
 <ngx-treeview [items]="[rootService]" [itemTemplate]="itemTemplate" config="treeviewCfg">
 </ngx-treeview>
