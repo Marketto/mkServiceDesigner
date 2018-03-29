@@ -58,12 +58,12 @@ export class SdItemString extends SdItem {
     protected toItemJSONSchema(): object {
         const jss = super.toItemJSONSchema();
         return Object.assign(jss, {
-            default: (this.default !== null) ? this.default : undefined,
+            default: this.default || undefined,
             enum: (this.domain.length > 0) ? this.domain : undefined,
             minLength: Number.isInteger(this.minLength) ? this.minLength : undefined,
             maxLength: Number.isInteger(this.maxLength) ? this.maxLength : undefined,
-            pattern: this.pattern,
-            format: this.format ? this.format : undefined
+            pattern: this.pattern || undefined,
+            format: this.format || undefined
         });
     }
 
