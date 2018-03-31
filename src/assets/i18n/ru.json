@@ -19,17 +19,17 @@
         "SHOW"          : "Показать боковую панель",
         "HIDE"          : "Скрыть боковую панель"
       },
-      "ADD_RESOURCE"  : "Add child resource",
-      "DEL_RESOURCE"  : "Delete resource",
+      "ADD_RESOURCE"  : "Добавить дочерний ресурс",
+      "DEL_RESOURCE"  : "Удалить ресурс",
       "RESOURCE"      : {
-        "COLLAPSE"      : "Collapse resource node",
-        "EXPAND"        : "Expand resource node"
+        "COLLAPSE"      : "Свернуть блок ресурсов",
+        "EXPAND"        : "Открыть блок ресурсов"
       },
       "DEL_DOMAIN_VAL": "Delete domain value"
     },
     "INPUT"     : {
       "PROJECT_NAME"      : "Название проекта",
-      "LOCKED_OBJECT_TYPE": "Remove children to change type"
+      "LOCKED_OBJECT_TYPE": "Удалить дочерние ресурсы, чтобы изменить тип"
     }
   },
   "MENU"      : {
@@ -45,7 +45,7 @@
   },
   "LABEL"     : {
     "SERVICE_TREE"  : {
-      "TITLE"         : "Service tree"
+      "TITLE"         : "Сервисная структура"
     },
     "EDITOR"    : {
       "RESOURCE"  : "Источник",
@@ -54,18 +54,18 @@
       "RESPONSE"  : "Ответ"
     },
     "ITEM"    : {
-      "PROPERTY_NAME" : "Property name",
-      "DEFAULT_VALUE" : "Default value",
+      "PROPERTY_NAME" : "Название свойства",
+      "DEFAULT_VALUE" : "Значение по умолчанию",
       "DEPENDENCIES"  : "Dependencies",
       "TYPE"          : {
-        "TITLE"         : "Type",
-        "OBJECT"        : "Object",
-        "STRING"        : "String",
-        "NUMBER"        : "Number",
-        "INTEGER"       : "Integer",
-        "BOOLEAN"       : "Boolean"
+        "TITLE"         : "Тип",
+        "OBJECT"        : "Объект",
+        "STRING"        : "Строковый",
+        "NUMBER"        : "Числовой",
+        "INTEGER"       : "Целый",
+        "BOOLEAN"       : "Логический"
       },
-      "REQUIRED"      : "Required",
+      "REQUIRED"      : "Обязательный",
       "LIST"          : "List of",
       "OCCURENCES"    : {
         "MIN"           : "Min occurrences",
@@ -73,19 +73,19 @@
       },
       "UNIQUE_ITEMS"  : "Unique items",
       "EXTRA_PROPS"   : {
-        "TITLE"         : "Additional properties",
-        "ALLOWED"       : "Allowed",
-        "NOT_ALLOWED"   : "Not allowed",
-        "STRING"        : "Strings only",
-        "NUMBER"        : "Numbers only",
-        "INTEGER"       : "Integers only",
-        "BOOLEAN"       : "Booleans only"
+        "TITLE"         : "Дополнительные свойства",
+        "ALLOWED"       : "Разрешено",
+        "NOT_ALLOWED"   : "Запрещено",
+        "STRING"        : "Только строковый",
+        "NUMBER"        : "Только числовой",
+        "INTEGER"       : "Только целый",
+        "BOOLEAN"       : "Только логический"
       },
       "LENGTH"        : {
-        "MIN"           : "Min length",
-        "MAX"           : "Max length"
+        "MIN"           : "Минимальная длина",
+        "MAX"           : "Maксимальная длина"
       },
-      "REGEXP"        : "Regular expression pattern",
+      "REGEXP"        : "Регуля́рные выраже́ния",
       "FORMAT"        : {
         "TITLE"         : "Format",
         "GENERIC"       : "Generic",
