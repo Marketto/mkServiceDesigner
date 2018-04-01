@@ -224,9 +224,6 @@ export class AppComponent {
 
     this.translate.use(appropriateLanguage);
 
-    //Test other languages
-    this.translate.use('ru');
-
     this.document.documentElement.lang = appropriateLanguage;
   }
 }
