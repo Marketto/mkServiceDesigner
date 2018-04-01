@@ -1,4 +1,5 @@
 import { Component, OnInit, Injectable, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { TreeviewComponent, TreeviewConfig } from 'ngx-treeview';
 import { SdServiceTreeItem } from './../classes/sd-service/sd-service-tree-item';
 
@@ -6,7 +7,16 @@ import { SdServiceTreeItem } from './../classes/sd-service/sd-service-tree-item'
   selector: 'app-service-tree',
   templateUrl: './service-tree.component.html',
   styleUrls: ['./service-tree.component.less'],
-  providers: [
+  providers: [],
+  animations: [
+    trigger(
+      'nodeAnimation', [
+        transition(':enter', [
+          style({ transform: 'translateY(-100%)', opacity: 0 }),
+          animate('500ms', style({ transform: 'translateY(0)', opacity: 1 }))
+        ])
+      ]
+    )
   ]
 })
 export class ServiceTreeComponent implements OnInit {

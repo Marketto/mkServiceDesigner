@@ -17,15 +17,22 @@
             transform: scale(0.9);
         }
     }
-
-    .sd-item-details{
-        >.ng-star-inserted>.mat-grid-list {
-            border-bottom: 1px dashed black;
-        }
-        .none {
-            border-bottom: 1px dashed black;
-            width: 100%;
-            display: block;
-        }
+    .sd-item.ng-star-inserted.ng-trigger-itemAnimation.ng-animating {
+      + .sd-item.ng-star-inserted.ng-trigger-itemAnimation.ng-animating {
+        display: none;
+      }
+    }
+    .sd-item {
+      background-color: #fafafa;
+      .sd-item-details{
+          >.ng-star-inserted>.mat-grid-list {
+              border-bottom: 1px dashed black;
+          }
+          .none {
+              border-bottom: 1px dashed black;
+              width: 100%;
+              display: block;
+          }
+      }
     }
 }

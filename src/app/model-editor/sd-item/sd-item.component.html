@@ -1,4 +1,4 @@
-<div *ngFor="let item of node" class="sd-item">
+<div *ngFor="let item of node; let idx = index" class="sd-item" [@itemAnimation]="(itemFormList[idx]||{}).type||false">
   <mat-grid-list cols="14" [ngSwitch]="item.listOf">
     <mat-grid-tile colspan="4">
       <mat-form-field>
@@ -45,7 +45,7 @@
         {{'LABEL.ITEM.LIST'|translate}}
       </mat-slide-toggle>
     </mat-grid-tile>
-    
+
     <mat-grid-tile colspan="1">
       <button mat-mini-fab color="warn" (click)="removeItem(item)" matTooltip="{{'TOOLTIP.BUTTON.DEL_PROPERTY'|translate}}">
         <mat-icon class="icon">delete</mat-icon>

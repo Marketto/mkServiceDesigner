@@ -1,5 +1,5 @@
-<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
-    <div class="tree-item">
+<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand">
+    <div class="tree-item" [@nodeAnimation]>
         <button mat-icon-button *ngIf="(item.children||[]).length" (click)="onCollapseExpand()" matTooltip="{{('TOOLTIP.BUTTON.RESOURCE.'+ (item.collapsed?'EXPAND':'COLLAPSE'))|translate}}">
             <mat-icon aria-hidden="true">
                 keyboard_arrow_{{item.collapsed?'right':'down'}}

@@ -27,10 +27,10 @@
   <mat-grid-tile colspan="9">
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="1"> 
+  <mat-grid-tile colspan="1">
     <button mat-mini-fab color="primary" (click)="newItem()" matTooltip="{{'TOOLTIP.BUTTON.ADD_PROPERTY'|translate}}">
       <mat-icon class="icon">add</mat-icon>
     </button>
   </mat-grid-tile>
 </mat-grid-list>
-<app-sd-item class="dropzone children" [(node)]="item.children"></app-sd-item>
+<app-sd-item class="children" [(node)]="item.children"></app-sd-item>
