@@ -1,4 +1,5 @@
 # MkServiceDesigner
+![Build Status](http://ci.marketto.it/buildStatus/icon?job=Service%20Designer)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
