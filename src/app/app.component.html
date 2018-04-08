@@ -6,7 +6,7 @@
   <button mat-mini-fab color="basic" (click)="serviceSideBar.toggle()" matTooltip="{{ ('TOOLTIP.BUTTON.SIDE_BAR.' + (serviceSideBar.opened?'HIDE':'SHOW'))|translate }}">
     <mat-icon class="icon">{{ serviceSideBar.opened?'crop_din':'flip' }}</mat-icon>
   </button>
-  
+
   <span class="spacer"></span>
 
   <mat-button-toggle-group [(ngModel)]="verb">
@@ -20,7 +20,7 @@
       <mat-icon>mode_edit</mat-icon>
     </mat-button-toggle>
     <mat-button-toggle value="DELETE" matTooltip="{{'TOOLTIP.VERB.DELETE'|translate}}">
-      <mat-icon>format_align_justify</mat-icon>
+      <mat-icon>delete_forever</mat-icon>
     </mat-button-toggle>
     <mat-button-toggle value="PATCH" matTooltip="{{'TOOLTIP.VERB.PATCH'|translate}}">
       <mat-icon>receipt</mat-icon>
@@ -45,7 +45,7 @@
   </button>
 
   <span class="spacer"></span>
-  
+
   <button mat-mini-fab color="primary" matTooltip="{{'TOOLTIP.BUTTON.MENU'|translate}}" [matMenuTriggerFor]="menu">
     <mat-icon class="icon">menu</mat-icon>
   </button>

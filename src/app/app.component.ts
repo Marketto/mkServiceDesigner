@@ -106,8 +106,8 @@ export class AppComponent {
   exportJsonSchema() {
     const zip = new JSZip();
     const ARCHIVE_NAME = 'JSON Schema.zip';
-    const schemaList = this.serviceRoot.toJSONSchemaList();
-    if ((schemaList || []).length > 0) {
+    const schemaList = (this.serviceRoot.toJSONSchemaList() || []).filter(schemaCfg => !!schemaCfg);
+    if (schemaList.length > 0) {
       schemaList.forEach(schemaCfg => {
         zip.file(`${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`, JSON.stringify(schemaCfg.schema, null, 4));
       });
@@ -128,14 +128,16 @@ export class AppComponent {
         }
       });
     } else {
-      // TODO message for nothing to save
+      console.warn('Nothing to export');
     }
   }
 
   exportJsonMock() {
     const zip = new JSZip();
     const ARCHIVE_NAME = 'JSON MOCKS.zip';
-    const schemaList = (this.serviceRoot.toJSONSchemaList() || []).map(schemaCfg => {
+    const schemaList = (this.serviceRoot.toJSONSchemaList() || [])
+      .filter(schemaCfg => !!schemaCfg)
+      .map(schemaCfg => {
         const jsonMock = faker(schemaCfg.schema);
         if (jsonMock) {
           return {
@@ -166,7 +168,7 @@ export class AppComponent {
         }
       });
     } else {
-      // TODO message for nothing to save
+      console.warn('Nothing to export');
     }
   }
 
