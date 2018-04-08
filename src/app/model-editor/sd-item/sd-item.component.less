@@ -1,38 +1,41 @@
 ::ng-deep {
-    .mat-grid-list {
-        /*border-left: 1px black solid;*/
-        .mat-form-field, .mat-slide-toggle {
-            width: 100%;
-            padding: 0 1em;
-            margin-top: 1em;
+  .mat-grid-list {
+    /*border-left: 1px black solid;*/
+    .mat-form-field, .mat-slide-toggle {
+        width: 100%;
+        padding: 0 1em;
+        margin-top: 1em;
 
-            .mat-form-field-infix {
-                width: auto;
-            }
+        .mat-form-field-infix {
+            width: auto;
         }
     }
-    .mat-grid-tile .mat-figure {
-        justify-content: space-between;
-        .mat-mini-fab {
-            transform: scale(0.9);
-        }
+    .mat-form-field-type-mat-chip-list {
+      margin-top: 0.7em;
     }
-    .sd-item.ng-star-inserted.ng-trigger-itemAnimation.ng-animating {
-      + .sd-item.ng-star-inserted.ng-trigger-itemAnimation.ng-animating {
-        display: none;
+  }
+  .mat-grid-tile .mat-figure {
+      justify-content: space-between;
+      .mat-mini-fab {
+          transform: scale(0.9);
+      }
+  }
+  .sd-item.ng-star-inserted.ng-trigger-itemAnimation.ng-animating {
+    + .sd-item.ng-star-inserted.ng-trigger-itemAnimation.ng-animating {
+      display: none;
+    }
+  }
+  .sd-item {
+    background-color: #fafafa;
+    .sd-item-details{
+      >.ng-star-inserted>.mat-grid-list {
+          border-bottom: 1px dashed black;
+      }
+      .none {
+          border-bottom: 1px dashed black;
+          width: 100%;
+          display: block;
       }
     }
-    .sd-item {
-      background-color: #fafafa;
-      .sd-item-details{
-          >.ng-star-inserted>.mat-grid-list {
-              border-bottom: 1px dashed black;
-          }
-          .none {
-              border-bottom: 1px dashed black;
-              width: 100%;
-              display: block;
-          }
-      }
-    }
+  }
 }
