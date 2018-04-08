@@ -25,12 +25,13 @@ export class SdService {
     }
 
     toJSONSchemaList () {
-        const verbList = (this.verbs.toJSONSchemaList() || []).map(s => Object.assign(s, {
-            endPoint: this.endPoint,
-            schema: Object.assign(s.schema, {
-                title: (this.endPoint || '').replace('/', ' ') || undefined
-            })
-        }));
+        const verbList = (this.verbs.toJSONSchemaList() || [])
+          .map(s => Object.assign(s, {
+              endPoint: this.endPoint,
+              schema: Object.assign(s.schema, {
+                  title: (this.endPoint || '').replace('/', ' ') || undefined
+              })
+          }));
         return verbList.length > 0 ? verbList : undefined;
     }
 }

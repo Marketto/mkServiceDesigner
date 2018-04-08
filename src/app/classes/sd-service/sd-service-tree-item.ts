@@ -56,10 +56,13 @@ export class SdServiceTreeItem extends TreeviewItem {
     }
 
     toJSONSchemaList () {
-        const serviceList = (this.value.toJSONSchemaList() || []).map(s => Object.assign({}, s, {
-            uri: this.uri,
-            schema: s.schema
-        })).concat(...(this.children || []).map(c => c.toJSONSchemaList()));
+        const serviceList = (this.value.toJSONSchemaList() || [])
+          .filter(s => !!s)
+          .map(s => Object.assign({}, s, {
+              uri: this.uri,
+              schema: s.schema
+          }) )
+          .concat(...(this.children || []).map(c => c.toJSONSchemaList()) );
         return serviceList.length > 0 ? serviceList : undefined;
     }
 
