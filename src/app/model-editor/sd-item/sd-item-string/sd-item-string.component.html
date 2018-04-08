@@ -7,25 +7,12 @@
   <mat-grid-tile colspan="3">
     <mat-form-field>
       <input matInput placeholder="{{'LABEL.ITEM.LENGTH.MIN'|translate}}" type="number" step="1" name="minLength" [(ngModel)]="item.minLength" min="0" max="{{item.maxLength}}"/>
-      <!--div ng-messages="item.minimum.error" multiple role="alert">
-        <div ng-message="min">
-          Min Length must be greater than or equal to 0.
-        </div>
-        <div ng-message="max">
-          {{item.minLength.viewValue}} is greater than {{item.maxLength}} (max value).
-        </div>
-      </div-->
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
     <mat-form-field>
       <input matInput placeholder="{{'LABEL.ITEM.LENGTH.MAX'|translate}}" type="number" step="1" name="maxLength" [(ngModel)]="item.maxLength" min="{{item.minLength}}"
       />
-      <!--div ng-messages="item.minimum.error" multiple role="alert">
-        <div ng-message="min">
-          {{item.maxLength.viewValue}} is lower than {{item.minLength}} (min value).
-        </div>
-      </div-->
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="3">

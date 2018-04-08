@@ -33,7 +33,7 @@ export class AppComponent {
   title = 'Marketto Service Designer';
   treeItems: SdServiceTreeItem;
 
-  projectName: String;
+  projectName: string;
 
   private _verb: SdServiceVerb = 'GET';
   io: SdServiceIOType = 'response';

@@ -3,7 +3,7 @@ import { SdItem, XsdSdItem } from './sd-item';
 
 export class SdItemBoolean extends SdItem {
     type: 'boolean' = 'boolean';
-    default: Boolean;
+    default: boolean;
 
     constructor(item?: SdItem) {
         super(item);
