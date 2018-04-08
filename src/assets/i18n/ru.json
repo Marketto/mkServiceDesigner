@@ -56,6 +56,11 @@
     "ITEM"    : {
       "PROPERTY_NAME" : "Название свойства",
       "DEFAULT_VALUE" : "Значение по умолчанию",
+      "DEFAULT_BOOLEAN" : {
+        "NONE"          : "None",
+        "TRUE"          : "True",
+        "FALSE"         : "False"
+      },
       "DEPENDENCIES"  : "Dependencies",
       "TYPE"          : {
         "TITLE"         : "Тип",

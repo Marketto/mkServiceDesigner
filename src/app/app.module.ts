@@ -28,6 +28,7 @@ import { SdItemStringComponent } from './model-editor/sd-item/sd-item-string/sd-
 import { SdItemNumberComponent } from './model-editor/sd-item/sd-item-number/sd-item-number.component';
 import { SdItemObjectComponent } from './model-editor/sd-item/sd-item-object/sd-item-object.component';
 import { RegexpValidatorDirective } from './model-editor/sd-item/sd-item-string/regexp-validator/regexp-validator.directive';
+import { SdItemBooleanComponent } from './model-editor/sd-item/sd-item-boolean/sd-item-boolean.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { RegexpValidatorDirective } from './model-editor/sd-item/sd-item-string/
     SdItemStringComponent,
     SdItemNumberComponent,
     SdItemObjectComponent,
+    SdItemBooleanComponent,
     RegexpValidatorDirective
   ],
   imports: [

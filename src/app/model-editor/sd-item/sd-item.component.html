@@ -56,27 +56,11 @@
       <mat-form-field ng-init="(item.minOccurrences>=0)?null:(item.minOccurrences=0)">
         <input matInput placeholder="{{'LABEL.ITEM.OCCURRENCES.MIN'|translate}}" required type="number" step="1" name="minOccurrencess" [(ngModel)]="item.minOccurrences" min="0" [max]="item.maxOccurrences||999"
         />
-        <!--div ng-messages="item.minOccurrences.error" multiple role="alert">
-          <div ng-message="min">
-            The minimum possible should be zero
-          </div>
-          <div ng-message="max">
-            {{item.minOccurrences}} is greater than {{item.maxOccurrences}} (max occurence).
-          </div>
-        </div-->
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="3" *ngSwitchCase="true">
       <mat-form-field>
         <input matInput placeholder="{{'LABEL.ITEM.OCCURRENCES.MAX'|translate}}" type="number" step="1" name="maxOccurrencess" [(ngModel)]="item.maxOccurrences" max="999" [min]="item.minOccurrences||1"/>
-        <!--div ng-messages="item.maxOccurrences.error" multiple role="alert">
-          <div ng-message="max">
-            The maximum possible should be less than 999
-          </div>
-          <div ng-message="min">
-            {{item.maxOccurrences}} is lower than {{item.minOccurrences}} (min occurence).
-          </div>
-        </div-->
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="3" *ngSwitchCase="true">
@@ -90,6 +74,7 @@
     <app-sd-item-object *ngSwitchCase="'object'" [item]="item"></app-sd-item-object>
     <app-sd-item-number *ngSwitchCase="'integer'" [item]="item" integer></app-sd-item-number>
     <app-sd-item-number *ngSwitchCase="'number'" [item]="item"></app-sd-item-number>
+    <app-sd-item-boolean *ngSwitchCase="'boolean'" [item]="item"></app-sd-item-boolean>
     <div *ngSwitchDefault class="none"></div>
   </div>
 </div>

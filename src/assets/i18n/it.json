@@ -56,6 +56,11 @@
     "ITEM"      : {
       "PROPERTY_NAME" : "Nome proprietà",
       "DEFAULT_VALUE" : "Valore predefinito",
+      "DEFAULT_BOOLEAN" : {
+        "NONE"          : "Nessuno",
+        "TRUE"          : "Vero (true)",
+        "FALSE"         : "Falso (false)"
+      },
       "DEPENDENCIES"  : "Dipendenze",
       "TYPE"          : {
         "TITLE"         : "Tipo",

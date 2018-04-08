@@ -1,0 +1,17 @@
+<mat-grid-list cols="14">
+  <mat-grid-tile colspan="3">
+    <mat-form-field>
+      <mat-select placeholder="{{'LABEL.ITEM.DEFAULT_VALUE'|translate}}" [(ngModel)]="item.default">
+        <mat-option [value]="undefined" [disabled]="!item.default && item.default!==false">
+          {{'LABEL.ITEM.DEFAULT_BOOLEAN.NONE'|translate}}
+        </mat-option>
+        <mat-option [value]="true">
+          {{'LABEL.ITEM.DEFAULT_BOOLEAN.TRUE'|translate}}
+        </mat-option>
+        <mat-option [value]="false">
+          {{'LABEL.ITEM.DEFAULT_BOOLEAN.FALSE'|translate}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
