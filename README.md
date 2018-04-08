@@ -1,5 +1,7 @@
 # MkServiceDesigner
 ![Build Status](http://ci.marketto.it/buildStatus/icon?job=Service%20Designer)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=mkServiceDesigner)](https://sonarcloud.io/dashboard?id=mkServiceDesigner)
+[![SonarCloud Bugs](https://sonarcloud.io/api/badges/measure?key=mkServiceDesigner&metric=bugs)](https://sonarcloud.io/component_measures?id=mkServiceDesigner&metric=bugs)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
