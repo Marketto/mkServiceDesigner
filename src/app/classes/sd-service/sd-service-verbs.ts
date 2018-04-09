@@ -60,7 +60,6 @@ export class SdServiceVerbs {
   }
 
   public toJSON(): InterfaceSdServiceVerbsJSON {
-    const json: object = new Object();
     return {
       DELETE: (this.DELETE && (this.DELETE.response || this.DELETE.request)) ? this.DELETE : undefined,
       GET: (this.GET && this.GET.response) ? this.GET : undefined,

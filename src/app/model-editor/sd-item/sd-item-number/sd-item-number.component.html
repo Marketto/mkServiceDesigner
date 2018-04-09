@@ -43,11 +43,6 @@
     <mat-form-field>
       <input placeholder="{{'LABEL.ITEM.MAX_VAL'|translate}}" matInput type="number" step="{{integer?1:0.1}}" name="maxValue" [(ngModel)]="item.maxValue"
          [min]="item.minValue" />
-      <!--div ng-messages="item.maxValue.error" role="alert">
-        <div ng-message="min">
-          {{item.maxValue}} is lower than {{item.minValue}} (min value).
-        </div>
-      </div-->
     </mat-form-field>
   </mat-grid-tile>
 </mat-grid-list>

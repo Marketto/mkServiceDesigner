@@ -47,9 +47,7 @@ export class ServiceTreeComponent {
     return this.selectedSSTI;
   }
   public set selected(item: SdServiceTreeItem) {
-    if (item) {
-      this.selectedSSTI = item || this.selectedSSTI;
-    }
+    this.selectedSSTI = item || this.selectedSSTI;
     this.select.emit(this.selectedSSTI);
   }
 
