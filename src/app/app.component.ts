@@ -7,12 +7,11 @@ import { saveAs } from "file-saver/FileSaver";
 import * as jsf from "json-schema-faker";
 import * as JSZip from "jszip";
 import faker from "typescript-json-schema-faker";
+import { xml } from "xml-decorators";
 
-import { ContentElement } from './classes/content-element';
-import { SdItemObject } from "./classes/sd-item/sd-item-object";
-import { SdService } from "./classes/sd-service/sd-service";
-import { SdServiceTreeItem } from "./classes/sd-service/sd-service-tree-item";
-import { SdServiceIOType, SdServiceVerb } from "./classes/sd-service/sd-service-verbs";
+import { ContentElement } from "./classes/content-element";
+import { SdItemObject } from "./classes/sd-item";
+import { SdService, SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
 
 import * as EN_TRANSLATION from "../assets/i18n/en.json";
 import * as IT_TRANSLATION from "../assets/i18n/it.json";
@@ -38,12 +37,12 @@ export class AppComponent {
   public serviceRoot: SdServiceTreeItem = new SdServiceTreeItem();
   public currentService: SdServiceTreeItem;
 
-  private verbVal: SdServiceVerb = "GET";
+  private verbVal: SdServiceVerbType = "GET";
 
-  get verb(): SdServiceVerb {
+  get verb(): SdServiceVerbType {
     return this.verbVal;
   }
-  set verb(verb: SdServiceVerb) {
+  set verb(verb: SdServiceVerbType) {
     this.verbVal = verb;
     if (verb === "GET") {
       this.io = "response";
@@ -131,10 +130,10 @@ export class AppComponent {
 
   public exportWSDL() {
     const ARCHIVE_NAME = "WSDL.zip";
-    const schemaList = this.serviceRoot.toXSDList();
+    const schemaList = this.serviceRoot.flatList();
     if ((schemaList || []).length > 0) {
       const contentList = schemaList.map((xsd) => {
-        return new ContentElement(`${xsd.path}.wsdl`, xsd.serialize());
+        return new ContentElement(`${xsd.verbs.address}.wsdl`, xml.serialize(xsd));
       });
       this.exportZip(contentList, ` ${ARCHIVE_NAME}`);
     } else {

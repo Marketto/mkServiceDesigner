@@ -1,17 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SdItemComponent } from './sd-item/sd-item.component';
-import { SdItemList } from '../classes/sd-item/sd-item-list';
+import { Component, Input } from "@angular/core";
+import { SdItemList } from "../classes/sd-item";
+import { SdItemComponent } from "./sd-item/sd-item.component";
 
 @Component({
-  selector: 'app-model-editor',
-  templateUrl: './model-editor.component.html',
-  styleUrls: ['./model-editor.component.less']
+  selector: "app-model-editor",
+  styleUrls: ["./model-editor.component.less"],
+  templateUrl: "./model-editor.component.html",
 })
-export class ModelEditorComponent implements OnInit {
-  @Input() service: SdItemList;
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class ModelEditorComponent {
+  @Input() public service: SdItemList;
 }

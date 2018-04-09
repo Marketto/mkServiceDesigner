@@ -1,7 +1,6 @@
 import { TreeviewItem } from "ngx-treeview";
-import { SdService, SdServiceJSON } from "./sd-service";
-import { XsdSdServiceVerbs } from "./sd-service-verbs";
-import { XMLAttribute, XMLChild, XMLElement, xml } from "xml-decorators";
+import { InterfaceSdServiceJSON, SdService } from "./sd-service";
+import { SdServiceVerbs } from "./sd-service-verbs";
 
 export class SdServiceTreeItem extends TreeviewItem {
   public static fromJSON(key: string, value: any): SdServiceTreeItem {
@@ -21,6 +20,7 @@ export class SdServiceTreeItem extends TreeviewItem {
 
   public children: SdServiceTreeItem[];
   public value: SdService = new SdService();
+
   private parentTreeItem: SdServiceTreeItem;
 
   constructor() {
@@ -51,7 +51,7 @@ export class SdServiceTreeItem extends TreeviewItem {
       }
   }
 
-  public toJSON(): SdServiceJSON {
+  public toJSON(): InterfaceSdServiceJSON {
     return Object.assign({}, this.value, {
       children: this.children,
       parent: undefined,
@@ -69,38 +69,17 @@ export class SdServiceTreeItem extends TreeviewItem {
       return serviceList.length > 0 ? serviceList : undefined;
   }
 
-  public toXSD(): XsdSdService {
-      return this.value.endPoint ? new XsdSdService(this) : undefined;
-  }
-  public toXSDList(): XsdSdService[] {
-      const xsdServiceChildren = this.children ? this.children.map(s => s.toXSDList()) : undefined;
-      return [this.toXSD()].concat(...xsdServiceChildren).filter(s => !!s);
-  }
-}
+  public flatList(): SdService[] {
+    this.value.verbs.address = this.uri;
 
-@XMLElement({ root: "description" })
-class XsdSdService {
-    public path: string;
-    @XMLChild({ implicitStructure: "service.$"})
-    private endpoint: XsdSdServiceVerbs;
-    @XMLAttribute({})
-    private xmlns = "http://www.w3.org/ns/wsdl";
-    @XMLAttribute({})
-    private "xmls:whttp" = "http://www.w3.org/ns/wsdl/http";
-    @XMLAttribute({})
-    private "xmlns:wsoap" = "http://www.w3.org/ns/wsdl/soap";
-    // @XMLAttribute({})
-    // targetNamespace = "http://www.example.com/wsdl20sample";
-
-    constructor(service: SdServiceTreeItem) {
-        const serviceVerbs = service.value.verbs.toXSD();
-        if (serviceVerbs) {
-            this.path = serviceVerbs.address = service.uri.toString();
-            this.endpoint = serviceVerbs;
-        }
+    const outList = this.value.endPoint ? [this.value] : [];
+    if (this.children) {
+        this.children
+          .filter((s) => !!s.value.endPoint)
+          .forEach((s) => {
+            outList.push(...s.flatList());
+          });
     }
-
-    public serialize(): string {
-        return xml.serialize(this);
-    }
+    return outList;
+  }
 }

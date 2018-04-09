@@ -1,76 +1,72 @@
-import { Component, OnInit, Injectable, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { trigger, style, animate, transition } from '@angular/animations';
-import { TreeviewComponent, TreeviewConfig } from 'ngx-treeview';
-import { SdServiceTreeItem } from './../classes/sd-service/sd-service-tree-item';
+
+import { animate, style, transition, trigger } from "@angular/animations";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { TreeviewComponent, TreeviewConfig } from "ngx-treeview";
+import { SdServiceTreeItem } from "./../classes/sd-service";
 
 @Component({
-  selector: 'app-service-tree',
-  templateUrl: './service-tree.component.html',
-  styleUrls: ['./service-tree.component.less'],
-  providers: [],
   animations: [
     trigger(
-      'nodeAnimation', [
-        transition(':enter', [
-          style({ transform: 'translateY(-100%)', opacity: 0 }),
-          animate('500ms', style({ transform: 'translateY(0)', opacity: 1 }))
-        ])
-      ]
-    )
-  ]
+      "nodeAnimation", [
+        transition(":enter", [
+          style({ transform: "translateY(-100%)", opacity: 0 }),
+          animate("500ms", style({ transform: "translateY(0)", opacity: 1 })),
+        ]),
+      ],
+    ),
+  ],
+  providers: [],
+  selector: "app-service-tree",
+  styleUrls: ["./service-tree.component.less"],
+  templateUrl: "./service-tree.component.html",
 })
-export class ServiceTreeComponent implements OnInit {
-  @ViewChild(TreeviewComponent) treeviewComponent: TreeviewComponent;
-  _selected: SdServiceTreeItem;
-  _rootService: SdServiceTreeItem;
-  @Input()
-  get rootService(): SdServiceTreeItem {
-    return this._rootService;
-  }
-  set rootService(serviceItem: SdServiceTreeItem) {
-    this.selected = this._rootService = serviceItem;
-  }
+export class ServiceTreeComponent {
+  @ViewChild(TreeviewComponent) public treeviewComponent: TreeviewComponent;
 
-  @Output('select') private select = new EventEmitter();
-  @Input('select')
-  get selected(): SdServiceTreeItem {
-    return this._selected;
-  }
-  set selected(item: SdServiceTreeItem) {
-    if (item) {
-      this._selected = item || this._selected;
-    }
-    this.select.emit(this._selected);
-  }
-
-
-  treeviewCfg = TreeviewConfig.create({
+  public treeviewCfg: TreeviewConfig = TreeviewConfig.create({
     hasAllCheckBox: false,
     hasCollapseExpand: true,
-    hasFilter: false
+    hasFilter: false,
   });
+  public editMode: boolean = false;
 
-  editMode: Boolean = false;
+  private selectedSSTI: SdServiceTreeItem;
+  private rootServiceTI: SdServiceTreeItem;
 
-  addItem(item: SdServiceTreeItem) {
-    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem;
+  @Input()
+  public get rootService(): SdServiceTreeItem {
+    return this.rootServiceTI;
+  }
+  public set rootService(serviceItem: SdServiceTreeItem) {
+    this.selected = this.rootServiceTI = serviceItem;
+  }
+
+  @Output("select") private select = new EventEmitter();
+  @Input("select")
+  public get selected(): SdServiceTreeItem {
+    return this.selectedSSTI;
+  }
+  public set selected(item: SdServiceTreeItem) {
+    if (item) {
+      this.selectedSSTI = item || this.selectedSSTI;
+    }
+    this.select.emit(this.selectedSSTI);
+  }
+
+  public addItem(item: SdServiceTreeItem) {
+    const serviceItem: SdServiceTreeItem = new SdServiceTreeItem();
     serviceItem.parent = item;
   }
-  removeItem(item: SdServiceTreeItem) {
+  public removeItem(item: SdServiceTreeItem) {
     if (this.selected === item) {
       this.selected = item.parent;
     }
-    const itemIndex = item.parent.children.findIndex(child => {
+    const itemIndex = item.parent.children.findIndex((child) => {
         return child === item;
       });
     item.parent.children.splice(itemIndex, 1);
   }
-  selectItem(item: SdServiceTreeItem) {
+  public selectItem(item: SdServiceTreeItem) {
     this.selected = item;
   }
-
-  constructor() {}
-
-  ngOnInit() {}
-
 }

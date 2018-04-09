@@ -1,36 +1,36 @@
-import { SdItemNumeric } from './sd-item-numeric';
-import { SdItem } from './sd-item';
+import { SdItem } from "./sd-item";
+import { SdItemNumeric } from "./sd-item-numeric";
 
 export class SdItemInteger extends SdItemNumeric {
-    type: 'integer' = 'integer';
-    private $multipleOf: Number;
-    private $minValue: Number;
-    private $maxValue: Number;
+  public static fromJSON(key: string, value: any): SdItemInteger {
+    if (!key) {
+      return new SdItemInteger(Object.assign(Object.create(SdItemInteger.prototype), value || {}));
+    }
+  }
 
-    get multipleOf(): Number {
-        return this.$multipleOf;
-    }
-    set multipleOf(multipleOf: Number) {
-        this.$multipleOf = multipleOf ? Math.round(multipleOf.valueOf()) : multipleOf;
-    }
+  public type: "integer" = "integer";
+  private $multipleOf: number;
+  private $minValue: number;
+  private $maxValue: number;
 
-    get minValue(): Number {
-        return this.$minValue;
-    }
-    set minValue(minValue: Number) {
-        this.$minValue = minValue ? Math.round(minValue.valueOf()) : minValue;
-    }
+  get multipleOf(): number {
+      return this.$multipleOf;
+  }
+  set multipleOf(multipleOf: number) {
+      this.$multipleOf = multipleOf ? Math.round(multipleOf.valueOf()) : multipleOf;
+  }
 
-    get maxValue(): Number {
-        return this.$maxValue;
-    }
-    set maxValue(maxValue: Number) {
-        this.$maxValue = maxValue ? Math.round(maxValue.valueOf()) : maxValue;
-    }
+  get minValue(): number {
+      return this.$minValue;
+  }
+  set minValue(minValue: number) {
+      this.$minValue = minValue ? Math.round(minValue.valueOf()) : minValue;
+  }
 
-    public static fromJSON(key: string, value: any): SdItemInteger {
-        if (!key) {
-            return new SdItemInteger(Object.assign(Object.create(SdItemInteger.prototype), value || {}));
-        }
-    }
+  get maxValue(): number {
+      return this.$maxValue;
+  }
+  set maxValue(maxValue: number) {
+      this.$maxValue = maxValue ? Math.round(maxValue.valueOf()) : maxValue;
+  }
 }

@@ -1,17 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-
-import { SdItemBoolean } from '../../../classes/sd-item/sd-item-boolean';
+import { Component, Input } from "@angular/core";
+import { SdItemBoolean } from "../../../classes/sd-item";
 
 @Component({
-  selector: 'app-sd-item-boolean',
-  templateUrl: './sd-item-boolean.component.html',
-  styleUrls: ['./sd-item-boolean.component.less']
+  selector: "app-sd-item-boolean",
+  styleUrls: ["./sd-item-boolean.component.less"],
+  templateUrl: "./sd-item-boolean.component.html",
 })
-export class SdItemBooleanComponent implements OnInit {
-  @Input() item: SdItemBoolean;
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class SdItemBooleanComponent {
+  @Input() public item: SdItemBoolean;
 }
