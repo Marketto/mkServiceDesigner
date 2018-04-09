@@ -60,17 +60,27 @@ export class SdItemList extends Array<SdItem> {
   }
 
   public toJSONSchema(): object {
-      const sdItemArray = [].concat(this).filter((sdItem) => !!sdItem.name);
-      const required = sdItemArray.map((sdItem) => sdItem.required && sdItem.name).filter((r) => !!r);
-      const schemaList = {
-          properties: {},
-          required: (required.length > 0) ? required : undefined,
-      };
-
-      sdItemArray.forEach((sdItem) => {
-          schemaList.properties[sdItem.name] = sdItem.toJSONSchema();
+    const sdItemArray: SdItem[] = [].concat(this).filter((sdItem) => !!sdItem.name);
+    const required = sdItemArray
+      .filter((sdItem) => sdItem.required && sdItem.name)
+      .map((sdItem) => sdItem.name);
+    const dependencies = sdItemArray
+      .filter((sdItem) => sdItem.name && (sdItem.dependencies || []).length > 0 )
+      .map((sdItem) => {
+        return {
+          [sdItem.name]: sdItem.dependencies,
+        };
       });
+    const schemaList = {
+      dependencies: (dependencies.length > 0) ? dependencies : undefined,
+      properties: Object.assign({}, ...sdItemArray.map((sdItem) => {
+        return {
+          [sdItem.name]: sdItem.toJSONSchema(),
+        };
+      })),
+      required: (required.length > 0) ? required : undefined,
+    };
 
-      return sdItemArray.length > 0 ? schemaList : undefined;
+    return sdItemArray.length > 0 ? schemaList : undefined;
   }
 }

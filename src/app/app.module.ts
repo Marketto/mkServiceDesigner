@@ -21,12 +21,15 @@ import { TranslateModule } from "@ngx-translate/core";
 import { TreeviewModule } from "ngx-treeview";
 import { AppComponent } from "./app.component";
 import { ModelEditorComponent } from "./model-editor/model-editor.component";
-import { RegexpValidatorDirective,
-} from "./model-editor/sd-item/sd-item-string/regexp-validator/regexp-validator.directive";
-
+import {
+  ExcludeSdItemSiblingsPipe,
+} from "./model-editor/sd-item/exclude-sd-item-siblings/exclude-sd-item-siblings.pipe";
 import { SdItemBooleanComponent } from "./model-editor/sd-item/sd-item-boolean/sd-item-boolean.component";
 import { SdItemNumberComponent } from "./model-editor/sd-item/sd-item-number/sd-item-number.component";
 import { SdItemObjectComponent } from "./model-editor/sd-item/sd-item-object/sd-item-object.component";
+import {
+  RegexpValidatorDirective,
+} from "./model-editor/sd-item/sd-item-string/regexp-validator/regexp-validator.directive";
 import { SdItemStringComponent } from "./model-editor/sd-item/sd-item-string/sd-item-string.component";
 import { SdItemComponent } from "./model-editor/sd-item/sd-item.component";
 import { ServiceTreeComponent } from "./service-tree/service-tree.component";
@@ -45,6 +48,7 @@ import { ServiceTreeComponent } from "./service-tree/service-tree.component";
     SdItemObjectComponent,
     SdItemBooleanComponent,
     RegexpValidatorDirective,
+    ExcludeSdItemSiblingsPipe,
   ],
   imports: [
     FormsModule,

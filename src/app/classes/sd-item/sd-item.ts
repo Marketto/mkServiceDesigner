@@ -29,7 +29,7 @@ export abstract class SdItem implements InterfaceSdItem {
   public id: number;
   public type: SdItemType = null;
   public required: boolean = false;
-  public dependencies: SdItem[];
+  public dependencies: string[];
 
   // Array props
   public   listOf: boolean = false;
