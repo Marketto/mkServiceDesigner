@@ -1,222 +1,188 @@
-import { browser } from 'protractor';
-import { Component, Inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { DOCUMENT } from '@angular/platform-browser';
-import { TreeviewConfig } from 'ngx-treeview';
+import { Component, Inject } from "@angular/core";
+import { DOCUMENT } from "@angular/platform-browser";
+import { TranslateService } from "@ngx-translate/core";
+import { TreeviewConfig } from "ngx-treeview";
 
-import { saveAs } from 'file-saver/FileSaver';
-import * as jsf from 'json-schema-faker';
-import faker from 'typescript-json-schema-faker';
-import * as JSZip from 'jszip';
+import { saveAs } from "file-saver/FileSaver";
+import * as jsf from "json-schema-faker";
+import * as JSZip from "jszip";
+import faker from "typescript-json-schema-faker";
 
-import { SdServiceVerb, SdServiceIOType } from './classes/sd-service/sd-service-verbs';
-import { SdService } from './classes/sd-service/sd-service';
-import { SdServiceTreeItem } from './classes/sd-service/sd-service-tree-item';
-import { SdItemObject } from './classes/sd-item/sd-item-object';
+import { ContentElement } from './classes/content-element';
+import { SdItemObject } from "./classes/sd-item/sd-item-object";
+import { SdService } from "./classes/sd-service/sd-service";
+import { SdServiceTreeItem } from "./classes/sd-service/sd-service-tree-item";
+import { SdServiceIOType, SdServiceVerb } from "./classes/sd-service/sd-service-verbs";
 
-
-import * as EN_TRANSLATION from '../assets/i18n/en.json';
-import * as IT_TRANSLATION from '../assets/i18n/it.json';
-import * as RU_TRANSLATION from '../assets/i18n/ru.json';
+import * as EN_TRANSLATION from "../assets/i18n/en.json";
+import * as IT_TRANSLATION from "../assets/i18n/it.json";
+import * as RU_TRANSLATION from "../assets/i18n/ru.json";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  selector    : "app-root",
+  styleUrls   : ["./app.component.less"],
+  templateUrl : "./app.component.html",
 })
 
 export class AppComponent {
-  mksdRootJsonFileName = 'serviceRoot.json';
-  mksdMimeType = 'application/x-mk-service-designer';
-  mksdFileType = '.mksd';
+  public mksdRootJsonFileName = "serviceRoot.json";
+  public mksdMimeType = "application/x-mk-service-designer";
+  public mksdFileType = ".mksd";
 
-  title = 'Marketto Service Designer';
-  treeItems: SdServiceTreeItem;
+  public title = "Marketto Service Designer";
+  public treeItems: SdServiceTreeItem;
 
-  projectName: string;
+  public projectName: string;
 
-  private _verb: SdServiceVerb = 'GET';
-  io: SdServiceIOType = 'response';
-  serviceRoot: SdServiceTreeItem = new SdServiceTreeItem;
-  currentService: SdServiceTreeItem;
+  public io: SdServiceIOType = "response";
+  public serviceRoot: SdServiceTreeItem = new SdServiceTreeItem();
+  public currentService: SdServiceTreeItem;
 
-  get verb (): SdServiceVerb {
-    return this._verb;
+  private verbVal: SdServiceVerb = "GET";
+
+  get verb(): SdServiceVerb {
+    return this.verbVal;
   }
-  set verb (verb: SdServiceVerb) {
-    this._verb = verb;
-    if (verb === 'GET') {
-      this.io = 'response';
+  set verb(verb: SdServiceVerb) {
+    this.verbVal = verb;
+    if (verb === "GET") {
+      this.io = "response";
     } else {
-      this.io = 'request';
-    }
-  }
-
-  newItem() {
-    this.currentService.value.verbs[this.verb][this.io].push(new SdItemObject);
-  }
-  saveMKSD() {
-    const mksdFile = new JSZip();
-    mksdFile.file(this.mksdRootJsonFileName, JSON.stringify(this.serviceRoot));
-    mksdFile.generateAsync({
-      'type': 'blob',
-      'compression': 'DEFLATE',
-      'compressionOptions': {
-        'level': 9
-      },
-      'mimeType': this.mksdMimeType
-    }).then(blobData => {
-      if (!this.projectName) {
-        this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
-          this.projectName = projectName;
-          const mksdFileName = this.projectName + this.mksdFileType;
-          saveAs(blobData, mksdFileName);
-        });
-      } else {
-        const mksdFileName = this.projectName + this.mksdFileType;
-        saveAs(blobData, mksdFileName);
-      }
-    });
-  }
-  openMKSD(file: File) {
-    const mksdFile = new JSZip();
-    mksdFile.loadAsync(file).then(archive => {
-      if (archive.files[this.mksdRootJsonFileName]) {
-        archive.files[this.mksdRootJsonFileName].async('blob').then(sourceFile => {
-          const fileReader = new FileReader();
-          fileReader.readAsBinaryString(sourceFile);
-          fileReader.onload = () => {
-            console.log('SOURCE JSON', JSON.parse(fileReader.result));
-            this.projectName = file.name.replace(this.mksdFileType, '');
-            this.serviceRoot = JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON);
-            console.log('SdServiceTreeItem PARSED', this.serviceRoot);
-          };
-          fileReader.onerror = err => {
-            console.error('file reader', err);
-          };
-        }, err => {
-          console.error('zip fetcher', err);
-        });
-      }
-    }, err => {
-      console.error('zip loading', err);
-    });
-  }
-
-  exportJsonSchema() {
-    const zip = new JSZip();
-    const ARCHIVE_NAME = 'JSON Schema.zip';
-    const schemaList = this.serviceRoot.toJSONSchemaList() || [];
-    if (schemaList.length > 0) {
-      schemaList.forEach(schemaCfg => {
-        zip.file(`${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`, JSON.stringify(schemaCfg.schema, null, 4));
-      });
-      zip.generateAsync({
-        'type': 'blob',
-        'compression': 'DEFLATE',
-        'compressionOptions': {
-          'level': 9
-        }
-      }).then(blobData => {
-        if (!this.projectName) {
-          this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
-            this.projectName = projectName;
-            saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-          });
-        } else {
-          saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-        }
-      });
-    } else {
-      console.warn('Nothing to export');
-    }
-  }
-
-  exportJsonMock() {
-    const zip = new JSZip();
-    const ARCHIVE_NAME = 'JSON MOCKS.zip';
-    const schemaList = (this.serviceRoot.toJSONSchemaList() || [])
-      .map(schemaCfg => {
-        const jsonMock = faker(schemaCfg.schema);
-        if (jsonMock) {
-          return {
-            filePath: `${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`,
-            data: JSON.stringify(jsonMock, null, 4)
-          };
-        }
-      }).filter(schemaCfg => !!schemaCfg);
-
-    if (schemaList.length > 0) {
-      schemaList.forEach(schemaCfg => {
-        zip.file(schemaCfg.filePath, schemaCfg.data);
-      });
-      zip.generateAsync({
-        'type': 'blob',
-        'compression': 'DEFLATE',
-        'compressionOptions': {
-          'level': 9
-        }
-      }).then(blobData => {
-        if (!this.projectName) {
-          this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
-            this.projectName = projectName;
-            saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-          });
-        } else {
-          saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-        }
-      });
-    } else {
-      console.warn('Nothing to export');
-    }
-  }
-
-  exportWSDL() {
-    const zip = new JSZip();
-    const ARCHIVE_NAME = 'WSDL.zip';
-    const schemaList = this.serviceRoot.toXSDList();
-    if ((schemaList || []).length > 0) {
-      schemaList.forEach(xsd => {
-        zip.file(`${xsd.path}.wsdl`, xsd.serialize());
-      });
-      zip.generateAsync({
-        'type': 'blob',
-        'compression': 'DEFLATE',
-        'compressionOptions': {
-          'level': 9
-        }
-      }).then(blobData => {
-        if (!this.projectName) {
-          this.translate.get('DEFAULT.FILE_NAME').toPromise().then(projectName => {
-            this.projectName = projectName;
-            saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-          });
-        } else {
-          saveAs(blobData, `${this.projectName} ${ARCHIVE_NAME}`);
-        }
-      });
-    } else {
-      // TODO message for nothing to save
+      this.io = "request";
     }
   }
 
   constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService) {
     this.initTranslate();
     jsf.option({
-      alwaysFakeOptionals: true
+      alwaysFakeOptionals: true,
     });
   }
 
-  initTranslate() {
-    const DEFAULT_LANGUAGE = 'en';
+  public newItem() {
+    this.currentService.value.verbs[this.verb][this.io].push(new SdItemObject());
+  }
 
-    this.translate.setTranslation('en', EN_TRANSLATION);
-    this.translate.setTranslation('it', IT_TRANSLATION);
-    this.translate.setTranslation('ru', RU_TRANSLATION);
+  public saveMKSD() {
+    const mksdRawFile = [{
+      data: JSON.stringify(this.serviceRoot),
+      filePath: this.mksdRootJsonFileName,
+    }];
+    this.exportZip(mksdRawFile, this.mksdFileType, this.mksdMimeType);
+  }
+
+  public openMKSD(file: File) {
+    const mksdFile = new JSZip();
+    mksdFile.loadAsync(file).then((archive) => {
+      if (archive.files[this.mksdRootJsonFileName]) {
+        archive.files[this.mksdRootJsonFileName].async("blob").then((sourceFile) => {
+          const fileReader = new FileReader();
+          fileReader.readAsBinaryString(sourceFile);
+          fileReader.onload = () => {
+            this.projectName = file.name.replace(this.mksdFileType, "");
+            this.serviceRoot = JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON);
+          };
+          fileReader.onerror = (err) => {
+            this.exportError("file reader", err);
+          };
+        }, (err) => {
+          this.exportError("zip fetcher", err);
+        });
+      }
+    }, (err) => {
+      this.exportError("zip loading", err);
+    });
+  }
+
+  public exportJsonSchema() {
+    const ARCHIVE_NAME = "JSON Schema.zip";
+    const schemaList = this.serviceRoot.toJSONSchemaList() || [];
+    if (schemaList.length > 0) {
+      const contentList = schemaList.map((schemaCfg) => {
+        return new ContentElement(
+          `${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`,
+          JSON.stringify(schemaCfg.schema, null, 4),
+        );
+      });
+      this.exportZip(contentList, ` ${ARCHIVE_NAME}`);
+
+    } else {
+      this.nothingToExport();
+    }
+  }
+
+  public exportJsonMock() {
+    const ARCHIVE_NAME = "JSON MOCKS.zip";
+    const schemaList = (this.serviceRoot.toJSONSchemaList() || [])
+      .map((schemaCfg) => {
+        const jsonMock = faker(schemaCfg.schema);
+        return jsonMock && new ContentElement(
+          `${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`,
+          JSON.stringify(jsonMock, null, 4),
+        );
+      }).filter((schemaCfg) => !!schemaCfg);
+
+    if (schemaList.length > 0) {
+      this.exportZip(schemaList, ` ${ARCHIVE_NAME}`);
+    } else {
+      this.nothingToExport();
+    }
+  }
+
+  public exportWSDL() {
+    const ARCHIVE_NAME = "WSDL.zip";
+    const schemaList = this.serviceRoot.toXSDList();
+    if ((schemaList || []).length > 0) {
+      const contentList = schemaList.map((xsd) => {
+        return new ContentElement(`${xsd.path}.wsdl`, xsd.serialize());
+      });
+      this.exportZip(contentList, ` ${ARCHIVE_NAME}`);
+    } else {
+      this.nothingToExport();
+    }
+  }
+
+  private nothingToExport() {
+    return;
+  }
+  private exportError(msg, err) {
+    return;
+  }
+
+  private exportZip(fileList: ContentElement[], extension: string, mimeType?: string) {
+    const zip = new JSZip();
+    fileList.forEach((e) => {
+      zip.file(e.filePath, e.data);
+    });
+    zip.generateAsync({
+      compression: "DEFLATE",
+      compressionOptions: {
+        level: 9,
+      },
+      mimeType,
+      type: "blob",
+    }).then((blobData) => {
+      if (!this.projectName) {
+        this.translate.get("DEFAULT.FILE_NAME").toPromise().then((projectName) => {
+          this.projectName = projectName;
+          saveAs(blobData, `${this.projectName}${extension}`);
+        });
+      } else {
+        saveAs(blobData, `${this.projectName}${extension}`);
+      }
+    });
+  }
+
+  private initTranslate() {
+    const DEFAULT_LANGUAGE = "en";
+
+    this.translate.setTranslation("en", EN_TRANSLATION);
+    this.translate.setTranslation("it", IT_TRANSLATION);
+    this.translate.setTranslation("ru", RU_TRANSLATION);
 
     this.translate.setDefaultLang(DEFAULT_LANGUAGE);
 
-    const appropriateLanguage = Object.keys(this.translate.translations).find(ln => {
+    const appropriateLanguage = Object.keys(this.translate.translations).find((ln) => {
       const cultureLang = this.translate.getBrowserCultureLang();
       const browserLang = this.translate.getBrowserLang();
 
