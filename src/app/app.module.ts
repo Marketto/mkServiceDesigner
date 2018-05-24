@@ -34,6 +34,10 @@ import { SdItemStringComponent } from "./model-editor/sd-item/sd-item-string/sd-
 import { SdItemComponent } from "./model-editor/sd-item/sd-item.component";
 import { ServiceTreeComponent } from "./service-tree/service-tree.component";
 
+import { MaxDirective } from "./commons/validators/max/max.directive";
+import { MinDirective } from "./commons/validators/min/min.directive";
+import { MultipleOfDirective } from "./commons/validators/multiple-of/multiple-of.directive";
+
 @NgModule({
   bootstrap: [
     AppComponent,
@@ -49,6 +53,9 @@ import { ServiceTreeComponent } from "./service-tree/service-tree.component";
     SdItemBooleanComponent,
     RegexpValidatorDirective,
     ExcludeSdItemSiblingsPipe,
+    MinDirective,
+    MaxDirective,
+    MultipleOfDirective,
   ],
   imports: [
     FormsModule,

@@ -1,14 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from "@ngx-translate/core";
+import { FormsModule } from "@angular/forms";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SdItemNumberComponent } from './sd-item-number.component';
+import { SdItemNumberComponent } from "./sd-item-number.component";
+import { MatGridListModule, MatSelectModule } from "@angular/material";
 
-describe('SdItemNumberComponent', () => {
+describe("SdItemNumberComponent", () => {
   let component: SdItemNumberComponent;
   let fixture: ComponentFixture<SdItemNumberComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SdItemNumberComponent ]
+      declarations: [
+        SdItemNumberComponent,
+      ],
+      imports: [
+        FormsModule,
+        TranslateModule.forRoot(),
+        MatGridListModule,
+        MatSelectModule,
+      ],
     })
     .compileComponents();
   }));
@@ -16,10 +27,10 @@ describe('SdItemNumberComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SdItemNumberComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

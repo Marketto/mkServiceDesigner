@@ -1,3 +1,6 @@
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule, MatGridListModule } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SdItemBooleanComponent } from './sd-item-boolean.component';
@@ -8,7 +11,15 @@ describe('SdItemBooleanComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SdItemBooleanComponent ]
+      declarations: [
+        SdItemBooleanComponent,
+      ],
+      imports: [
+        FormsModule,
+        TranslateModule.forRoot(),
+        MatSelectModule,
+        MatGridListModule,
+      ],
     })
     .compileComponents();
   }));
@@ -16,7 +27,7 @@ describe('SdItemBooleanComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SdItemBooleanComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it('should create', () => {

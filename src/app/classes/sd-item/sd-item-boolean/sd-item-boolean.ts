@@ -1,4 +1,4 @@
-import { SdItem } from "./sd-item";
+import { SdItem } from "../sd-item";
 
 export class SdItemBoolean extends SdItem {
 

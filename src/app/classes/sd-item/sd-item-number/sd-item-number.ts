@@ -1,4 +1,4 @@
-import { SdItemNumeric } from "./sd-item-numeric";
+import { SdItemNumeric } from "../sd-item-numeric/sd-item-numeric";
 
 export class SdItemNumber extends SdItemNumeric {
   public static fromJSON(key: string, value: any): SdItemNumber {

@@ -1,10 +1,10 @@
 import { xml, XMLChild, XMLElement } from "xml-decorators";
-import { SdItem } from "./sd-item";
-import { SdItemBoolean } from "./sd-item-boolean";
-import { SdItemInteger } from "./sd-item-integer";
-import { SdItemNumber } from "./sd-item-number";
-import { SdItemObject } from "./sd-item-object";
-import { SdItemString } from "./sd-item-string";
+import { SdItem } from "../sd-item";
+import { SdItemBoolean } from "../sd-item-boolean/sd-item-boolean";
+import { SdItemInteger } from "../sd-item-integer/sd-item-integer";
+import { SdItemNumber } from "../sd-item-number/sd-item-number";
+import { SdItemObject } from "../sd-item-object/sd-item-object";
+import { SdItemString } from "../sd-item-string/sd-item-string";
 
 @XMLElement({ root: "xs:complexType" })
 export class SdItemList extends Array<SdItem> {

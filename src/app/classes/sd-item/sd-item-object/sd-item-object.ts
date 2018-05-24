@@ -1,6 +1,6 @@
 import { XMLChild } from "xml-decorators";
-import { SdItem } from "./sd-item";
-import { SdItemList } from "./sd-item-list";
+import { SdItem } from "../sd-item";
+import { SdItemList } from "../sd-item-list/sd-item-list";
 
 type SdItemObjectAdditionalPropertiesType = boolean | "string" | "number" | "integer" | "boolean";
 

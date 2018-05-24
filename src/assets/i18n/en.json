@@ -101,7 +101,7 @@
         "IPV6"          : "IP v6",
         "URI"           : "URI"
       },
-      "DOMAIN"        : "Value domain",
+      "DOMAIN"        : "Domain values",
       "MULTIPLE"      : "Multiple of",
       "MIN_VAL"       : "Min value",
       "MAX_VAL"       : "Max value",

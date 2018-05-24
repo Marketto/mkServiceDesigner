@@ -1,4 +1,4 @@
-import { SdItem } from "./sd-item";
+import { SdItem } from "../sd-item";
 
 type SdItemStringFormatJson = "hostname" | "ipv4" | "ipv6" | "date-time" | "email" | "uri" | false;
 type XsdStringType = "xs:string" | "xs:dateTime" | "xs:anyURI";

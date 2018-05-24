@@ -25,7 +25,7 @@
         "COLLAPSE"      : "Свернуть блок ресурсов",
         "EXPAND"        : "Открыть блок ресурсов"
       },
-      "DEL_DOMAIN_VAL": "Delete domain value"
+      "DEL_DOMAIN_VAL": "Удалить значение"
     },
     "INPUT"     : {
       "PROJECT_NAME"      : "Название проекта",
@@ -57,11 +57,11 @@
       "PROPERTY_NAME" : "Название свойства",
       "DEFAULT_VALUE" : "Значение по умолчанию",
       "DEFAULT_BOOLEAN" : {
-        "NONE"          : "None",
-        "TRUE"          : "True",
-        "FALSE"         : "False"
+        "NONE"          : "Нет значения",
+        "TRUE"          : "Верно",
+        "FALSE"         : "Неверно"
       },
-      "DEPENDENCIES"  : "Dependencies",
+      "DEPENDENCIES"  : "Зависимость",
       "TYPE"          : {
         "TITLE"         : "Тип",
         "OBJECT"        : "Объект",
@@ -71,12 +71,12 @@
         "BOOLEAN"       : "Логический"
       },
       "REQUIRED"      : "Обязательный",
-      "LIST"          : "List of",
+      "LIST"          : "Список",
       "OCCURENCES"    : {
-        "MIN"           : "Min occurrences",
-        "MAX"           : "Max occurrences"
+        "MIN"           : "Минимум единиц",
+        "MAX"           : "Максимум единиц"
       },
-      "UNIQUE_ITEMS"  : "Unique items",
+      "UNIQUE_ITEMS"  : "Неповторяющиеся элементы",
       "EXTRA_PROPS"   : {
         "TITLE"         : "Дополнительные свойства",
         "ALLOWED"       : "Разрешено",
@@ -92,21 +92,21 @@
       },
       "REGEXP"        : "Регуля́рные выраже́ния",
       "FORMAT"        : {
-        "TITLE"         : "Format",
-        "GENERIC"       : "Generic",
-        "DATE_TIME"     : "Date / Time",
-        "EMAIL"         : "Email",
+        "TITLE"         : "Формат",
+        "GENERIC"       : "Общий",
+        "DATE_TIME"     : "Дата / Время",
+        "EMAIL"         : "Адрес электронной почты",
         "HOST_NAME"     : "Host name",
         "IPV4"          : "IP v4",
         "IPV6"          : "IP v6",
         "URI"           : "URI"
       },
-      "DOMAIN"        : "Value domain",
+      "DOMAIN"        : "Значения домена",
       "MULTIPLE"      : "Multiple of",
-      "MIN_VAL"       : "Min value",
-      "MAX_VAL"       : "Max value",
-      "GT_MIN"        : "Lower limit",
-      "LT_MAX"        : "Upper limit"
+      "MIN_VAL"       : "Минимум значений",
+      "MAX_VAL"       : "Максимум значений",
+      "GT_MIN"        : "Нижняя граница",
+      "LT_MAX"        : "Вернхяя граница"
     }
   },
   "DEFAULT"       : {

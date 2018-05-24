@@ -17,11 +17,10 @@
     ]
   },
   "include": [
-    "node_modules/xml-decorators",
+    "node_modules/xml-decorators/**/*",
     "src/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }
