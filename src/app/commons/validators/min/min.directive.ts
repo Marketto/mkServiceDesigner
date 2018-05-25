@@ -17,9 +17,9 @@ export class MinDirective implements Validator {
 
   public validate(c: FormControl): {[key: string]: any} {
     const value = parseFloat(c.value);
-    if (!isNaN(value) && (this.min || this.min === 0) && (value < this.min)) {
+    if ((c.value !== null) && !isNaN(value) && (this.min !== null) && !isNaN(this.min) && (value < this.min)) {
       return {
-        max: {
+        min: {
           value,
         },
       };

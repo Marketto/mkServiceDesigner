@@ -6,24 +6,23 @@ import { FormControl, NG_VALIDATORS, Validator } from "@angular/forms";
     {
       multi: true,
       provide: NG_VALIDATORS,
-      useExisting: MaxDirective,
+      useExisting: StepDirective,
     },
   ],
-  selector: "[max][formControlName], [max][formControl], [max][ngModel]",
+  selector: "[step][formControlName],[step][formControl],[step][ngModel]",
 })
-export class MaxDirective implements Validator {
+export class StepDirective implements Validator {
   @Input()
-  public max: number;
+  public step: number;
 
   public validate(c: FormControl): {[key: string]: any} {
     const value = parseFloat(c.value);
-    if ((c.value !== null) && !isNaN(value) && (this.max !== null) && !isNaN(this.max) && (value > this.max)) {
+    if ((c.value !== null) && !isNaN(value) && (this.step !== null) && !isNaN(this.step) && (value % this.step)) {
       return {
-        max: {
+        step: {
           value,
         },
       };
     }
   }
-
 }

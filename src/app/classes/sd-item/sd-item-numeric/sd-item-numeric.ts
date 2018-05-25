@@ -60,7 +60,7 @@ export abstract class SdItemNumeric extends SdItem {
   }
 
   protected setMinValue(minValue: number) {
-    this.$minValue = (
+    if(
       !isNaN(minValue) &&
       minValue !== null &&
       (
@@ -70,14 +70,18 @@ export abstract class SdItemNumeric extends SdItem {
         ) ||
         isNaN(this.maxValue)
       )
-    ) ? minValue : undefined;
+    ){
+      this.$minValue = minValue;
+    } else if (isNaN(minValue) || minValue === null){
+      this.$minValue = undefined;
+    }
 
-    if (!isNaN(this.default) && this.default <= this.minValue) {
+    if (!isNaN(this.default) && !isNaN(this.minValue) && this.default <= this.minValue) {
       this.$default = this.minValue;
     }
   }
   protected setMaxValue(maxValue: number) {
-    this.$maxValue = (
+    if(
       !isNaN(maxValue) &&
       maxValue !== null &&
       (
@@ -86,45 +90,75 @@ export abstract class SdItemNumeric extends SdItem {
           this.minValue <= maxValue
         ) ||
         isNaN(this.minValue)
+      ) &&
+      (
+        (
+          !isNaN(this.multipleOf) &&
+          maxValue >= this.multipleOf
+        ) ||
+        isNaN(this.multipleOf)
       )
-    ) ? maxValue : undefined;
+    ){
+      this.$maxValue = maxValue;
+    } else if (isNaN(maxValue) || maxValue === null) {
+      this.$maxValue = undefined;
+    }
 
-    if (!isNaN(this.default) && this.default >= this.maxValue) {
+    if (!isNaN(this.default) && !isNaN(this.maxValue) && this.default >= this.maxValue) {
       this.$default = this.maxValue;
     }
   }
   protected setDefault(defaultValue: number) {
-    this.$default = (
+    if(
       !isNaN(defaultValue) &&
       defaultValue !== null &&
       (
         (
           !isNaN(this.minValue) &&
-          this.minValue < defaultValue
+          this.minValue <= defaultValue
         ) ||
         isNaN(this.minValue)
       ) &&
       (
         (
           !isNaN(this.maxValue) &&
-          this.maxValue > defaultValue
+          this.maxValue >= defaultValue
         ) ||
         isNaN(this.maxValue)
+      ) &&
+      (
+        (
+          !isNaN(this.multipleOf) &&
+          !(defaultValue % this.multipleOf)
+        ) ||
+        isNaN(this.multipleOf)
       )
-    ) ? defaultValue : undefined;
+    ){
+      this.$default = defaultValue;
+    } else if (isNaN(defaultValue) || defaultValue === null) {
+      this.$default = undefined;
+    };
   }
   protected setMultipleOf(multipleOf: number) {
-    this.$multipleOf = (
+    if (
       !isNaN(multipleOf) &&
       multipleOf !== null &&
       (
         (
           !isNaN(this.maxValue) &&
-          this.maxValue > multipleOf
+          this.maxValue >= multipleOf
         ) ||
         isNaN(this.maxValue)
       )
-    ) ? multipleOf : undefined;
+    ){
+      this.$multipleOf = multipleOf;
+    } else if(isNaN(multipleOf) || multipleOf === null){
+      this.$multipleOf = undefined;
+    }
+
+    if (!isNaN(this.default) && !isNaN(this.multipleOf) && ( this.default % this.multipleOf )) {
+      this.default = Math.round(this.default / this.multipleOf) * this.multipleOf;
+    }
   }
 
   protected get xsdType(): XsdNumericType {

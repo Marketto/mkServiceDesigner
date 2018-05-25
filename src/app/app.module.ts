@@ -36,7 +36,7 @@ import { ServiceTreeComponent } from "./service-tree/service-tree.component";
 
 import { MaxDirective } from "./commons/validators/max/max.directive";
 import { MinDirective } from "./commons/validators/min/min.directive";
-import { MultipleOfDirective } from "./commons/validators/multiple-of/multiple-of.directive";
+import { StepDirective } from "./commons/validators/step/step.directive";
 
 @NgModule({
   bootstrap: [
@@ -55,7 +55,7 @@ import { MultipleOfDirective } from "./commons/validators/multiple-of/multiple-o
     ExcludeSdItemSiblingsPipe,
     MinDirective,
     MaxDirective,
-    MultipleOfDirective,
+    StepDirective,
   ],
   imports: [
     FormsModule,

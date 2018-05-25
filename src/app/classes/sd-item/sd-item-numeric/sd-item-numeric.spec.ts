@@ -25,6 +25,8 @@ describe("SdItemNumeric (abstract)", () => {
         expect(sdItemNumber.minValue).toBeUndefined();
         sdItemNumber.maxValue = undefined;
         expect(sdItemNumber.maxValue).toBeUndefined();
+        sdItemNumber.multipleOf = undefined;
+        expect(sdItemNumber.multipleOf).toBeUndefined();
         sdItemNumber.default = 5;
         expect(sdItemNumber.default).toEqual(5);
         sdItemNumber.maxValue = 3;
@@ -76,21 +78,67 @@ describe("SdItemNumeric (abstract)", () => {
       });
 
       it("Should be ignored according to maxValue", () => {
+        sdItemNumber.default = 6;
+        expect(sdItemNumber.default).toEqual(6);
         sdItemNumber.minValue = undefined;
         expect(sdItemNumber.minValue).toBeUndefined();
         sdItemNumber.maxValue = 9;
         expect(sdItemNumber.maxValue).toEqual(9);
         sdItemNumber.default = 10;
-        expect(sdItemNumber.default).toBeUndefined();
+        expect(sdItemNumber.default).toEqual(6);
       });
 
       it("Should be ignored according to minValue", () => {
+        sdItemNumber.default = 5;
+        expect(sdItemNumber.default).toEqual(5);
         sdItemNumber.maxValue = undefined;
         expect(sdItemNumber.maxValue).toBeUndefined();
         sdItemNumber.minValue = 5;
         expect(sdItemNumber.minValue).toEqual(5);
         sdItemNumber.default = 3;
+        expect(sdItemNumber.default).toEqual(5);
+      });
+    });
+
+    describe("multipleOf", () => {
+      it("Should allow only valid default value", () => {
+        sdItemNumber.default = null;
         expect(sdItemNumber.default).toBeUndefined();
+        sdItemNumber.maxValue = null;
+        expect(sdItemNumber.maxValue).toBeUndefined();
+        sdItemNumber.minValue = null;
+        expect(sdItemNumber.minValue).toBeUndefined();
+        sdItemNumber.multipleOf = 11;
+        expect(sdItemNumber.multipleOf).toEqual(11);
+        sdItemNumber.default = 5;
+        expect(sdItemNumber.default).toBeUndefined();
+        sdItemNumber.default = 22;
+        expect(sdItemNumber.default).toEqual(22);
+      });
+
+      it("Should allow only valid maxValue", () => {
+        sdItemNumber.multipleOf = 11;
+        expect(sdItemNumber.multipleOf).toEqual(11);
+        sdItemNumber.minValue = null;
+        expect(sdItemNumber.minValue).toBeUndefined();
+        sdItemNumber.maxValue = 6;
+        expect(sdItemNumber.maxValue).toBeUndefined();
+        sdItemNumber.maxValue = 30;
+        expect(sdItemNumber.maxValue).toEqual(30);
+      });
+
+      it("Should correct default value", () => {
+        sdItemNumber.maxValue = null;
+        expect(sdItemNumber.maxValue).toBeUndefined();
+        sdItemNumber.minValue = null;
+        expect(sdItemNumber.minValue).toBeUndefined();
+        sdItemNumber.multipleOf = null;
+        expect(sdItemNumber.multipleOf).toBeUndefined();
+        sdItemNumber.default = 7;
+        expect(sdItemNumber.default).toEqual(7);
+        sdItemNumber.multipleOf = 5;
+        expect(sdItemNumber.multipleOf).toEqual(5);
+        expect(sdItemNumber.default).toEqual(5);
       });
     });
   });

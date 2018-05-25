@@ -14,14 +14,14 @@ export class SdItemInteger extends SdItemNumeric {
     return this.$multipleOf;
   }
   public set multipleOf(multipleOf: number) {
-    super.setMultipleOf(multipleOf ? Math.round(multipleOf.valueOf()) : multipleOf);
+    super.setMultipleOf(multipleOf ? Math.round(multipleOf) : multipleOf);
   }
 
   public get minValue(): number {
     return this.$minValue;
   }
   public set minValue(minValue: number) {
-    super.setMinValue(minValue ? Math.round(minValue.valueOf()) : minValue);
+    super.setMinValue(minValue ? Math.round(minValue) : minValue);
   }
 
   public get maxValue(): number {
@@ -35,6 +35,6 @@ export class SdItemInteger extends SdItemNumeric {
     return this.$default;
   }
   public set default(defaultValue: number) {
-    super.setDefault(defaultValue ? Math.round(defaultValue.valueOf()) : defaultValue);
+    super.setDefault(defaultValue ? Math.round(defaultValue) : defaultValue);
   }
 }
