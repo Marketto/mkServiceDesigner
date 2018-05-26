@@ -1,21 +1,19 @@
 import { Component, Inject } from "@angular/core";
-import { DOCUMENT } from "@angular/platform-browser";
+import { MatIconRegistry, MatSnackBar } from "@angular/material";
+import { DOCUMENT, DomSanitizer } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
-import { TreeviewConfig } from "ngx-treeview";
-
 import { saveAs } from "file-saver/FileSaver";
 import * as jsf from "json-schema-faker";
 import * as JSZip from "jszip";
+import { TreeviewConfig } from "ngx-treeview";
 import faker from "typescript-json-schema-faker";
 import { xml } from "xml-decorators";
-
-import { ContentElement } from "./classes/content-element";
-import { SdItemObject } from "./classes/sd-item";
-import { SdService, SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
-
 import * as EN_TRANSLATION from "../assets/i18n/en.json";
 import * as IT_TRANSLATION from "../assets/i18n/it.json";
 import * as RU_TRANSLATION from "../assets/i18n/ru.json";
+import { ContentElement } from "./classes/content-element";
+import { SdItemObject } from "./classes/sd-item";
+import { SdService, SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
 
 @Component({
   selector    : "app-root",
@@ -51,11 +49,21 @@ export class AppComponent {
     }
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document, private translate: TranslateService) {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private translate: TranslateService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+    public snackBar: MatSnackBar,
+  ) {
     this.initTranslate();
     jsf.option({
       alwaysFakeOptionals: true,
     });
+    this.matIconRegistry.addSvgIcon(
+      "marketto",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/marketto.svg"),
+    );
   }
 
   public newItem() {
@@ -82,14 +90,14 @@ export class AppComponent {
             this.serviceRoot = JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON);
           };
           fileReader.onerror = (err) => {
-            this.exportError("file reader", err);
+            this.exportError("FILE_READING", err);
           };
         }, (err) => {
-          this.exportError("zip fetcher", err);
+          this.exportError("ZIP_FETCHER", err);
         });
       }
     }, (err) => {
-      this.exportError("zip loading", err);
+      this.exportError("ZIP_LOADING", err);
     });
   }
 
@@ -128,6 +136,32 @@ export class AppComponent {
     }
   }
 
+  public exportMockettaro() {
+    const ARCHIVE_NAME = "mockettaro.package.zip";
+    const schemaList = (this.serviceRoot.toJSONSchemaList() || [])
+      .map((mkpkgCfg) => {
+        const path = `${mkpkgCfg.uri}/${mkpkgCfg.verb}_${mkpkgCfg.io}.json`;
+        if (mkpkgCfg.io === "request") {
+          return new ContentElement(
+            path,
+            JSON.stringify(mkpkgCfg.schema, null, 4),
+          );
+        } else if (mkpkgCfg.io === "response") {
+          const jsonMock = faker(mkpkgCfg.schema);
+          return jsonMock && new ContentElement(
+            path,
+            JSON.stringify(jsonMock, null, 4),
+          );
+        }
+      }).filter((mkpkgCfg) => !!mkpkgCfg);
+
+    if (schemaList.length > 0) {
+      this.exportZip(schemaList, ` ${ARCHIVE_NAME}`);
+    } else {
+      this.nothingToExport();
+    }
+  }
+
   public exportWSDL() {
     const ARCHIVE_NAME = "WSDL.zip";
     const schemaList = this.serviceRoot.flatList();
@@ -142,10 +176,22 @@ export class AppComponent {
   }
 
   private nothingToExport() {
-    return;
+    const MESSAGE_KEY = "EMPTY_EXPORT";
+    this.exportError(MESSAGE_KEY);
   }
-  private exportError(msg, err) {
-    return;
+  private exportError(msgKey, err?) {
+    const MESSAGE_KEY = `MESSAGE.${msgKey}`;
+    const BUTTON_LABEL = "MESSAGE.BUTTON.DISMISS";
+    this.translate.get([MESSAGE_KEY, BUTTON_LABEL])
+      .toPromise().then((translations) => {
+        this.snackBar.open(
+          translations[MESSAGE_KEY],
+          translations[BUTTON_LABEL],
+          {
+            duration: 2000,
+          },
+        );
+      });
   }
 
   private exportZip(fileList: ContentElement[], extension: string, mimeType?: string) {

@@ -40,7 +40,8 @@
       "JAVA"          : "Pacchetto Java",
       "WSDL"          : "WSDL",
       "JSON_SCHEMA"   : "JSON Schema",
-      "JSON_MOCK"     : "Mock JSON"
+      "JSON_MOCK"     : "Mock JSON",
+      "MOCKETTARO"    : "Mockettaro"
     }
   },
   "LABEL"     : {
@@ -111,5 +112,15 @@
   },
   "DEFAULT"       : {
     "FILE_NAME"     : "Nuovo progetto"
+  },
+  "MESSAGE": {
+    "BUTTON"        : {
+      "DISMISS"       : "Chiudi"
+    },
+    "EMPTY_EXPORT"  : "Non ci sono dati da esportare",
+    "EXPORT_ERR"    : "Errore nell'esportazione",
+    "FILE_READING"  : "Errore nella lettura file",
+    "ZIP_FETCHER"   : "Errore nella lavorazione archivio",
+    "ZIP_LOADING"   : "Errore caricamento archivio"
   }
 }

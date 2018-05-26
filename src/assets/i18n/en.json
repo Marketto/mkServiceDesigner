@@ -40,7 +40,8 @@
       "JAVA"          : "Java Package",
       "WSDL"          : "WSDL set",
       "JSON_SCHEMA"   : "JSON Schemas",
-      "JSON_MOCK"     : "JSON Mocks"
+      "JSON_MOCK"     : "JSON Mocks",
+      "MOCKETTARO"    : "Mockettaro"
     }
   },
   "LABEL"     : {
@@ -111,5 +112,15 @@
   },
   "DEFAULT"       : {
     "FILE_NAME"     : "New project"
+  },
+  "MESSAGE"       : {
+    "BUTTON"        : {
+      "DISMISS"       : "Close"
+    },
+    "EMPTY_EXPORT"  : "Nothing to export",
+    "EXPORT_ERR"    : "Exporting error",
+    "FILE_READING"  : "File reading error",
+    "ZIP_FETCHER"   : "Zip fetching error",
+    "ZIP_LOADING"   : "Zip loading error"
   }
 }

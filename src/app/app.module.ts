@@ -1,3 +1,4 @@
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
@@ -12,6 +13,7 @@ import {
   MatSelectModule,
   MatSidenavModule,
   MatSlideToggleModule,
+  MatSnackBarModule,
   MatToolbarModule,
   MatTooltipModule,
 } from "@angular/material";
@@ -74,9 +76,11 @@ import { StepDirective } from "./commons/validators/step/step.directive";
     MatGridListModule,
     MatChipsModule,
     MatButtonToggleModule,
+    MatSnackBarModule,
     MatTooltipModule,
     MatMenuModule,
     MatDividerModule,
+    HttpClientModule,
   ],
   providers: [],
 })

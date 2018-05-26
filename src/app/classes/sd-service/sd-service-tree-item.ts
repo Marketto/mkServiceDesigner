@@ -1,5 +1,6 @@
 import { TreeviewItem } from "ngx-treeview";
 import { InterfaceSdServiceJSON, SdService } from "./sd-service";
+import { IsdServiceJSONSchemaType } from "./sd-service-verb-types";
 import { SdServiceVerbs } from "./sd-service-verbs";
 
 export class SdServiceTreeItem extends TreeviewItem {
@@ -58,7 +59,7 @@ export class SdServiceTreeItem extends TreeviewItem {
     });
   }
 
-  public toJSONSchemaList() {
+  public toJSONSchemaList(): IsdServiceJSONSchemaType[] {
       const serviceList = (this.value.toJSONSchemaList() || [])
         .filter((s) => !!s)
         .map((s) => Object.assign({}, s, {
