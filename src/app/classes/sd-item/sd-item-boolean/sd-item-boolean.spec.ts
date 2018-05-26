@@ -1,5 +1,5 @@
 import { SdItemBoolean } from "./sd-item-boolean";
-import { SdItemString } from '../sd-item-string/sd-item-string';
+import { SdItemString } from "../sd-item-string/sd-item-string";
 
 describe("SdItemBoolean", () => {
   describe("New SdItemBoolean", () => {
@@ -8,7 +8,7 @@ describe("SdItemBoolean", () => {
       expect(sdItemBoolean.default).toBeUndefined();
       expect(sdItemBoolean.type).toBe("boolean");
     });
-    it("Should have name 'Test' and default true", () => {
+    it("Should have name "Test" and default true", () => {
       const sdItemBoolean1 = new SdItemBoolean();
 
       sdItemBoolean1.default = true;
@@ -22,7 +22,7 @@ describe("SdItemBoolean", () => {
   });
 
   describe("SdItem => SdItemBoolean", () => {
-    it("Should be type boolean, default undefined and have name 'Test'", () => {
+    it("Should be type boolean, default undefined and have name "Test"", () => {
       const sdItemString = new SdItemString();
       sdItemString.default = "test";
       sdItemString.name = "Test";

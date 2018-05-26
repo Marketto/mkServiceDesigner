@@ -1,4 +1,4 @@
-import { SdItemInteger } from './sd-item-integer';
+import { SdItemInteger } from "./sd-item-integer";
 describe("SdItemInteger", () => {
   describe("New SdItemInteger", () => {
     const sdItemInteger = new SdItemInteger();

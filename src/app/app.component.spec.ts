@@ -3,7 +3,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { FormsModule } from "@angular/forms";
-import { ServiceTreeComponent } from "./service-tree/service-tree.component";
 
 import {
   MatButtonModule,
@@ -37,6 +36,7 @@ import { ServiceTreeComponent } from "./service-tree/service-tree.component";
 import {
   ExcludeSdItemSiblingsPipe,
 } from "./model-editor/sd-item/exclude-sd-item-siblings/exclude-sd-item-siblings.pipe";
+
 import { TreeviewModule } from "ngx-treeview";
 
 describe("AppComponent", () => {

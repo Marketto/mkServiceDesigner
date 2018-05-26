@@ -74,7 +74,7 @@ export abstract class SdItemNumeric extends SdItem {
   }
 
   protected setMinValue(minValue: number) {
-    if(
+    if (
       !isNaN(minValue) &&
       minValue !== null &&
       (
@@ -90,9 +90,9 @@ export abstract class SdItemNumeric extends SdItem {
         ) ||
         isNaN(this.maxValue)
       )
-    ){
+    ) {
       this.$minValue = minValue;
-    } else if (isNaN(minValue) || minValue === null){
+    } else if (isNaN(minValue) || minValue === null) {
       this.$minValue = undefined;
     }
 
@@ -110,7 +110,7 @@ export abstract class SdItemNumeric extends SdItem {
     this.$exclusiveMin = exMin;
   }
   protected setMaxValue(maxValue: number) {
-    if(
+    if (
       !isNaN(maxValue) &&
       maxValue !== null &&
       (
@@ -139,7 +139,7 @@ export abstract class SdItemNumeric extends SdItem {
         ) ||
         isNaN(this.multipleOf)
       )
-    ){
+    ) {
       this.$maxValue = maxValue;
     } else if (isNaN(maxValue) || maxValue === null) {
       this.$maxValue = undefined;
@@ -159,7 +159,7 @@ export abstract class SdItemNumeric extends SdItem {
     this.$exclusiveMax = exMax;
   }
   protected setDefault(defaultValue: number) {
-    if(
+    if (
       !isNaN(defaultValue) &&
       defaultValue !== null &&
       (
@@ -195,11 +195,11 @@ export abstract class SdItemNumeric extends SdItem {
         ) ||
         isNaN(this.multipleOf)
       )
-    ){
+    ) {
       this.$default = defaultValue;
     } else if (isNaN(defaultValue) || defaultValue === null) {
       this.$default = undefined;
-    };
+    }
   }
   protected setMultipleOf(multipleOf: number) {
     if (
@@ -218,9 +218,9 @@ export abstract class SdItemNumeric extends SdItem {
         ) ||
         isNaN(this.maxValue)
       )
-    ){
+    ) {
       this.$multipleOf = multipleOf;
-    } else if(isNaN(multipleOf) || multipleOf === null){
+    } else if (isNaN(multipleOf) || multipleOf === null) {
       this.$multipleOf = undefined;
     }
 

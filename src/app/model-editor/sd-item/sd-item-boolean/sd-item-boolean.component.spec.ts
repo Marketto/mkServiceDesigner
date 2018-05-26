@@ -1,11 +1,11 @@
-import { FormsModule } from '@angular/forms';
-import { MatSelectModule, MatGridListModule } from '@angular/material';
-import { TranslateModule } from '@ngx-translate/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from "@angular/forms";
+import { MatSelectModule, MatGridListModule } from "@angular/material";
+import { TranslateModule } from "@ngx-translate/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SdItemBooleanComponent } from './sd-item-boolean.component';
+import { SdItemBooleanComponent } from "./sd-item-boolean.component";
 
-describe('SdItemBooleanComponent', () => {
+describe("SdItemBooleanComponent", () => {
   let component: SdItemBooleanComponent;
   let fixture: ComponentFixture<SdItemBooleanComponent>;
 
@@ -30,7 +30,7 @@ describe('SdItemBooleanComponent', () => {
     // fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
