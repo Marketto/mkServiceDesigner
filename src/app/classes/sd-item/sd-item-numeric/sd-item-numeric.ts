@@ -11,8 +11,8 @@ type XsdNumericType =
 
 export abstract class SdItemNumeric extends SdItem {
   public type: "number" | "integer";
-  public exclusiveMin: boolean = false;
-  public exclusiveMax: boolean = false;
+  protected $exclusiveMin: boolean = false;
+  protected $exclusiveMax: boolean = false;
 
   protected $default: number;
   protected $minValue: number;
@@ -24,6 +24,20 @@ export abstract class SdItemNumeric extends SdItem {
   }
   public set minValue(minValue: number) {
     this.setMinValue(minValue);
+  }
+
+  public get exclusiveMin(): boolean {
+    return this.$exclusiveMin;
+  }
+  public set exclusiveMin(exMin: boolean) {
+    this.setExclusiveMin(exMin);
+  }
+
+  public get exclusiveMax(): boolean {
+    return this.$exclusiveMax;
+  }
+  public set exclusiveMax(exMax: boolean) {
+    this.setExclusiveMax(exMax);
   }
 
   public get maxValue(): number {
@@ -66,7 +80,13 @@ export abstract class SdItemNumeric extends SdItem {
       (
         (
           !isNaN(this.maxValue) &&
-          this.maxValue >= minValue
+          (
+            this.maxValue > minValue ||
+            (
+              !(this.exclusiveMax || this.exclusiveMin) &&
+              this.maxValue === minValue
+            )
+          )
         ) ||
         isNaN(this.maxValue)
       )
@@ -76,9 +96,18 @@ export abstract class SdItemNumeric extends SdItem {
       this.$minValue = undefined;
     }
 
-    if (!isNaN(this.default) && !isNaN(this.minValue) && this.default <= this.minValue) {
-      this.$default = this.minValue;
+    // Default value check & correction
+    if (
+      !isNaN(this.default) &&
+      !isNaN(this.minValue) &&
+      this.default <= this.minValue
+    ) {
+      this.$default = undefined;
+      this.default = this.minValue;
     }
+  }
+  protected setExclusiveMin(exMin: boolean) {
+    this.$exclusiveMin = exMin;
   }
   protected setMaxValue(maxValue: number) {
     if(
@@ -87,14 +116,26 @@ export abstract class SdItemNumeric extends SdItem {
       (
         (
           !isNaN(this.minValue) &&
-          this.minValue <= maxValue
+          (
+            this.minValue < maxValue ||
+            (
+              !(this.exclusiveMax || this.exclusiveMin) &&
+              this.minValue === maxValue
+            )
+          )
         ) ||
         isNaN(this.minValue)
       ) &&
       (
         (
           !isNaN(this.multipleOf) &&
-          maxValue >= this.multipleOf
+          (
+            maxValue > this.multipleOf ||
+            (
+              !(this.exclusiveMax || this.exclusiveMin) &&
+              maxValue === this.multipleOf
+            )
+          )
         ) ||
         isNaN(this.multipleOf)
       )
@@ -104,9 +145,18 @@ export abstract class SdItemNumeric extends SdItem {
       this.$maxValue = undefined;
     }
 
-    if (!isNaN(this.default) && !isNaN(this.maxValue) && this.default >= this.maxValue) {
-      this.$default = this.maxValue;
+    // Default value check & correction
+    if (
+      !isNaN(this.default) &&
+      !isNaN(this.maxValue) &&
+      this.default >= this.maxValue
+    ) {
+      this.$default = undefined;
+      this.default = this.maxValue;
     }
+  }
+  protected setExclusiveMax(exMax: boolean) {
+    this.$exclusiveMax = exMax;
   }
   protected setDefault(defaultValue: number) {
     if(
@@ -115,14 +165,26 @@ export abstract class SdItemNumeric extends SdItem {
       (
         (
           !isNaN(this.minValue) &&
-          this.minValue <= defaultValue
+          (
+            this.minValue < defaultValue ||
+            (
+              !this.exclusiveMin &&
+              this.minValue === defaultValue
+            )
+          )
         ) ||
         isNaN(this.minValue)
       ) &&
       (
         (
           !isNaN(this.maxValue) &&
-          this.maxValue >= defaultValue
+          (
+            this.maxValue > defaultValue ||
+            (
+              !this.exclusiveMax &&
+              this.maxValue === defaultValue
+            )
+          )
         ) ||
         isNaN(this.maxValue)
       ) &&
@@ -146,7 +208,13 @@ export abstract class SdItemNumeric extends SdItem {
       (
         (
           !isNaN(this.maxValue) &&
-          this.maxValue >= multipleOf
+          (
+            this.maxValue > multipleOf ||
+            (
+              !(this.exclusiveMax || this.exclusiveMin) &&
+              this.maxValue === multipleOf
+            )
+          )
         ) ||
         isNaN(this.maxValue)
       )
@@ -156,14 +224,21 @@ export abstract class SdItemNumeric extends SdItem {
       this.$multipleOf = undefined;
     }
 
-    if (!isNaN(this.default) && !isNaN(this.multipleOf) && ( this.default % this.multipleOf )) {
+    if (
+      !isNaN(this.default) &&
+      !isNaN(this.multipleOf) &&
+      ( this.default % this.multipleOf )
+    ) {
       this.default = Math.round(this.default / this.multipleOf) * this.multipleOf;
     }
   }
 
   protected get xsdType(): XsdNumericType {
     if (
-      (this.multipleOf && Math.round(this.multipleOf.valueOf()) === this.multipleOf.valueOf()) ||
+      (
+        this.multipleOf &&
+        Math.round(this.multipleOf.valueOf()) === this.multipleOf.valueOf()
+      ) ||
       this.type === "integer"
     ) {
       if (isNumber(this.maxValue) && this.maxValue.valueOf() <= 0) {
