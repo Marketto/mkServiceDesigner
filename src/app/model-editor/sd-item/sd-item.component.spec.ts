@@ -1,14 +1,20 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { SdItemComponent } from "./sd-item.component";
-import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
-import { MatGridListModule, MatSlideToggleModule, MatSelectModule, MatIconModule, MatTooltipModule, MatChipsModule } from "@angular/material";
+import {
+  MatChipsModule,
+  MatGridListModule,
+  MatIconModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatTooltipModule,
+} from "@angular/material";
+import { TranslateModule } from "@ngx-translate/core";
 import { ExcludeSdItemSiblingsPipe } from "./exclude-sd-item-siblings/exclude-sd-item-siblings.pipe";
-import { SdItemStringComponent } from "./sd-item-string/sd-item-string.component";
-import { SdItemObjectComponent } from "./sd-item-object/sd-item-object.component";
-import { SdItemNumberComponent } from "./sd-item-number/sd-item-number.component";
 import { SdItemBooleanComponent } from "./sd-item-boolean/sd-item-boolean.component";
+import { SdItemNumberComponent } from "./sd-item-number/sd-item-number.component";
+import { SdItemObjectComponent } from "./sd-item-object/sd-item-object.component";
+import { SdItemStringComponent } from "./sd-item-string/sd-item-string.component";
+import { SdItemComponent } from "./sd-item.component";
 
 describe("SdItemComponent", () => {
   let component: SdItemComponent;

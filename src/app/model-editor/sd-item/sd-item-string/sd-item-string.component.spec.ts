@@ -1,9 +1,14 @@
-import { MatGridListModule, MatSelectModule, MatChipsModule, MatIconModule, MatTooltipModule } from "@angular/material";
-import { FormsModule } from "@angular/forms";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { SdItemStringComponent } from "./sd-item-string.component";
+import { FormsModule } from "@angular/forms";
+import {
+  MatChipsModule,
+  MatGridListModule,
+  MatIconModule,
+  MatSelectModule,
+  MatTooltipModule,
+} from "@angular/material";
 import { TranslateModule } from "@ngx-translate/core";
+import { SdItemStringComponent } from "./sd-item-string.component";
 
 describe("SdItemStringComponent", () => {
   let component: SdItemStringComponent;
@@ -30,7 +35,6 @@ describe("SdItemStringComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SdItemStringComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
   });
 
   it("should create", () => {

@@ -27,7 +27,7 @@ describe("SdItemNumberComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SdItemNumberComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
+   
   });
 
   it("should create", () => {

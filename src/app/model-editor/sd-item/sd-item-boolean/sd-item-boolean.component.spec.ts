@@ -27,7 +27,7 @@ describe("SdItemBooleanComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SdItemBooleanComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
+   
   });
 
   it("should create", () => {
