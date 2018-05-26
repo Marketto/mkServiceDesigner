@@ -35,34 +35,5 @@ describe("SdItemInteger", () => {
       expect(sdItemInteger.multipleOf).toEqual(7);
     });
 
-    /*
-    describe("multipleOf", () => {
-      sdItemInteger.multipleOf = 11;
-      it("Should allow only valid default value", () => {
-        expect(sdItemInteger.default).toBeUndefined();
-        sdItemInteger.default = 5;
-        expect(sdItemInteger.default).toBeUndefined();
-        sdItemInteger.default = 21.8;
-        expect(sdItemInteger.default).toEqual(22);
-      });
-
-      it("Should allow only valid minValue", () => {
-        expect(sdItemInteger.minValue).toBeUndefined();
-        sdItemInteger.minValue = 9;
-        expect(sdItemInteger.minValue).toBeUndefined();
-        sdItemInteger.minValue = 11.1;
-        expect(sdItemInteger.minValue).toEqual(11);
-      });
-
-      it("Should allow only valid maxValue", () => {
-        expect(sdItemInteger.maxValue).toBeUndefined();
-        sdItemInteger.maxValue = 6;
-        expect(sdItemInteger.maxValue).toBeUndefined();
-        sdItemInteger.maxValue = 33;
-        expect(sdItemInteger.maxValue).toEqual(33);
-      });
-    });
-    */
-
   });
 });

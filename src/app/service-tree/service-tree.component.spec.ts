@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { ServiceTreeComponent } from "./service-tree.component";
-import { TranslateModule } from "@ngx-translate/core";
-import { MatTooltipModule, MatIconModule, MatToolbarModule } from "@angular/material";
 import { FormsModule } from "@angular/forms";
+import { MatIconModule, MatToolbarModule, MatTooltipModule } from "@angular/material";
+import { TranslateModule } from "@ngx-translate/core";
 import { TreeviewModule } from "ngx-treeview";
+import { ServiceTreeComponent } from "./service-tree.component";
 
 describe("ServiceTreeComponent", () => {
   let component: ServiceTreeComponent;
@@ -31,7 +30,6 @@ describe("ServiceTreeComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ServiceTreeComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
   });
 
   it("should create", () => {

@@ -3,7 +3,7 @@ describe("SdItemNumeric (abstract)", () => {
   describe("New SdItemNumber", () => {
     const sdItemNumber = new SdItemNumber();
 
-    function resetItem(){
+    function resetItem() {
       sdItemNumber.minValue = undefined;
       expect(sdItemNumber.minValue).toBeUndefined();
       sdItemNumber.maxValue = undefined;
