@@ -1,18 +1,22 @@
-import { SdItemObjectComponent } from "./sd-item/sd-item-object/sd-item-object.component";
-import { MatIconModule, MatChipsModule } from "@angular/material";
-import { MatTooltipModule } from "@angular/material";
-import { ExcludeSdItemSiblingsPipe } from "./sd-item/exclude-sd-item-siblings/exclude-sd-item-siblings.pipe";
-import { MatFormFieldModule, MatGridListModule, MatSlideToggleModule, MatSelectModule } from "@angular/material";
-import { SdItemComponent } from "./sd-item/sd-item.component";
-
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { ModelEditorComponent } from "./model-editor.component";
-import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
-import { SdItemStringComponent } from "./sd-item/sd-item-string/sd-item-string.component";
-import { SdItemNumberComponent } from "./sd-item/sd-item-number/sd-item-number.component";
+import {
+  MatChipsModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatTooltipModule,
+} from "@angular/material";
+import { TranslateModule } from "@ngx-translate/core";
+import { ModelEditorComponent } from "./model-editor.component";
+import { ExcludeSdItemSiblingsPipe } from "./sd-item/exclude-sd-item-siblings/exclude-sd-item-siblings.pipe";
 import { SdItemBooleanComponent } from "./sd-item/sd-item-boolean/sd-item-boolean.component";
+import { SdItemNumberComponent } from "./sd-item/sd-item-number/sd-item-number.component";
+import { SdItemObjectComponent } from "./sd-item/sd-item-object/sd-item-object.component";
+import { SdItemStringComponent } from "./sd-item/sd-item-string/sd-item-string.component";
+import { SdItemComponent } from "./sd-item/sd-item.component";
 
 describe("ModelEditorComponent", () => {
   let component: ModelEditorComponent;

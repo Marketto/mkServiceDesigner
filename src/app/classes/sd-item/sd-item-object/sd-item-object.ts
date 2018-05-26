@@ -8,7 +8,8 @@ export class SdItemObject extends SdItem {
   public static fromJSON(key: string, value: any): SdItemObject {
     if (!key) {
       const jsonItem = value || {};
-      const sdItemObject = Object.assign(new SdItemObject(), jsonItem, {
+      const sdItemObject = new SdItemObject();
+      Object.assign(sdItemObject, jsonItem, {
         children: SdItemList.fromJSON(null, jsonItem.children || []),
       });
       return sdItemObject;

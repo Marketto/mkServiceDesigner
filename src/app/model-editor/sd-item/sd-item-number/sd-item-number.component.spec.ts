@@ -1,9 +1,8 @@
-import { TranslateModule } from "@ngx-translate/core";
-import { FormsModule } from "@angular/forms";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { SdItemNumberComponent } from "./sd-item-number.component";
+import { FormsModule } from "@angular/forms";
 import { MatGridListModule, MatSelectModule } from "@angular/material";
+import { TranslateModule } from "@ngx-translate/core";
+import { SdItemNumberComponent } from "./sd-item-number.component";
 
 describe("SdItemNumberComponent", () => {
   let component: SdItemNumberComponent;
@@ -27,7 +26,6 @@ describe("SdItemNumberComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SdItemNumberComponent);
     component = fixture.componentInstance;
-   
   });
 
   it("should create", () => {
