@@ -43,6 +43,7 @@
     }
 
     input {
+        transition: all 0.5s linear;
         border: 2px solid transparent;
         box-shadow: 0 0 1px 0px white inset, 0 0 1px 0px white;
         border-radius: 0.3em;
@@ -79,7 +80,6 @@
             &, &.selected {
                 &, &:focus, &:active, &:hover {
                     background-color: @mat-secondary-color;
-                    transition: all 0.5s linear;
                 }
             }
         }

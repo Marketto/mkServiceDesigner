@@ -21,7 +21,7 @@ import { SdServiceTreeItem, SERVICE_PATH_NAME_REGEXP } from "./../classes/sd-ser
   templateUrl: "./service-tree.component.html",
 })
 export class ServiceTreeComponent {
-  public pathNamePattern = SERVICE_PATH_NAME_REGEXP;
+  public pathNamePattern: RegExp = SERVICE_PATH_NAME_REGEXP;
   @ViewChild(TreeviewComponent)
   public treeviewComponent: TreeviewComponent;
 
