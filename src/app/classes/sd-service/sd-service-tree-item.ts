@@ -3,7 +3,7 @@ import { InterfaceSdServiceJSON, SdService } from "./sd-service";
 import { IsdServiceJSONSchemaType } from "./sd-service-verb-types";
 import { SdServiceVerbs } from "./sd-service-verbs";
 
-export const SERVICE_PATH_NAME_REGEXP: RegExp = /^(?:(?:[a-z0-9]+(?:[\-\_][a-z0-9]+)*)|(?:\{[a-zA-Z]+\}))$/;
+export const SERVICE_PATH_NAME_REGEXP: RegExp = /^(?:[a-z0-9]+(?:[\-_][a-z0-9]+)*|\{[a-zA-Z]+\})$/;
 
 export class SdServiceTreeItem extends TreeviewItem {
   public static fromJSON(key: string, value: any): SdServiceTreeItem {
