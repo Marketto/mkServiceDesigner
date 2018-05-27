@@ -2,7 +2,7 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { TreeviewComponent, TreeviewConfig } from "ngx-treeview";
-import { SdServiceTreeItem } from "./../classes/sd-service";
+import { SdServiceTreeItem, SERVICE_PATH_NAME_REGEXP } from "./../classes/sd-service";
 
 @Component({
   animations: [
@@ -21,8 +21,7 @@ import { SdServiceTreeItem } from "./../classes/sd-service";
   templateUrl: "./service-tree.component.html",
 })
 export class ServiceTreeComponent {
-  public PATH_NAME_REGEXP = /^(?:(?:[a-z0-9]+(?:[\-\_][a-z0-9]+)*)|(?:\{[a-zA-Z]+\}))$/;
-
+  public pathNamePattern = SERVICE_PATH_NAME_REGEXP;
   @ViewChild(TreeviewComponent)
   public treeviewComponent: TreeviewComponent;
 

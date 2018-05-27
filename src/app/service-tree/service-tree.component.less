@@ -66,13 +66,21 @@
                 color: @mat-secondary-color;
             }
         }
-        &:focus{
+        &:focus {
             border-color: white;
             border-radius: 0.4em;
             background-color: @mat-primary-color;
             color: white;
-            &:active, &:focus {
+            &:active, & {
                 outline: none;
+            }
+        }
+        &.ng-invalid.ng-dirty {
+            &, &.selected {
+                &, &:focus, &:active, &:hover {
+                    background-color: @mat-secondary-color;
+                    transition: all 0.5s linear;
+                }
             }
         }
     }

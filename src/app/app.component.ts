@@ -216,7 +216,7 @@ export class AppComponent {
         saveAs(blobData, `${this.projectName}${extension}`);
       }
     }, (err) => {
-      exportError("EXPORT_ERR", err);
+      this.exportError("EXPORT_ERR", err);
     });
   }
 

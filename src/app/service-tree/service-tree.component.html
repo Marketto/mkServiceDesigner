@@ -6,7 +6,7 @@
             </mat-icon>
         </button>
 
-        <input #itemInput (focus)="selectItem(item)" [(ngModel)]="item.text" [class.selected]="!editMode && selected === item" [class.no-children]="!(item.children||[]).length" [pattern]="PATH_NAME_REGEXP" required>
+        <input #itemInput (focus)="selectItem(item)" [(ngModel)]="item.text" [class.selected]="!editMode && selected === item" [class.no-children]="!(item.children||[]).length" [pattern]="pathNamePattern" required>
 
         <button mat-icon-button (click)="addItem(item)" matTooltip="{{'TOOLTIP.BUTTON.ADD_RESOURCE'|translate}}">
             <mat-icon>add</mat-icon>
