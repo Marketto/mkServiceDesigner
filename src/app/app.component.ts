@@ -140,16 +140,16 @@ export class AppComponent {
     const ARCHIVE_NAME = "mockettaro.package.zip";
     const schemaList = (this.serviceRoot.toJSONSchemaList() || [])
       .map((mkpkgCfg) => {
-        const path = `${mkpkgCfg.uri}/${mkpkgCfg.verb}_${mkpkgCfg.io}.json`;
+        const path = `${mkpkgCfg.uri.replace(/(\{\w+\})/igm, "default")}.${mkpkgCfg.verb}`;
         if (mkpkgCfg.io === "request") {
           return new ContentElement(
-            path,
+            `${path}.schema.json`,
             JSON.stringify(mkpkgCfg.schema, null, 4),
           );
         } else if (mkpkgCfg.io === "response") {
           const jsonMock = faker(mkpkgCfg.schema);
           return jsonMock && new ContentElement(
-            path,
+            `${path}.json`,
             JSON.stringify(jsonMock, null, 4),
           );
         }
@@ -215,6 +215,8 @@ export class AppComponent {
       } else {
         saveAs(blobData, `${this.projectName}${extension}`);
       }
+    }, (err) => {
+      exportError("EXPORT_ERR", err);
     });
   }
 

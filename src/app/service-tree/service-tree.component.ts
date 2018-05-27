@@ -21,7 +21,10 @@ import { SdServiceTreeItem } from "./../classes/sd-service";
   templateUrl: "./service-tree.component.html",
 })
 export class ServiceTreeComponent {
-  @ViewChild(TreeviewComponent) public treeviewComponent: TreeviewComponent;
+  public PATH_NAME_REGEXP = /^(?:(?:[a-z0-9]+(?:[\-\_][a-z0-9]+)*)|(?:\{[a-zA-Z]+\}))$/;
+
+  @ViewChild(TreeviewComponent)
+  public treeviewComponent: TreeviewComponent;
 
   public treeviewCfg: TreeviewConfig = TreeviewConfig.create({
     hasAllCheckBox: false,
