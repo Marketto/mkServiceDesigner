@@ -55,7 +55,7 @@
       <span translate>
         MENU.OPEN
       </span>
-      <input hidden type="file" #openInputFile accept="{{ mksdFileType + ', ' + mksdMimeType }}" (change)="openMKSD($event.srcElement.files[0])">
+      <input hidden type="file" #openInputFile [accept]="mksdFileTypes.join(', ')" (change)="openMKSD($event.srcElement.files[0])">
     </button>
     <button mat-menu-item (click)="saveMKSD()">
       <mat-icon>save</mat-icon>

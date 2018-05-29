@@ -1,19 +1,22 @@
+import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { Component, Inject } from "@angular/core";
-import { MatIconRegistry, MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
 import { DOCUMENT, DomSanitizer } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
-import { saveAs } from "file-saver/FileSaver";
-import * as jsf from "json-schema-faker";
-import * as JSZip from "jszip";
 import { TreeviewConfig } from "ngx-treeview";
-import faker from "typescript-json-schema-faker";
-import { xml } from "xml-decorators";
 import * as EN_TRANSLATION from "../assets/i18n/en.json";
 import * as IT_TRANSLATION from "../assets/i18n/it.json";
 import * as RU_TRANSLATION from "../assets/i18n/ru.json";
 import { ContentElement } from "./classes/content-element";
 import { SdItemObject } from "./classes/sd-item";
 import { SdService, SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
+import { JsonMockFileService } from "./file-service/json-file-service/json-mock-file.service";
+import { JsonSchemaFileService } from "./file-service/json-file-service/json-schema-file.service";
+import { MksdFileService } from "./file-service/mksd-file-service/mksd-file.service";
+import { MockettaroFileService } from "./file-service/mockettaro-file-service/mockettaro-file.service";
+import { WsdlFileService } from "./file-service/wsdl-file-service/wsdl-file.service";
+import { FileServiceSD } from './file-service/file-service-sd';
 
 @Component({
   selector    : "app-root",
@@ -22,14 +25,14 @@ import { SdService, SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from
 })
 
 export class AppComponent {
-  public mksdRootJsonFileName = "serviceRoot.json";
-  public mksdMimeType = "application/x-mk-service-designer";
-  public mksdFileType = ".mksd";
 
   public title = "Marketto Service Designer";
   public treeItems: SdServiceTreeItem;
-
   public projectName: string;
+  public mksdFileTypes: string[] = [
+      `.${MksdFileService.extension}`,
+      MksdFileService.mimeType,
+    ];
 
   public io: SdServiceIOType = "response";
   public serviceRoot: SdServiceTreeItem = new SdServiceTreeItem();
@@ -52,18 +55,16 @@ export class AppComponent {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private translate: TranslateService,
-    private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     public snackBar: MatSnackBar,
+
+    public mksdFileService: MksdFileService,
+    public wsdlFileService: WsdlFileService,
+    public jsonSchemaFileService: JsonSchemaFileService,
+    public jsonMockFileService: JsonMockFileService,
+    public mockettaroFileService: MockettaroFileService,
   ) {
     this.initTranslate();
-    jsf.option({
-      alwaysFakeOptionals: true,
-    });
-    this.matIconRegistry.addSvgIcon(
-      "marketto",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/img/marketto.svg"),
-    );
   }
 
   public newItem() {
@@ -71,115 +72,46 @@ export class AppComponent {
   }
 
   public saveMKSD() {
-    const mksdRawFile = [{
-      data: JSON.stringify(this.serviceRoot),
-      filePath: this.mksdRootJsonFileName,
-    }];
-    this.exportZip(mksdRawFile, this.mksdFileType, this.mksdMimeType);
+    this.manageExport(this.mksdFileService);
   }
 
   public openMKSD(file: File) {
-    const mksdFile = new JSZip();
-    mksdFile.loadAsync(file).then((archive) => {
-      if (archive.files[this.mksdRootJsonFileName]) {
-        archive.files[this.mksdRootJsonFileName].async("blob").then((sourceFile) => {
-          const fileReader = new FileReader();
-          fileReader.readAsBinaryString(sourceFile);
-          fileReader.onload = () => {
-            this.projectName = file.name.replace(this.mksdFileType, "");
-            this.serviceRoot = JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON);
-          };
-          fileReader.onerror = (err) => {
-            this.exportError("FILE_READING", err);
-          };
-        }, (err) => {
-          this.exportError("ZIP_FETCHER", err);
-        });
-      }
-    }, (err) => {
-      this.exportError("ZIP_LOADING", err);
-    });
+    this.mksdFileService.load(file).subscribe((fileServiceSd: FileServiceSD) => {
+      this.projectName = fileServiceSd.projectName;
+      this.serviceRoot = fileServiceSd.serviceTree;
+      this.showMessage("LOAD_SUCCEDED");
+    }, this.showMessage);
   }
 
   public exportJsonSchema() {
-    const ARCHIVE_NAME = "JSON Schema.zip";
-    const schemaList = this.serviceRoot.toJSONSchemaList() || [];
-    if (schemaList.length > 0) {
-      const contentList = schemaList.map((schemaCfg) => {
-        return new ContentElement(
-          `${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`,
-          JSON.stringify(schemaCfg.schema, null, 4),
-        );
-      });
-      this.exportZip(contentList, ` ${ARCHIVE_NAME}`);
-
-    } else {
-      this.nothingToExport();
-    }
+    this.manageExport(this.jsonSchemaFileService);
   }
 
   public exportJsonMock() {
-    const ARCHIVE_NAME = "JSON MOCKS.zip";
-    const schemaList = (this.serviceRoot.toJSONSchemaList() || [])
-      .map((schemaCfg) => {
-        const jsonMock = faker(schemaCfg.schema);
-        return jsonMock && new ContentElement(
-          `${schemaCfg.uri}/${schemaCfg.verb}_${schemaCfg.io}.json`,
-          JSON.stringify(jsonMock, null, 4),
-        );
-      }).filter((schemaCfg) => !!schemaCfg);
-
-    if (schemaList.length > 0) {
-      this.exportZip(schemaList, ` ${ARCHIVE_NAME}`);
-    } else {
-      this.nothingToExport();
-    }
+    this.manageExport(this.jsonMockFileService);
   }
 
   public exportMockettaro() {
-    const ARCHIVE_NAME = "mockettaro.package.zip";
-    const schemaList = (this.serviceRoot.toJSONSchemaList() || [])
-      .map((mkpkgCfg) => {
-        const path = `${mkpkgCfg.uri.replace(/(\{\w+\})/igm, "default")}.${mkpkgCfg.verb}`;
-        if (mkpkgCfg.io === "request") {
-          return new ContentElement(
-            `${path}.schema.json`,
-            JSON.stringify(mkpkgCfg.schema, null, 4),
-          );
-        } else if (mkpkgCfg.io === "response") {
-          const jsonMock = faker(mkpkgCfg.schema);
-          return jsonMock && new ContentElement(
-            `${path}.json`,
-            JSON.stringify(jsonMock, null, 4),
-          );
-        }
-      }).filter((mkpkgCfg) => !!mkpkgCfg);
-
-    if (schemaList.length > 0) {
-      this.exportZip(schemaList, ` ${ARCHIVE_NAME}`);
-    } else {
-      this.nothingToExport();
-    }
+    this.manageExport(this.mockettaroFileService);
   }
 
   public exportWSDL() {
-    const ARCHIVE_NAME = "WSDL.zip";
-    const schemaList = this.serviceRoot.flatList();
-    if ((schemaList || []).length > 0) {
-      const contentList = schemaList.map((xsd) => {
-        return new ContentElement(`${xsd.verbs.address}.wsdl`, xml.serialize(xsd));
-      });
-      this.exportZip(contentList, ` ${ARCHIVE_NAME}`);
-    } else {
-      this.nothingToExport();
-    }
+    this.manageExport(this.wsdlFileService);
   }
 
-  private nothingToExport() {
-    const MESSAGE_KEY = "EMPTY_EXPORT";
-    this.exportError(MESSAGE_KEY);
+  private manageExport(exportObservable: Observable) {
+    const input = new FileServiceSD({
+      projectName: this.projectName,
+      serviceTree: this.serviceRoot,
+    });
+    exportObservable
+      .save(input)
+      .subscribe(() => {
+        this.showMessage("EXPORT_SUCCEDED");
+      }, this.showMessage);
   }
-  private exportError(msgKey, err?) {
+
+  private showMessage(msgKey, err?) {
     const MESSAGE_KEY = `MESSAGE.${msgKey}`;
     const BUTTON_LABEL = "MESSAGE.BUTTON.DISMISS";
     this.translate.get([MESSAGE_KEY, BUTTON_LABEL])
@@ -192,32 +124,6 @@ export class AppComponent {
           },
         );
       });
-  }
-
-  private exportZip(fileList: ContentElement[], extension: string, mimeType?: string) {
-    const zip = new JSZip();
-    fileList.forEach((e) => {
-      zip.file(e.filePath, e.data);
-    });
-    zip.generateAsync({
-      compression: "DEFLATE",
-      compressionOptions: {
-        level: 9,
-      },
-      mimeType,
-      type: "blob",
-    }).then((blobData) => {
-      if (!this.projectName) {
-        this.translate.get("DEFAULT.FILE_NAME").toPromise().then((projectName) => {
-          this.projectName = projectName;
-          saveAs(blobData, `${this.projectName}${extension}`);
-        });
-      } else {
-        saveAs(blobData, `${this.projectName}${extension}`);
-      }
-    }, (err) => {
-      this.exportError("EXPORT_ERR", err);
-    });
   }
 
   private initTranslate() {

@@ -22,6 +22,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TranslateModule } from "@ngx-translate/core";
 import { TreeviewModule } from "ngx-treeview";
 import { AppComponent } from "./app.component";
+import { JsonMockFileService } from "./file-service/json-file-service/json-mock-file.service";
+import { JsonSchemaFileService } from "./file-service/json-file-service/json-schema-file.service";
+import { MockettaroFileService } from "./file-service/mockettaro-file-service/mockettaro-file.service";
+import { WsdlFileService } from "./file-service/wsdl-file-service/wsdl-file.service";
+import { ZipFileService } from "./file-service/zip-file-service/zip-file.service";
 import { ModelEditorComponent } from "./model-editor/model-editor.component";
 import {
   ExcludeSdItemSiblingsPipe,
@@ -39,6 +44,7 @@ import { ServiceTreeComponent } from "./service-tree/service-tree.component";
 import { MaxDirective } from "./commons/validators/max/max.directive";
 import { MinDirective } from "./commons/validators/min/min.directive";
 import { StepDirective } from "./commons/validators/step/step.directive";
+import { MksdFileService } from "./file-service/mksd-file-service/mksd-file.service";
 
 @NgModule({
   bootstrap: [
@@ -82,6 +88,13 @@ import { StepDirective } from "./commons/validators/step/step.directive";
     MatDividerModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    ZipFileService,
+    WsdlFileService,
+    MksdFileService,
+    MockettaroFileService,
+    JsonMockFileService,
+    JsonSchemaFileService,
+  ],
 })
 export class AppModule { }

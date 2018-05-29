@@ -121,6 +121,8 @@
     "EXPORT_ERR"    : "Exporting error",
     "FILE_READING"  : "File reading error",
     "ZIP_FETCHER"   : "Zip fetching error",
-    "ZIP_LOADING"   : "Zip loading error"
+    "ZIP_LOADING"   : "Zip loading error",
+    "LOAD_SUCCEDED" : "Load succeded",
+    "SAVE_SUCCEDED" : "Export succeded"
   }
 }

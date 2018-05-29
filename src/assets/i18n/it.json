@@ -121,6 +121,8 @@
     "EXPORT_ERR"    : "Errore nell'esportazione",
     "FILE_READING"  : "Errore nella lettura file",
     "ZIP_FETCHER"   : "Errore nella lavorazione archivio",
-    "ZIP_LOADING"   : "Errore caricamento archivio"
+    "ZIP_LOADING"   : "Errore caricamento archivio",
+    "LOAD_SUCCEDED" : "Caricamento completato",
+    "SAVE_SUCCEDED" : "Salvataggio completato"
   }
 }
