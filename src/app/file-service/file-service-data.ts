@@ -8,4 +8,16 @@ export class FileServiceData {
   public mimeType: string;
   public fileName: string;
   public blob: Blob;
+
+  constructor(input?: FileServiceData|any) {
+    if (input) {
+      this.name = input.name;
+      this.archiveName = input.archiveName;
+      this.content = input.content;
+      this.extension = input.extension;
+      this.mimeType = input.mimeType;
+      this.fileName = input.fileName;
+      this.blob = input.blob;
+    }
+  }
 }

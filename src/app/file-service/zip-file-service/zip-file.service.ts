@@ -15,10 +15,10 @@ export class ZipFileService implements IfileService {
     private translate: TranslateService,
   ) { }
 
-  public save(fileServiceData: FileServiceData): Observable<FileServiceData|FileServiceError> {
+  public save(fileServiceInput: FileServiceData): Observable<FileServiceData|FileServiceError> {
     return new Observable((observer) => {
       const zip = new JSZip();
-      fileServiceData.content.forEach((e) => {
+      fileServiceInput.content.forEach((e) => {
         zip.file(e.filePath, e.data);
       });
       zip.generateAsync({
@@ -26,23 +26,25 @@ export class ZipFileService implements IfileService {
         compressionOptions: {
           level: 9,
         },
-        mimeType: fileServiceData.mimeType,
+        mimeType: fileServiceInput.mimeType,
         type: "blob",
       }).then((blobData) => {
-        fileServiceData.blob = blobData;
-        if (!fileServiceData.name) {
+        const fileServiceOutput = new FileServiceData(fileServiceInput);
+        fileServiceOutput.blob = blobData;
+
+        if (!fileServiceOutput.name) {
           this.translate.get("DEFAULT.FILE_NAME").toPromise().then((projectName) => {
-            fileServiceData.name = projectName;
-            fileServiceData.fileName = this.getExportFileName(fileServiceData);
-            saveAs(fileServiceData.blob, fileServiceData.fileName);
-            observer.next(fileServiceData);
+            fileServiceOutput.name = projectName;
+            fileServiceOutput.fileName = this.getExportFileName(fileServiceOutput);
+            saveAs(fileServiceOutput.blob, fileServiceOutput.fileName);
+            observer.next(fileServiceOutput);
           }, (err) => {
             observer.error(new FileServiceError("EXPORT_ERR", err));
           });
         } else {
-          fileServiceData.fileName = this.getExportFileName(fileServiceData);
-          saveAs(fileServiceData.blob, fileServiceData.fileName);
-          observer.next(fileServiceData);
+          fileServiceOutput.fileName = this.getExportFileName(fileServiceOutput);
+          saveAs(fileServiceOutput.blob, fileServiceOutput.fileName);
+          observer.next(fileServiceOutput);
         }
       }, (err) => {
         observer.error(new FileServiceError("EXPORT_ERR", err));

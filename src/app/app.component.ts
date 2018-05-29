@@ -1,22 +1,22 @@
-import { Observable } from 'rxjs/Observable';
-import { Observable } from 'rxjs/Observable';
 import { Component, Inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material";
 import { DOCUMENT, DomSanitizer } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
 import { TreeviewConfig } from "ngx-treeview";
+import { Observable } from "rxjs/Observable";
 import * as EN_TRANSLATION from "../assets/i18n/en.json";
 import * as IT_TRANSLATION from "../assets/i18n/it.json";
 import * as RU_TRANSLATION from "../assets/i18n/ru.json";
 import { ContentElement } from "./classes/content-element";
 import { SdItemObject } from "./classes/sd-item";
 import { SdService, SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
+import { FileServiceSD } from "./file-service/file-service-sd";
+import { IfileService } from "./file-service/file-service.interface";
 import { JsonMockFileService } from "./file-service/json-file-service/json-mock-file.service";
 import { JsonSchemaFileService } from "./file-service/json-file-service/json-schema-file.service";
 import { MksdFileService } from "./file-service/mksd-file-service/mksd-file.service";
 import { MockettaroFileService } from "./file-service/mockettaro-file-service/mockettaro-file.service";
 import { WsdlFileService } from "./file-service/wsdl-file-service/wsdl-file.service";
-import { FileServiceSD } from './file-service/file-service-sd';
 
 @Component({
   selector    : "app-root",
@@ -99,12 +99,12 @@ export class AppComponent {
     this.manageExport(this.wsdlFileService);
   }
 
-  private manageExport(exportObservable: Observable) {
+  private manageExport(fileService: IfileService) {
     const input = new FileServiceSD({
       projectName: this.projectName,
       serviceTree: this.serviceRoot,
     });
-    exportObservable
+    fileService
       .save(input)
       .subscribe(() => {
         this.showMessage("EXPORT_SUCCEDED");
