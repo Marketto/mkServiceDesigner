@@ -1,3 +1,4 @@
+import { FileServiceError } from './file-service/file-service-error';
 import { Component, Inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material";
 import { DOCUMENT, DomSanitizer } from "@angular/platform-browser";
@@ -56,13 +57,13 @@ export class AppComponent {
     @Inject(DOCUMENT) private document: Document,
     private translate: TranslateService,
     private domSanitizer: DomSanitizer,
-    public snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
 
-    public mksdFileService: MksdFileService,
-    public wsdlFileService: WsdlFileService,
-    public jsonSchemaFileService: JsonSchemaFileService,
-    public jsonMockFileService: JsonMockFileService,
-    public mockettaroFileService: MockettaroFileService,
+    private mksdFileService: MksdFileService,
+    private wsdlFileService: WsdlFileService,
+    private jsonSchemaFileService: JsonSchemaFileService,
+    private jsonMockFileService: JsonMockFileService,
+    private mockettaroFileService: MockettaroFileService,
   ) {
     this.initTranslate();
   }
@@ -79,8 +80,10 @@ export class AppComponent {
     this.mksdFileService.load(file).subscribe((fileServiceSd: FileServiceSD) => {
       this.projectName = fileServiceSd.projectName;
       this.serviceRoot = fileServiceSd.serviceTree;
-      this.showMessage("LOAD_SUCCEDED");
-    }, this.showMessage);
+      this.showMessage({code : "LOAD_SUCCEDED"});
+    }, (fsError: FileServiceError) => {
+      this.showMessage(fsError);
+    });
   }
 
   public exportJsonSchema() {
@@ -107,12 +110,14 @@ export class AppComponent {
     fileService
       .save(input)
       .subscribe(() => {
-        this.showMessage("EXPORT_SUCCEDED");
-      }, this.showMessage);
+        this.showMessage({ code: "SAVE_SUCCEDED"});
+      }, (fsError: FileServiceError) => {
+        this.showMessage(fsError);
+      });
   }
 
-  private showMessage(msgKey, err?) {
-    const MESSAGE_KEY = `MESSAGE.${msgKey}`;
+  private showMessage(fsErr: { code: string, err?: Error } | FileServiceError) {
+    const MESSAGE_KEY = `MESSAGE.${fsErr.code}`;
     const BUTTON_LABEL = "MESSAGE.BUTTON.DISMISS";
     this.translate.get([MESSAGE_KEY, BUTTON_LABEL])
       .toPromise().then((translations) => {

@@ -122,6 +122,7 @@
     "FILE_READING"  : "File reading error",
     "ZIP_FETCHER"   : "Zip fetching error",
     "ZIP_LOADING"   : "Zip loading error",
+    "INVALID_MKSD"  : "MKSD not compatible or corrupted",
     "LOAD_SUCCEDED" : "Load succeded",
     "SAVE_SUCCEDED" : "Export succeded"
   }

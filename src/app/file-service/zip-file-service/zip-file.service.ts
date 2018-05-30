@@ -38,6 +38,7 @@ export class ZipFileService implements IfileService {
             fileServiceOutput.fileName = this.getExportFileName(fileServiceOutput);
             saveAs(fileServiceOutput.blob, fileServiceOutput.fileName);
             observer.next(fileServiceOutput);
+            observer.complete();
           }, (err) => {
             observer.error(new FileServiceError("EXPORT_ERR", err));
           });
@@ -45,6 +46,7 @@ export class ZipFileService implements IfileService {
           fileServiceOutput.fileName = this.getExportFileName(fileServiceOutput);
           saveAs(fileServiceOutput.blob, fileServiceOutput.fileName);
           observer.next(fileServiceOutput);
+          observer.complete();
         }
       }, (err) => {
         observer.error(new FileServiceError("EXPORT_ERR", err));

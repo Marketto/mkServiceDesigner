@@ -51,6 +51,7 @@ export class MksdFileService implements IfileService {
                   serviceTree: JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON),
                 });
               observer.next(fileServiceSD);
+              observer.complete();
             };
             fileReader.onerror = (progressEvent) => {
               observer.error(new FileServiceError("FILE_READING"));
@@ -58,6 +59,8 @@ export class MksdFileService implements IfileService {
           }, (err) => {
             observer.error(new FileServiceError("ZIP_FETCHER", err));
           });
+        } else {
+          observer.error(new FileServiceError("INVALID_MKSD"));
         }
       }, (err) => {
         observer.error(new FileServiceError("ZIP_LOADING", err));
