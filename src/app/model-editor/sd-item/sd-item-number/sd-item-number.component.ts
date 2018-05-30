@@ -16,4 +16,10 @@ export class SdItemNumberComponent {
   public get integer() {
     return this.isInteger;
   }
+  public get minimumMaxValue() {
+    if(this.item.minValue !== null && this.item.multipleOf!==null){
+      return Math.max(this.item.minValue, this.item.multipleOf);
+    }
+    return this.item.minValue !== null ? this.item.minValue : this.item.multipleOf;
+  }
 }
