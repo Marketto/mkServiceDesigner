@@ -12,38 +12,44 @@ import { FormControl, NG_VALIDATORS, Validator } from "@angular/forms";
   selector: "[step][formControlName],[step][formControl],[step][ngModel]",
 })
 export class StepDirective implements Validator {
-  private onChangeCallback: any;
   private $step: number;
+  private formControl: FormControl;
 
   @Input()
   public set step(value: number) {
     this.$step = value;
-    if (this.onChangeCallback) {
-      this.onChangeCallback();
-    }
+    this.updateModelValidation();
   }
   public get step(): number {
     return this.$step;
   }
 
-  public validate(c: FormControl): {[key: string]: any} {
-    const value = parseFloat(c.value);
-    if (
-      c.value !== null &&
-      !isNaN(value) &&
-      this.step !== null &&
-      !isNaN(this.step) &&
-      value % this.step
-    ) {
-      return {
-        step: {
-          value,
-        },
-      };
+  public validate(c: FormControl): { [key: string]: any } {
+    if (c) {
+      this.formControl = c;
+      const value = (c.value !== null) ? parseFloat(c.value) : null;
+      if (
+        value !== null &&
+        !isNaN(value) &&
+        this.step !== null &&
+        !isNaN(this.step) &&
+        value % this.step
+      ) {
+        return {
+          step: {
+            value,
+          },
+        };
+      }
     }
   }
 
-  public registerOnValidatorChange(fn: any): void {
-    this.onChangeCallback = fn;
+  private updateModelValidation() {
+    if (this.formControl) {
+      setTimeout(() => {
+        this.formControl.setValue(this.formControl.value);
+      });
+    }
   }
+
 }

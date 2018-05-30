@@ -14,14 +14,12 @@ import { FormControl, NG_VALIDATORS, Validator } from "@angular/forms";
 export class MinDirective implements Validator {
   private $min: number;
   private $exclusiveMin: boolean = false;
-  private onChangeCallback: any;
+  private formControl: FormControl;
 
   @Input()
   public set min(value: number) {
     this.$min = value;
-    if (this.onChangeCallback) {
-      this.onChangeCallback();
-    }
+    this.updateModelValidation();
   }
   public get min(): number {
     return this.$min;
@@ -30,37 +28,42 @@ export class MinDirective implements Validator {
   @Input()
   public set exclusiveMin(value: boolean) {
     this.$exclusiveMin = value;
-    if (this.onChangeCallback) {
-      this.onChangeCallback();
-    }
+    this.updateModelValidation();
   }
   public get exclusiveMin(): boolean {
     return this.$exclusiveMin;
   }
 
-  public validate(c: FormControl): {[key: string]: any} {
-    const value = parseFloat(c.value);
-    if (
-      c.value !== null &&
-      !isNaN(value) &&
-      this.min !== null &&
-      !isNaN(this.min) &&
-      (
-        value < this.min ||
+  public validate(c: FormControl): { [key: string]: any } {
+    if (c) {
+      this.formControl = c;
+      const value = (c.value !== null) ? parseFloat(c.value) : null;
+      if (
+        value !== null &&
+        !isNaN(value) &&
+        this.min !== null &&
+        !isNaN(this.min) &&
         (
-          this.exclusiveMin && value === this.min
+          value < this.min ||
+          (
+            this.exclusiveMin && value === this.min
+          )
         )
-      )
-    ) {
-      return {
-        min: {
-          value,
-        },
-      };
+      ) {
+        return {
+          min: {
+            value,
+          },
+        };
+      }
     }
   }
 
-  public registerOnValidatorChange(fn: any): void {
-    this.onChangeCallback = fn;
+  private updateModelValidation() {
+    if (this.formControl) {
+      setTimeout(() => {
+        this.formControl.setValue(this.formControl.value);
+      });
+    }
   }
 }
