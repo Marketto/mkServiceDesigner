@@ -37,7 +37,7 @@
     "SAVE"      : "Сохранить",
     "EXPORT"    : {
       "TITLE"       : "Сохранить как",
-      "JAVA"        : "Java Package",
+      "JAVA"        : "Пакет Java",
       "WSDL"        : "WSDL группа",
       "JSON_SCHEMA" : "JSON Schemas",
       "JSON_MOCK"   : "JSON Mocks",
@@ -72,7 +72,7 @@
         "BOOLEAN"       : "Логический"
       },
       "REQUIRED"      : "Обязательный",
-      "LIST"          : "Список",
+      "LIST"          : "Массив",
       "OCCURENCES"    : {
         "MIN"           : "Минимум единиц",
         "MAX"           : "Максимум единиц"
@@ -103,7 +103,7 @@
         "URI"           : "URI"
       },
       "DOMAIN"        : "Значения домена",
-      "MULTIPLE"      : "Multiple of",
+      "MULTIPLE"      : "Кратное",
       "MIN_VAL"       : "Минимум значений",
       "MAX_VAL"       : "Максимум значений",
       "GT_MIN"        : "Нижняя граница",
@@ -115,15 +115,15 @@
   },
   "MESSAGE"       : {
     "BUTTON"        : {
-      "DISMISS"       : "Close"
+      "DISMISS"       : "Закрыть"
     },
-    "EMPTY_EXPORT"  : "Nothing to export",
-    "EXPORT_ERR"    : "Exporting error",
-    "FILE_READING"  : "File reading error",
-    "ZIP_FETCHER"   : "Zip fetching error",
-    "ZIP_LOADING"   : "Zip loading error",
-    "INVALID_MKSD"  : "MKSD not compatible or corrupted",
-    "LOAD_SUCCEDED" : "Load succeded",
-    "SAVE_SUCCEDED" : "Export succeded"
+    "EMPTY_EXPORT"  : "Нечего переносить",
+    "EXPORT_ERR"    : "Ошибка сохранения",
+    "FILE_READING"  : "Ошибка открытия",
+    "ZIP_FETCHER"   : "Ошибка получения Zip",
+    "ZIP_LOADING"   : "Ошибка открытия Zip",
+    "INVALID_MKSD"  : "MKSD не согласован или повреждён",
+    "LOAD_SUCCEDED" : "Открыт",
+    "SAVE_SUCCEDED" : "Соxранён"
   }
 }

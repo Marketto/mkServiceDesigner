@@ -1,6 +1,10 @@
 {
   "name": "mk-service-designer",
-  "version": "2.2.0",
+  "version": "2.2.1",
+  "author": {
+    "name": "Marco Ricupero",
+    "url": "http://blog.marketto.it"
+  },
   "license": "MIT",
   "scripts": {
     "ng": "ng",

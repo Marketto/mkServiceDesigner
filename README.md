@@ -25,6 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Author
 
 **Marco Ricupero** - [Github](https://github.com/Marketto) - [Blog](http://blog.marketto.it)
+**Алёна Горбачёва** - Russian l10n
 
 
 ## License
