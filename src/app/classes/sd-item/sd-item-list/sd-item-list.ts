@@ -72,7 +72,7 @@ export class SdItemList extends Array<SdItem> {
         };
       });
     const schemaList = {
-      dependencies: (dependencies.length > 0) ? dependencies : undefined,
+      dependencies: (dependencies.length > 0) ? Object.assign({}, ...dependencies) : undefined,
       properties: Object.assign({}, ...sdItemArray.map((sdItem) => {
         return {
           [sdItem.name]: sdItem.toJSONSchema(),

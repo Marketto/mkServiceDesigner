@@ -38,7 +38,8 @@ export class SdService {
       .map((s) => Object.assign(s, {
           endPoint: this.endPoint,
           schema: Object.assign(s.schema, {
-              title: (this.endPoint || "").replace("/", " ") || undefined,
+              title : (this.endPoint || "").replace("/", " ") || undefined,
+              type : "object",
           }),
       }));
     return verbList.length > 0 ? verbList : undefined;

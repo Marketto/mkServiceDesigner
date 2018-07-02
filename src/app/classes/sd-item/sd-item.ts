@@ -85,7 +85,7 @@ export abstract class SdItem implements InterfaceSdItem {
 
   protected toItemJSONSchema(): object {
     return {
-      id: this.id,
+      $id: this.id,
       type: this.type,
     };
   }

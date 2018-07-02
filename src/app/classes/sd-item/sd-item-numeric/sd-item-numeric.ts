@@ -256,10 +256,10 @@ export abstract class SdItemNumeric extends SdItem {
       const jss = super.toItemJSONSchema();
       return Object.assign(jss, {
         default: (this.default !== null) ? this.default : undefined,
-        exclusiveMax: (this.maxValue !== null && this.maxValue !== undefined) ? this.exclusiveMax : undefined,
-        exclusiveMin: (this.minValue !== null && this.minValue !== undefined) ? this.exclusiveMin : undefined,
-        maxValue: (this.maxValue !== null) ? this.maxValue : undefined,
-        minValue: (this.minValue !== null) ? this.minValue : undefined,
+        exclusiveMaximum: (this.maxValue !== null && this.maxValue !== undefined) ? this.exclusiveMax : undefined,
+        exclusiveMinimum: (this.minValue !== null && this.minValue !== undefined) ? this.exclusiveMin : undefined,
+        maximum: (this.maxValue !== null) ? this.maxValue : undefined,
+        minimum: (this.minValue !== null) ? this.minValue : undefined,
         multipleOf: (this.multipleOf !== null) ? this.multipleOf : undefined,
       });
   }

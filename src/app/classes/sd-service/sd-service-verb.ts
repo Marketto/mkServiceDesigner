@@ -2,7 +2,7 @@ import { XMLAttribute, XMLChild, XMLElement } from "xml-decorators";
 import { SdItemList } from "../sd-item";
 import { SdServiceVerbType } from "./sd-service-verb-types";
 
-export const SCHEMA_VERSION = "http://json-schema.org/schema#";
+export const SCHEMA_VERSION = "http://json-schema.org/draft-07/schema#";
 
 @XMLElement({ root: "operation" })
 export class SdServiceVerb {
