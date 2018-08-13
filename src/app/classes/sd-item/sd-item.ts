@@ -72,7 +72,7 @@ export abstract class SdItem implements InterfaceSdItem {
     const itemJSS = this.toItemJSONSchema();
     if (this.listOf) {
       return {
-        additionalItems: false,
+        additionalItems: true,
         items: [itemJSS],
         maxItems: (this.maxOccurrences !== null) ? this.maxOccurrences : undefined,
         minItems: (this.minOccurrences !== null) ? this.minOccurrences : undefined,

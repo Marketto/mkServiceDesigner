@@ -1,16 +1,13 @@
-import { FileServiceError } from './file-service/file-service-error';
 import { Component, Inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material";
-import { DOCUMENT, DomSanitizer } from "@angular/platform-browser";
+import { DOCUMENT } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
-import { TreeviewConfig } from "ngx-treeview";
-import { Observable } from "rxjs/Observable";
 import * as EN_TRANSLATION from "../assets/i18n/en.json";
 import * as IT_TRANSLATION from "../assets/i18n/it.json";
 import * as RU_TRANSLATION from "../assets/i18n/ru.json";
-import { ContentElement } from "./classes/content-element";
 import { SdItemObject } from "./classes/sd-item";
-import { SdService, SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
+import { SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
+import { FileServiceError } from "./file-service/file-service-error";
 import { FileServiceSD } from "./file-service/file-service-sd";
 import { IfileService } from "./file-service/file-service.interface";
 import { JsonMockFileService } from "./file-service/json-file-service/json-mock-file.service";
@@ -56,7 +53,6 @@ export class AppComponent {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private translate: TranslateService,
-    private domSanitizer: DomSanitizer,
     private snackBar: MatSnackBar,
 
     private mksdFileService: MksdFileService,

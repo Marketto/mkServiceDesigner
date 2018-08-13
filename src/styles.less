@@ -1,8 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Khula&subset=cyrillic');
 
 body{
     margin: 0;
     height: 100vh;
     width: 100vw;
+    &, * {
+      font-family: 'Didact Gothic', sans-serif;
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Khula', sans-serif;
+      }
+      .material-icons {
+        font-family: 'Material Icons', 'serif';
+        line-height: 0.99em;
+      }
+    }
 }
