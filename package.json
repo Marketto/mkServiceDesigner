@@ -45,7 +45,7 @@
     "rxjs": "^5.5.11",
     "typescript-json-schema-faker": "0.0.2",
     "web-animations-js": "^2.3.1",
-    "xml-decorators": "^1.0.7",
+    "xml-decorators": "^1.0.8",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "karma-coverage-istanbul-reporter": "^1.4.3",
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.1.2",
+    "protractor": "^5.4.0",
     "ts-node": "^6.0.5",
     "tslint": "^5.10.0",
     "tslint-sonarts": "^1.6.0",
