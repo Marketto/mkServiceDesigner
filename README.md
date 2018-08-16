@@ -1,7 +1,9 @@
 # MkServiceDesigner
-![Build Status](http://ci.marketto.it/buildStatus/icon?job=Service%20Designer)
-[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=mkServiceDesigner)](https://sonarcloud.io/dashboard?id=mkServiceDesigner)
-[![SonarCloud Bugs](https://sonarcloud.io/api/badges/measure?key=mkServiceDesigner&metric=bugs)](https://sonarcloud.io/component_measures?id=mkServiceDesigner&metric=bugs)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=alert_status)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=coverage)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
+[![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=sqale_rating)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
+[![Reliability](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=reliability_rating)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
+![Build Status](http://ci.marketto.it/buildStatus/icon?job=Service Designer)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
