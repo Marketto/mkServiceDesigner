@@ -29,7 +29,7 @@ export class WsdlFileService implements IfileService {
         fileServiceData.archiveName = ARCHIVE_NAME;
         fileServiceData.content = contentList;
 
-        this.zipFileService.save(fileServiceData).subscribe((out)=>{
+        this.zipFileService.save(fileServiceData).subscribe((out) => {
           observer.next(out);
           observer.complete();
         }, observer.error);

@@ -7,14 +7,11 @@ import * as IT_TRANSLATION from "../assets/i18n/it.json";
 import * as RU_TRANSLATION from "../assets/i18n/ru.json";
 import { SdItemObject } from "./classes/sd-item";
 import { SdServiceIOType, SdServiceTreeItem, SdServiceVerbType } from "./classes/sd-service";
+import { FileService } from "./file-service/file-service";
 import { FileServiceError } from "./file-service/file-service-error";
 import { FileServiceSD } from "./file-service/file-service-sd";
 import { IfileService } from "./file-service/file-service.interface";
-import { JsonMockFileService } from "./file-service/json-file-service/json-mock-file.service";
-import { JsonSchemaFileService } from "./file-service/json-file-service/json-schema-file.service";
 import { MksdFileService } from "./file-service/mksd-file-service/mksd-file.service";
-import { MockettaroFileService } from "./file-service/mockettaro-file-service/mockettaro-file.service";
-import { WsdlFileService } from "./file-service/wsdl-file-service/wsdl-file.service";
 
 @Component({
   selector    : "app-root",
@@ -55,11 +52,7 @@ export class AppComponent {
     private translate: TranslateService,
     private snackBar: MatSnackBar,
 
-    private mksdFileService: MksdFileService,
-    private wsdlFileService: WsdlFileService,
-    private jsonSchemaFileService: JsonSchemaFileService,
-    private jsonMockFileService: JsonMockFileService,
-    private mockettaroFileService: MockettaroFileService,
+    private fileService: FileService,
   ) {
     this.initTranslate();
   }
@@ -69,11 +62,11 @@ export class AppComponent {
   }
 
   public saveMKSD() {
-    this.manageExport(this.mksdFileService);
+    this.manageExport(this.fileService.mksdFileService);
   }
 
   public openMKSD(file: File) {
-    this.mksdFileService.load(file).subscribe((fileServiceSd: FileServiceSD) => {
+    this.fileService.mksdFileService.load(file).subscribe((fileServiceSd: FileServiceSD) => {
       this.projectName = fileServiceSd.projectName;
       this.serviceRoot = fileServiceSd.serviceTree;
       this.showMessage({code : "LOAD_SUCCEDED"});
@@ -83,19 +76,19 @@ export class AppComponent {
   }
 
   public exportJsonSchema() {
-    this.manageExport(this.jsonSchemaFileService);
+    this.manageExport(this.fileService.jsonSchemaFileService);
   }
 
   public exportJsonMock() {
-    this.manageExport(this.jsonMockFileService);
+    this.manageExport(this.fileService.jsonMockFileService);
   }
 
   public exportMockettaro() {
-    this.manageExport(this.mockettaroFileService);
+    this.manageExport(this.fileService.mockettaroFileService);
   }
 
   public exportWSDL() {
-    this.manageExport(this.wsdlFileService);
+    this.manageExport(this.fileService.wsdlFileService);
   }
 
   private manageExport(fileService: IfileService) {
