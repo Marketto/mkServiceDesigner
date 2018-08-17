@@ -3,7 +3,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=coverage)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
 [![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=sqale_rating)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
 [![Reliability](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=reliability_rating)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
-![Build Status](http://ci.marketto.it/buildStatus/icon?job=Service Designer)
+![Build Status](http://ci.marketto.it/buildStatus/icon?job=ServiceDesigner)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
