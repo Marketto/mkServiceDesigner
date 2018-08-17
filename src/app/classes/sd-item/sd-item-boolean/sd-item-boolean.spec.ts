@@ -22,7 +22,7 @@ describe("SdItemBoolean", () => {
   });
 
   describe("SdItem => SdItemBoolean", () => {
-    it("Should be type boolean, default undefined and have name "Test"", () => {
+    it("Should be type boolean, default undefined and have name 'Test'", () => {
       const sdItemString = new SdItemString();
       sdItemString.default = "test";
       sdItemString.name = "Test";

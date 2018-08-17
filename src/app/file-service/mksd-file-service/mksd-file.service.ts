@@ -48,7 +48,7 @@ export class MksdFileService implements IfileService {
             fileReader.onload = () => {
               const fileServiceSD = new FileServiceSD({
                 projectName: file.name.replace(`.${MksdFileService.extension}`, ""),
-                  serviceTree: JSON.parse(fileReader.result, SdServiceTreeItem.fromJSON),
+                  serviceTree: JSON.parse(fileReader.result.toString(), SdServiceTreeItem.fromJSON),
                 });
               observer.next(fileServiceSD);
               observer.complete();

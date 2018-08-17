@@ -1,5 +1,5 @@
 import { inject, TestBed } from "@angular/core/testing";
-import { ZipFileService } from "./zip-file-service.service";
+import { ZipFileService } from "./zip-file.service";
 
 describe("ZipFileService", () => {
   beforeEach(() => {

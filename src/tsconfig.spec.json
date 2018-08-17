@@ -17,7 +17,8 @@
     "../node_modules/xml-decorators/lib/models/XMLAttribute.ts",
     "../node_modules/xml-decorators/lib/annotations/XMLElement.ts",
     "../node_modules/xml-decorators/lib/annotations/XMLChild.ts",
-    "../node_modules/xml-decorators/lib/annotations/XMLAttribute.ts"
+    "../node_modules/xml-decorators/lib/annotations/XMLAttribute.ts",
+    "polyfills.ts"
   ],
   "include": [
     "**/*.spec.ts",
