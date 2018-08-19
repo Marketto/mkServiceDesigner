@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { xml } from "xml-decorators";
 import { ContentElement } from "../../classes/content-element";
 import { FileServiceError } from "../file-service-error";

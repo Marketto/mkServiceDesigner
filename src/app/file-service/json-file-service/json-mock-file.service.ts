@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as jsf from "json-schema-faker";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import faker from "typescript-json-schema-faker";
 import { ContentElement } from "../../classes/content-element";
 import { FileServiceData } from "../file-service-data";

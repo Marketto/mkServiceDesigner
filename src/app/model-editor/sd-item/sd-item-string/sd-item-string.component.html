@@ -50,7 +50,7 @@
   <mat-grid-tile colspan="8">
     <mat-form-field>
       <mat-chip-list #chipDomain [disabled]="!!item.format || !!item.pattern">
-        <mat-chip *ngFor="let value of item.domain" (remove)="removeDomain(value)">
+        <mat-chip *ngFor="let value of item.domain" (removed)="removeDomain(value)">
           {{value}}
           <mat-icon matChipRemove matTooltip="{{'TOOLTIP.BUTTON.DEL_DOMAIN_VAL'|translate}}">cancel</mat-icon>
         </mat-chip>

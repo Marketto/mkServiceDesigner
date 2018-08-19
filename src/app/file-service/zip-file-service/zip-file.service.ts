@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { saveAs } from "file-saver/FileSaver";
 import * as JSZip from "jszip";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { FileServiceData } from "../file-service-data";
 import { FileServiceError } from "../file-service-error";
 import { IfileService } from "../file-service.interface";

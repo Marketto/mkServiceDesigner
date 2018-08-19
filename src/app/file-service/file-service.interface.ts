@@ -1,4 +1,4 @@
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { FileServiceData } from "./file-service-data";
 import { FileServiceError } from "./file-service-error";
 import { FileServiceSD } from "./file-service-sd";

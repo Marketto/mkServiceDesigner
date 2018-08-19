@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as JSZip from "jszip";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { IfileService } from "../file-service.interface";
 import { SdServiceTreeItem } from "./../../classes/sd-service/sd-service-tree-item";
 import { FileServiceData } from "./../file-service-data";
