@@ -18,6 +18,10 @@ import { SdItemObjectComponent } from "./sd-item/sd-item-object/sd-item-object.c
 import { SdItemStringComponent } from "./sd-item/sd-item-string/sd-item-string.component";
 import { SdItemComponent } from "./sd-item/sd-item.component";
 
+import { MaxDirective } from "../commons/validators/max/max.directive";
+import { MinDirective } from "../commons/validators/min/min.directive";
+import { StepDirective } from "../commons/validators/step/step.directive";
+
 describe("ModelEditorComponent", () => {
   let component: ModelEditorComponent;
   let fixture: ComponentFixture<ModelEditorComponent>;
@@ -25,6 +29,9 @@ describe("ModelEditorComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        MinDirective,
+        MaxDirective,
+        StepDirective,
         ModelEditorComponent,
         SdItemComponent,
         SdItemStringComponent,

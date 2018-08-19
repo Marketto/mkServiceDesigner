@@ -9,7 +9,4 @@ describe("JsonSchemaFileService", () => {
     });
   });
 
-  it("should be created", inject([JsonSchemaFileService], (service: JsonSchemaFileService) => {
-    expect(service).toBeTruthy();
-  }));
 });

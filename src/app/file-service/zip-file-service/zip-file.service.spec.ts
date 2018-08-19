@@ -4,11 +4,9 @@ import { ZipFileService } from "./zip-file.service";
 describe("ZipFileService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ZipFileService],
+      providers: [
+        ZipFileService,
+      ],
     });
   });
-
-  it("should be created", inject([ZipFileService], (service: ZipFileService) => {
-    expect(service).toBeTruthy();
-  }));
 });

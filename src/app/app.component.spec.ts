@@ -1,6 +1,5 @@
-import { async, TestBed } from "@angular/core/testing";
 import { HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { async, TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import {
   MatButtonModule,
@@ -23,12 +22,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TranslateModule } from "@ngx-translate/core";
 import { TreeviewModule } from "ngx-treeview";
 import { AppComponent } from "./app.component";
+import { FileService } from "./file-service/file-service";
 import { JsonMockFileService } from "./file-service/json-file-service/json-mock-file.service";
 import { JsonSchemaFileService } from "./file-service/json-file-service/json-schema-file.service";
 import { MockettaroFileService } from "./file-service/mockettaro-file-service/mockettaro-file.service";
 import { WsdlFileService } from "./file-service/wsdl-file-service/wsdl-file.service";
 import { ZipFileService } from "./file-service/zip-file-service/zip-file.service";
-import { FileService } from "./file-service/file-service
 import { ModelEditorComponent } from "./model-editor/model-editor.component";
 import {
   ExcludeSdItemSiblingsPipe,
@@ -51,9 +50,6 @@ import { MksdFileService } from "./file-service/mksd-file-service/mksd-file.serv
 describe("AppComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      bootstrap: [
-        AppComponent,
-      ],
       declarations: [
         AppComponent,
         MinDirective,

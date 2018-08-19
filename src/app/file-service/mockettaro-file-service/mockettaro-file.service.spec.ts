@@ -9,7 +9,4 @@ describe("MockettaroFileService", () => {
     });
   });
 
-  it("should be created", inject([MockettaroFileService], (service: MockettaroFileService) => {
-    expect(service).toBeDefined();
-  }));
 });

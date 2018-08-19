@@ -9,7 +9,4 @@ describe("WsdlFileService", () => {
     });
   });
 
-  it("should be created", inject([WsdlFileService], (service: WsdlFileService) => {
-    expect(service).toBeTruthy();
-  }));
 });

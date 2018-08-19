@@ -8,8 +8,4 @@ describe("MksdFileService", () => {
       providers: [MksdFileService],
     });
   });
-
-  it("should be created", inject([MksdFileService], (service: MksdFileService) => {
-    expect(service).toBeDefined();
-  }));
 });

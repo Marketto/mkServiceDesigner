@@ -17,6 +17,10 @@ import { SdItemStringComponent } from "../sd-item-string/sd-item-string.componen
 import { SdItemComponent } from "./../sd-item.component";
 import { SdItemObjectComponent } from "./sd-item-object.component";
 
+import { MaxDirective } from "../../../commons/validators/max/max.directive";
+import { MinDirective } from "../../../commons/validators/min/min.directive";
+import { StepDirective } from "../../../commons/validators/step/step.directive";
+
 describe("SdItemObjectComponent", () => {
   let component: SdItemObjectComponent;
   let fixture: ComponentFixture<SdItemObjectComponent>;
@@ -24,6 +28,9 @@ describe("SdItemObjectComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        MinDirective,
+        MaxDirective,
+        StepDirective,
         SdItemObjectComponent,
         SdItemComponent,
         SdItemBooleanComponent,

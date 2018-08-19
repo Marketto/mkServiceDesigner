@@ -8,7 +8,4 @@ describe("JsonMockFileService", () => {
     });
   });
 
-  it("should be created", inject([JsonMockFileService], (service: JsonMockFileService) => {
-    expect(service).toBeTruthy();
-  }));
 });

@@ -3,7 +3,6 @@ import { TranslateService } from "@ngx-translate/core";
 import { saveAs } from "file-saver/FileSaver";
 import * as JSZip from "jszip";
 import { Observable } from "rxjs/Observable";
-import { ContentElement } from "../../classes/content-element";
 import { FileServiceData } from "../file-service-data";
 import { FileServiceError } from "../file-service-error";
 import { IfileService } from "../file-service.interface";
