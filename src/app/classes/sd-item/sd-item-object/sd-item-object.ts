@@ -19,6 +19,15 @@ export class SdItemObject extends SdItem {
   public type: "object" = "object";
   @XMLChild({ name: "xs:complexType" })
   public children: SdItemList = new SdItemList();
+  private $additionalProperties: SdItemObjectAdditionalPropertiesType = true;
+
+  constructor(item?: SdItem) {
+    super(item);
+    if (item && item instanceof SdItemObject) {
+      this.additionalProperties = item.additionalProperties;
+      this.children = item.children;
+    }
+  }
 
   public clone(): SdItemObject {
     return new SdItemObject(this);
@@ -28,21 +37,11 @@ export class SdItemObject extends SdItem {
     return;
   }
 
-  private $additionalProperties: SdItemObjectAdditionalPropertiesType = true;
-
   get additionalProperties(): SdItemObjectAdditionalPropertiesType {
     return ( (this.children || []).length > 0 || this.$additionalProperties) ? this.$additionalProperties : true;
   }
   set additionalProperties(value: SdItemObjectAdditionalPropertiesType) {
     this.$additionalProperties = value;
-  }
-
-  constructor(item?: SdItem) {
-    super(item);
-    if (item && item instanceof SdItemObject) {
-      this.additionalProperties = item.additionalProperties;
-      this.children = item.children;
-    }
   }
 
   public toJSON(): object {
@@ -60,4 +59,5 @@ export class SdItemObject extends SdItem {
       additionalProperties: this.additionalProperties,
     }, properties);
   }
+
 }
