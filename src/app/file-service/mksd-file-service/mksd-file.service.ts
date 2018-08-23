@@ -45,7 +45,7 @@ export class MksdFileService implements IfileService {
           archive.files[MksdFileService.rootJsonFileName].async("blob").then((sourceFile) => {
             const fileReader = new FileReader();
             fileReader.readAsBinaryString(sourceFile);
-            fileReader.onload = () => {
+            fileReader.onloadend = () => {
               const fileServiceSD = new FileServiceSD({
                 projectName: file.name.replace(`.${MksdFileService.extension}`, ""),
                   serviceTree: JSON.parse(fileReader.result.toString(), SdServiceTreeItem.fromJSON),

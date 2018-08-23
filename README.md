@@ -5,7 +5,7 @@
 [![Reliability](https://sonarcloud.io/api/project_badges/measure?project=mkServiceDesigner&metric=reliability_rating)](https://sonarcloud.io/dashboard/index/mkServiceDesigner)
 ![Build Status](http://ci.marketto.it/buildStatus/icon?job=ServiceDesigner)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 2.2.7
 
 ## Development server
 
