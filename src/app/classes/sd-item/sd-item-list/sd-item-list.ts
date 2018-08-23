@@ -83,4 +83,8 @@ export class SdItemList extends Array<SdItem> {
 
     return sdItemArray.length > 0 ? schemaList : undefined;
   }
+
+  public clone(): SdItemList {
+    return new SdItemList(this);
+  }
 }

@@ -4,7 +4,7 @@ export class SdItemBoolean extends SdItem {
 
   public static fromJSON(key: string, value: any): SdItemBoolean {
     if (!key) {
-      return new SdItemBoolean(Object.assign(Object.create(SdItemBoolean.prototype), value || {}));
+      return new SdItemBoolean(value);
     }
   }
 
@@ -20,6 +20,10 @@ export class SdItemBoolean extends SdItem {
       if (item && item instanceof SdItemBoolean) {
           this.default = item.default;
       }
+  }
+
+  public clone(): SdItemBoolean {
+    return new SdItemBoolean(this);
   }
 
   protected toItemJSONSchema(): object {

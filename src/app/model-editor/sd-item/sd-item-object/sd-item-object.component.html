@@ -28,6 +28,9 @@
   </mat-grid-tile>
 
   <mat-grid-tile colspan="1">
+    <button mat-mini-fab color="accent" *ngIf="allowPasteItem" (click)="pasteItem()" matTooltip="{{'TOOLTIP.BUTTON.PASTE_PROPERTY'|translate}}">
+      <mat-icon class="icon">move_to_inbox</mat-icon>
+    </button>
     <button mat-mini-fab color="primary" (click)="newItem()" matTooltip="{{'TOOLTIP.BUTTON.ADD_PROPERTY'|translate}}">
       <mat-icon class="icon">add</mat-icon>
     </button>

@@ -20,6 +20,10 @@ export class SdItemObject extends SdItem {
   @XMLChild({ name: "xs:complexType" })
   public children: SdItemList = new SdItemList();
 
+  public clone(): SdItemObject {
+    return new SdItemObject(this);
+  }
+
   protected get xsdType(): undefined {
     return;
   }

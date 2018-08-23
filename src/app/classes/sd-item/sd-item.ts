@@ -11,6 +11,7 @@ export interface InterfaceSdItem {
 
   toJSON(): any;
   toJSONSchema(): any;
+  clone(): SdItem;
 }
 
 type XsdType = "xs:anyType" | "xs:string" | "xs:dateTime" | "xs:anyURI" | "xs:boolean" | "xs:integer" | "xs:decimal" |
@@ -81,6 +82,10 @@ export abstract class SdItem implements InterfaceSdItem {
       };
     }
     return itemJSS;
+  }
+
+  public clone(): SdItem {
+    return Object.assign(Object.create(SdItem.prototype), this);
   }
 
   protected toItemJSONSchema(): object {

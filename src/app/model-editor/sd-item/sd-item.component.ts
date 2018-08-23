@@ -11,6 +11,7 @@ import {
   SdItemString,
   SdItemType,
 } from "../../classes/sd-item";
+import { SdClipboardService } from "../../commons/sd-clipboard/sd-clipboard.service";
 
 @Component({
   animations: [
@@ -39,6 +40,11 @@ export class SdItemComponent {
   @Input() public node: SdItemList;
 
   public itemFormList = [];
+  private sdClipboardService: SdClipboardService;
+
+  constructor(sdClipboardService: SdClipboardService) {
+    this.sdClipboardService = sdClipboardService;
+  }
 
   public changeType(item: SdItem, type: SdItemType) {
     if (item.type !== type) {
@@ -77,5 +83,9 @@ export class SdItemComponent {
 
     this.itemFormList[itemToRemoveIndex] = { ...(this.itemFormList[itemToRemoveIndex] || {}), type: false };
     this.node.splice(itemToRemoveIndex, 1);
+  }
+
+  public copyItem(item: SdItem): void {
+    this.sdClipboardService.item = item;
   }
 }

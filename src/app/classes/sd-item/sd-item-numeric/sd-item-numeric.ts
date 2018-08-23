@@ -73,6 +73,10 @@ export abstract class SdItemNumeric extends SdItem {
       }
   }
 
+  public clone(): SdItemNumeric {
+    return Object.assign(Object.create(SdItemNumeric.prototype), this);
+  }
+
   protected setMinValue(minValue: number) {
     if (
       !isNaN(minValue) &&

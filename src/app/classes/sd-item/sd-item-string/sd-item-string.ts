@@ -67,6 +67,10 @@ export class SdItemString extends SdItem {
     });
   }
 
+  public clone(): SdItemString {
+    return new SdItemString(this);
+  }
+
   protected toItemJSONSchema(): object {
     const jss = super.toItemJSONSchema();
     return Object.assign(jss, {

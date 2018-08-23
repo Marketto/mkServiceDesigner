@@ -14,6 +14,8 @@
     "BUTTON"    : {
       "ADD_PROPERTY"  : "Add property",
       "DEL_PROPERTY"  : "Delete property",
+      "COPY_PROPERTY" : "Copy property",
+      "PASTE_PROPERTY": "Paste property",
       "MENU"          : "Menu",
       "SIDE_BAR"      : {
         "SHOW"          : "Show side bar",

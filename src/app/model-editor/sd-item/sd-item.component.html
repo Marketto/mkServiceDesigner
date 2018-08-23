@@ -47,6 +47,10 @@
     </mat-grid-tile>
 
     <mat-grid-tile colspan="1">
+
+      <button mat-mini-fab color="accent" (click)="copyItem(item)" matTooltip="{{'TOOLTIP.BUTTON.COPY_PROPERTY'|translate}}">
+        <mat-icon class="icon">file_copy</mat-icon>
+      </button>
       <button mat-mini-fab color="warn" (click)="removeItem(item)" matTooltip="{{'TOOLTIP.BUTTON.DEL_PROPERTY'|translate}}">
         <mat-icon class="icon">delete</mat-icon>
       </button>

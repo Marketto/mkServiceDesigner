@@ -14,6 +14,8 @@
     "BUTTON"    : {
       "ADD_PROPERTY"  : "Добавить свойство",
       "DEL_PROPERTY"  : "Удалить свойство",
+      "COPY_PROPERTY" : "Копировить свойство",
+      "PASTE_PROPERTY": "Вставить свойство",
       "MENU"          : "Меню",
       "SIDE_BAR"      : {
         "SHOW"          : "Показать боковую панель",

@@ -37,4 +37,8 @@ export class SdItemInteger extends SdItemNumeric {
   public set default(defaultValue: number) {
     super.setDefault(defaultValue ? Math.round(defaultValue) : defaultValue);
   }
+
+  public clone(): SdItemInteger {
+    return new SdItemInteger(this);
+  }
 }

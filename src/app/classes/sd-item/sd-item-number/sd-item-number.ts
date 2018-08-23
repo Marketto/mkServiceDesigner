@@ -7,4 +7,8 @@ export class SdItemNumber extends SdItemNumeric {
     }
   }
   public type: "number" = "number";
+
+  public clone(): SdItemNumber {
+    return new SdItemNumber(this);
+  }
 }
